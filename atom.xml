@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-03-04T12:34:22.105Z</updated>
+  <updated>2024-03-09T16:14:09.385Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,47 +17,278 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>测试代码</title>
-    <link href="http://example.com/2024/03/04/%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81/"/>
-    <id>http://example.com/2024/03/04/%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81/</id>
-    <published>2024-03-04T10:29:33.000Z</published>
-    <updated>2024-03-04T12:34:22.105Z</updated>
+    <title>梯度下降法</title>
+    <link href="http://example.com/2024/03/57eb35381a43.html"/>
+    <id>http://example.com/2024/03/57eb35381a43.html</id>
+    <published>2024-03-09T16:06:00.000Z</published>
+    <updated>2024-03-09T16:14:09.385Z</updated>
     
-    <content type="html"><![CDATA[<ul><li><p>等式约束的优化问题使用拉格朗日乘数法构建拉格朗日函数，利用求取极值的必要性，转换为无约束优化问题，可以使用[[梯度下降法]]、[[牛顿法]]，[[共轭梯度法]]等方法进行迭代求解。</p></li><li><p>带有不等式约束的优化问题构建广义拉格朗日函数，然后使用KKT条件进行求解。</p></li></ul><h2 id="section"><span id="more"></span></h2><p>对于带约束的优化问题（不一定是凸问题）： <spanclass="math display">\[\begin{array}{ll}\min &amp; f_0(\boldsymbol{x}), \boldsymbol{x} \in \mathbb{R}^n \\&amp; f_i(\boldsymbol{x}) \leq 0 \text {, 其中 } \mathrm{i}=1,2,3 \ldots\mathrm{m} \\\text { s.t. } &amp; h_i(\boldsymbol{x})=0 \text {, 其中 }\mathrm{i}=1,2,3 \ldots q\end{array}\]</span> #### 1. 首先构建拉格朗日函数，将原问题进行等价转换： <imgsrc="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20230914115357.png"alt="image.png" /></p><p>问题：为什么拉格朗日乘子<span class="math inline">\(\lambda \geq0\)</span>？ 答：为了使得原函数 <spanclass="math inline">\(f_{0}(x)\)</span> 等价为极大的拉格朗日函数。也就是上面的当 x在可行域和不在可行域时需要满足的条件，从而将原问题等价为极小极大拉格朗日问题。#### 2. 将原问题转换为对偶问题，就是最大最小过程进行交换： <imgsrc="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20230914115857.png"alt="image.png" /></p><p>这里，对偶问题进行进一步转化： <span class="math display">\[\begin{array}{ll}对偶问题: &amp;\max _{\lambda, v} L(x,\lambda, v) \\\text { s.t. } &amp; \nabla_{\boldsymbol{x}} L(\boldsymbol{x},\boldsymbol{\lambda}, \boldsymbol{v})=\mathbf{0} \\&amp; \boldsymbol{\lambda} \geq \mathbf{0}\end{array}\]</span></p><p>注意对偶函数 <spanclass="math inline">\(g(\lambda,v)\)</span>的变量为 <spanclass="math inline">\(\lambda,v\)</span> ，然后分析对偶函数： - <spanclass="math inline">\(g(\lambda,v)\)</span>是关于变量的线性函数，因此既是凸函数也是凹函数； - 对偶问题可行域为<span class="math inline">\(\lambda \geq 0\)</span>，是半空间，因此为凸空间。</p><p>所以无论原问题是不是凸问题，对偶问题一定是凸问题。 <imgsrc="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20230914121015.png"alt="image.png" /></p>]]></content>
-    
-    
-    <summary type="html">&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;等式约束的优化问题
-使用拉格朗日乘数法构建拉格朗日函数，利用求取极值的必要性，转换为无约束优化问题，可以使用[[梯度下降法]]、[[牛顿法]]，[[共轭梯度法]]等方法进行迭代求解。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;带有不等式约束的优化问题
-构建广义拉格朗日函数，然后使用KKT条件进行求解。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;section&quot;&gt;</summary>
+    <content type="html"><![CDATA[<h1 id="基本原理">1. 基本原理</h1><p>对于无约束优化问题： <span class="math display">\[min \quad f(x)\]</span> 将目标函数在 <span class="math inline">\(x_{k}\)</span>处进行一阶泰勒展开 <span class="math display">\[\begin{aligned}f(x_{k+1}) &amp;= f(x_{k}) + g(x_{k})(x_{k+1} - x_{k}) \\g(x_{k}) &amp;= f&#39;(x_{k})\end{aligned}\]</span></p><span id="more"></span><p>梯度下降法的目标是希望 <span class="math inline">\(f(x)\)</span>在当前所在位置向下降量最大的方向扩展，即： <span class="math display">\[\begin{aligned}f(x_{k+1}) - f(x_{k}) &amp;= g(x_{k}) \cdot \alpha \vec{v} \\&amp; = \alpha \times ||g(x_{k})|| \times ||\vec{v}|| \times cos(\theta)\end{aligned}\]</span> 所以要使得 <span class="math inline">\(f(x_{k+1}) -f(x_{k})\)</span> 的绝对值最大，并且为负，需要 <spanclass="math inline">\(cos(\theta) = -1\)</span>，即 <spanclass="math inline">\(\vec{v} = -g(x_{k})\)</span>，所以有： <spanclass="math display">\[x_{k+1} = x_{k} - \alpha \times g(x_{k})\]</span></p><hr /><h1 id="局限性">2. 局限性</h1><ul><li>在靠近极值点时更新步长会变得很小，由此造成迭代次数过大。</li></ul><hr /><h1 id="参考">3. 参考</h1><ul><li><ahref="https://zhuanlan.zhihu.com/p/99477577">梯度下降算法的数学推导_</a></li></ul>]]></content>
     
     
+    <summary type="html">&lt;h1 id=&quot;基本原理&quot;&gt;1. 基本原理&lt;/h1&gt;
+&lt;p&gt;对于无约束优化问题： &lt;span class=&quot;math display&quot;&gt;&#92;[
+min &#92;quad f(x)
+&#92;]&lt;/span&gt; 将目标函数在 &lt;span class=&quot;math inline&quot;&gt;&#92;(x_{k}&#92;)&lt;/span&gt;
+处进行一阶泰勒展开 &lt;span class=&quot;math display&quot;&gt;&#92;[
+&#92;begin{aligned}
+f(x_{k+1}) &amp;amp;= f(x_{k}) + g(x_{k})(x_{k+1} - x_{k}) &#92;&#92;
+g(x_{k}) &amp;amp;= f&amp;#39;(x_{k})
+&#92;end{aligned}
+&#92;]&lt;/span&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="最优化方法" scheme="http://example.com/categories/%E6%9C%80%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/"/>
     
     
   </entry>
   
   <entry>
-    <title>My life is fantasitic!</title>
-    <link href="http://example.com/2024/02/12/hello-world/"/>
-    <id>http://example.com/2024/02/12/hello-world/</id>
-    <published>2024-02-12T08:57:20.958Z</published>
-    <updated>2024-03-04T12:35:13.442Z</updated>
+    <title>KKT条件</title>
+    <link href="http://example.com/2024/03/db850e69690f.html"/>
+    <id>http://example.com/2024/03/db850e69690f.html</id>
+    <published>2024-03-09T16:06:00.000Z</published>
+    <updated>2024-03-09T16:17:19.701Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your veryfirst post. Check <a href="https://hexo.io/docs/">documentation</a> formore info. If you get any problems when using Hexo, you can find theanswer in <ahref="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> oryou can ask me on <ahref="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><span id="more"></span><h2 id="quick-start">Quick Start</h2><h3 id="create-a-new-post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <ahref="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="run-server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="generate-static-files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <ahref="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="deploy-to-remote-sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <ahref="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very
-first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for
-more info. If you get any problems when using Hexo, you can find the
-answer in &lt;a
-href=&quot;https://hexo.io/docs/troubleshooting.html&quot;&gt;troubleshooting&lt;/a&gt; or
-you can ask me on &lt;a
-href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;</summary>
+    <content type="html"><![CDATA[<ul><li><p>等式约束的优化问题：使用拉格朗日乘数法构建拉格朗日函数，利用求取极值的必要性，转换为无约束优化问题，可以使用<a href="/2024/03/57eb35381a43.html" title="梯度下降法">梯度下降法</a>、<a href="/2024/03/c814794462ec.html" title="牛顿法">牛顿法</a>，<a href="/2024/03/528ef78b9929.html" title="共轭梯度法">共轭梯度法</a>等方法进行迭代求解。</p></li><li><p>带有不等式约束的优化问题：构建广义拉格朗日函数，然后使用KKT条件进行求解。</p></li></ul><span id="more"></span><hr /><p>对于带约束的优化问题（不一定是凸问题）： <spanclass="math display">\[\begin{array}{ll}\min &amp; f_0(\boldsymbol{x}), \boldsymbol{x} \in \mathbb{R}^n \\&amp; f_i(\boldsymbol{x}) \leq 0 \text {, 其中 } \mathrm{i}=1,2,3 \ldots\mathrm{m} \\\text { s.t. } &amp; h_i(\boldsymbol{x})=0 \text {, 其中 }\mathrm{i}=1,2,3 \ldots q\end{array}\]</span></p><h4 id="首先构建拉格朗日函数将原问题进行等价转换">1.首先构建拉格朗日函数，将原问题进行等价转换：</h4><figure><imgsrc="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20230914115357.png"alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption></figure><p>问题：为什么拉格朗日乘子<span class="math inline">\(\lambda \geq0\)</span>？ 答：为了使得原函数 <spanclass="math inline">\(f_{0}(x)\)</span> 等价为极大的拉格朗日函数。也就是上面的当 x在可行域和不在可行域时需要满足的条件，从而将原问题等价为极小极大拉格朗日问题。</p><h4 id="将原问题转换为对偶问题就是最大最小过程进行交换">2.将原问题转换为对偶问题，就是最大最小过程进行交换：</h4><figure><imgsrc="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20230914115857.png"alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption></figure><p>这里，对偶问题进行进一步转化： <span class="math display">\[\begin{array}{ll}对偶问题: &amp;\max _{\lambda, v} L(x,\lambda, v) \\\text { s.t. } &amp; \nabla_{\boldsymbol{x}} L(\boldsymbol{x},\boldsymbol{\lambda}, \boldsymbol{v})=\mathbf{0} \\&amp; \boldsymbol{\lambda} \geq \mathbf{0}\end{array}\]</span></p><p>注意对偶函数 <spanclass="math inline">\(g(\lambda,v)\)</span>的变量为 <spanclass="math inline">\(\lambda,v\)</span> ，然后分析对偶函数： - <spanclass="math inline">\(g(\lambda,v)\)</span>是关于变量的线性函数，因此既是凸函数也是凹函数； - 对偶问题可行域为<span class="math inline">\(\lambda \geq 0\)</span>，是半空间，因此为凸空间。</p><p>所以无论原问题是不是凸问题，对偶问题一定是凸问题。 <imgsrc="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20230914121015.png"alt="image.png" /></p><h4 id="对偶问题于原问题之间解的关系">3.对偶问题于原问题之间解的关系</h4><ul><li><strong>对偶问题的解是原问题解的下界，这是弱对偶关系，即 <spanclass="math inline">\(P* \geq D*\)</span></strong>。</li><li><strong>对偶问题的解是原问题的解，这是强对偶关系，即 <spanclass="math inline">\(P* = D*\)</span></strong></li></ul><figure><imgsrc="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20230914121450.png"alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption></figure><h4 id="原始问题要是一个强对偶问题">4. 原始问题要是一个强对偶问题</h4><p>需要满足： - 原始问题为凸问题； - 满足 Slack 条件； <imgsrc="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20230914122308.png"alt="image.png" /></p><h4 id="最终如何求解一个带约束的凸优化问题">5.最终，如何求解一个带约束的凸优化问题</h4><p>使用 KKT 条件求解，KKT条件是原始问题为强对偶问题的<strong>必要条件</strong>，也就是说原始问题如果是强对偶，那么一定满足KKT条件，但满足KKT条件，不一定是强对偶。</p><p>互补松弛是构建拉格朗日函数时需要满足的，就是松弛条件和紧致条件的特性的统一表示。</p><figure><imgsrc="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20230914122648.png"alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption></figure><h4 id="补充">6. 补充</h4><ul><li>松弛条件和紧致条件</li></ul><figure><imgsrc="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20230914114514.png"alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption></figure><hr /><h4 id="参考">7. 参考</h4><ul><li><ahref="https://zhuanlan.zhihu.com/p/38163970">KKT条件简要说明</a></li><li><ahref="https://brezezee.github.io/2019/08/02/ML/SVM/Lagrange_duality/">拉格朗日对偶性</a></li></ul>]]></content>
     
     
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;等式约束的优化问题：使用拉格朗日乘数法构建拉格朗日函数，利用求取极值的必要性，转换为无约束优化问题，可以使用&lt;a href=&quot;/2024/03/57eb35381a43.html&quot; title=&quot;梯度下降法&quot;&gt;梯度下降法&lt;/a&gt;、&lt;a href=&quot;/2024/03/c814794462ec.html&quot; title=&quot;牛顿法&quot;&gt;牛顿法&lt;/a&gt;，&lt;a href=&quot;/2024/03/528ef78b9929.html&quot; title=&quot;共轭梯度法&quot;&gt;共轭梯度法&lt;/a&gt;等方法进行迭代求解。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;带有不等式约束的优化问题：构建广义拉格朗日函数，然后使用KKT条件进行求解。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="最优化方法" scheme="http://example.com/categories/%E6%9C%80%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>牛顿法</title>
+    <link href="http://example.com/2024/03/c814794462ec.html"/>
+    <id>http://example.com/2024/03/c814794462ec.html</id>
+    <published>2024-03-09T16:05:00.000Z</published>
+    <updated>2024-03-09T16:19:57.955Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="基本原理">1. 基本原理</h1><p>同样对于无约束优化问题： <span class="math display">\[min \quad f(x)\]</span></p><p>我们求其导数的零点，就可以得到函数极值，并且若 <spanclass="math inline">\(f&#39;&#39;(x_{k})&gt;0\)</span> ，那么 <spanclass="math inline">\(x_{k}\)</span> 就是函数极小值点。</p><span id="more"></span><ol type="1"><li>将目标函数在 <span class="math inline">\(x_{k}\)</span>处进行二阶泰勒展开： <span class="math display">\[f(x_{k+1}) = f(x_{k}) + f&#39;(x_{k})(x_{k+1} - x_{k}) +\frac{1}{2}f&#39;&#39;(x_{k})(x_{k+1}-x_{k})^{2}\]</span></li><li>求一阶导数零点，即 <span class="math display">\[\begin{aligned}f&#39;(x_{k}) + f&#39;&#39;(x_{k})(x_{k+1}-x_{k}) &amp;=f(x_{k+1})&#39;  \\&amp; = 0 \\\end{aligned}\]</span></li><li>得到递增方向： <span class="math display">\[\begin{aligned}x_{k+1} &amp;= x_{k} - (f&#39;&#39;(x_{k}))^{-1}f&#39;(x_{k}) \\&amp;= x_{k} - (f&#39;&#39;(x_{k}))^{-1}g(x_{k})\end{aligned}\]</span></li></ol><hr /><h1 id="对比">2. 对比<a href="/2024/03/57eb35381a43.html" title="梯度下降法">梯度下降法</a></h1><ul><li>梯度下降法： <span class="math display">\[x_{k+1} = x_{k} - \alpha \times g(x_{k})\]</span></li><li>牛顿法： <span class="math display">\[x_{k+1} = x_{k} - (f&#39;&#39;(x_{k}))^{-1}g(x_{k})\]</span></li></ul><p>所以牛顿法其实是通过海塞矩阵求取了一个步长，其迭代速度相比梯度下降法会快很多，但是海塞矩阵的求解与求逆却相对要难很多。</p><hr /><h1 id="局限性">3. 局限性</h1><ul><li>要求给定的方程需要二阶可导</li><li>非凸函数的海塞矩阵不一定有逆</li><li>数据较大的时候，海塞矩阵的计算量偏大</li></ul><hr /><h2 id="参考">4. 参考</h2><ul><li><ahref="https://zhuanlan.zhihu.com/p/162901829">牛顿法、高斯—牛顿法（Gauss–Newton）和其他拟牛顿法</a></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;基本原理&quot;&gt;1. 基本原理&lt;/h1&gt;
+&lt;p&gt;同样对于无约束优化问题： &lt;span class=&quot;math display&quot;&gt;&#92;[
+min &#92;quad f(x)
+&#92;]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;我们求其导数的零点，就可以得到函数极值，并且若 &lt;span
+class=&quot;math inline&quot;&gt;&#92;(f&amp;#39;&amp;#39;(x_{k})&amp;gt;0&#92;)&lt;/span&gt; ，那么 &lt;span
+class=&quot;math inline&quot;&gt;&#92;(x_{k}&#92;)&lt;/span&gt; 就是函数极小值点。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="最优化方法" scheme="http://example.com/categories/%E6%9C%80%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>高斯牛顿法</title>
+    <link href="http://example.com/2024/03/91eeeeac8bd1.html"/>
+    <id>http://example.com/2024/03/91eeeeac8bd1.html</id>
+    <published>2024-03-09T16:05:00.000Z</published>
+    <updated>2024-03-09T16:22:20.554Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>高斯牛顿法主要为了解决最小二乘问题，构造了能拟合替代海塞矩阵的矩阵，从而用牛顿法去求解最优值。</strong></p><span id="more"></span><h1 id="最小二乘问题">1. 最小二乘问题</h1><ul><li>线性最小二乘</li></ul><p>用直线 <span class="math inline">\(y = \theta^{T} x, x\in R^{n}, y\inR\)</span> 去拟合给定的输入输出数据，有 m 组数据，则构建残差模型： <spanclass="math display">\[f(\theta) = \frac{1}{2} ||A\theta-b||^{2}\]</span> 其中 <span class="math display">\[\begin{aligned}A = [x_{1},x_{2},x_{3}...x_{m}]^{T} \quad x_{i} \in R^{n}\\b = [y_{1},y_{2},y_{3}...y_{m}]^{T} \quad y_{i} \in R\end{aligned}\]</span></p><p>线性最小二乘求解，直接对 <spanclass="math inline">\(f(\theta)\)</span> 求导，令导数为0，则可以得到：<span class="math display">\[\begin{aligned}\frac{\partial f(\theta)}{\partial \theta} &amp;= A^{T}(A\theta-b) \\&amp; = 0 \\\end{aligned}\]</span> 所以直接求解得到： <span class="math display">\[\theta = (A^{T}A)^{-1}A^{T}b\]</span></p><ul><li>非线性最小二乘问题</li></ul><p>对于目标函数： <span class="math display">\[F(x) = \frac{1}{2} ||f(x)||^{2} = \frac{1}{2}f^{T}(x)f(x), \quad f(x) =[f_{1}(x),f_{2}(x) ... f_{m}(x)]^{T}, \quad x\in R^{n}\]</span> 将 <span class="math inline">\(f(x)\)</span> 在 <spanclass="math inline">\(x_{k}\)</span> 处进行一阶泰勒展开，得到： <spanclass="math display">\[f(x_{k+1}) = f(x_{k}) + J(x_{k}) (x_{k+1}-x_{k})\]</span> 注意，这里的 <span class="math inline">\(J(x_{k})\)</span> 是<span class="math inline">\(f(x)\)</span> 的一阶导数，而不是 <spanclass="math inline">\(F(x)\)</span> 的一阶导数。则： <spanclass="math display">\[\begin{aligned}\frac{\partial F(x_{k+1})}{\partial x_{k+1}} &amp;=\frac{1}{2}f^{T}(x_{k+1})J(x_{k}) + \frac{1}{2} J^{T}(x_{k})f(x_{k+1})\\&amp;=J^{T}(x_{k})f(x_{k}) + J^{T}(x_{k})J(x_{k})(x_{k+1} - x_{k})\end{aligned}\]</span>按照高斯牛顿法的思想，需要一阶导数为零，则可以得到迭代时的递增方式：<span class="math display">\[x_{k+1} = x_{k} - (J^{T}(x_{k})J(x_{k}))^{-1}J^{T}(x_{k})f(x_{k})\]</span> 而原始目标函数 <span class="math inline">\(F(x)\)</span>的一阶导数： <span class="math display">\[\begin{aligned}g(x) &amp;= F&#39;(x) \\&amp;= \frac{1}{2}f^{T}(x)J(x) + \frac{1}{2}J^{T}(x)f(x) \\&amp;= J^{T}f(x)\end{aligned}\]</span> 所以高斯牛顿法的步数递增可以表示为： <spanclass="math display">\[x_{k+1} = x_{k} -  (J^{T}(x_{k})J(x_{k}))^{-1}g(x_{k})\]</span></p><p>注意和牛顿法进行对比： !<a href="/2024/03/c814794462ec.html" title="牛顿法">牛顿法</a></p><p>可以看出，高斯牛顿法就是使用 <spanclass="math inline">\(J^{T}(x_{k})J(x_{k})\)</span> 来对原始目标函数<span class="math inline">\(F(x_{k})\)</span> 的海塞矩阵 <spanclass="math inline">\(F&#39;&#39;(x_{k})\)</span> 进行了近似。</p><hr /><h1 id="高斯牛顿法局限性">2. 高斯牛顿法局限性</h1><ul><li><span class="math inline">\(J^{T}(x_{k})J(x_{k})\)</span>只具备半正定性质，但可能求解出来是奇异矩阵，导致求逆失败，从而计算下一步位置<span class="math inline">\(x_{k+1}\)</span> 失败；</li><li>当计算得到的 <span class="math inline">\(x_{k+1}\)</span> 相对 <spanclass="math inline">\(x_{k}\)</span>的变化太大，从而用二阶展开无法近似函数，导致收敛失败。</li></ul><hr /><h1 id="参考">3. 参考</h1><ul><li><ahref="https://blog.csdn.net/qq_42138662/article/details/109289129">参考1</a></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;高斯牛顿法主要为了解决最小二乘问题，构造了能拟合替代海塞矩阵的矩阵，从而用牛顿法去求解最优值。&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="最优化方法" scheme="http://example.com/categories/%E6%9C%80%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Gazebo中bug集合</title>
+    <link href="http://example.com/2024/03/d3ca81927196.html"/>
+    <id>http://example.com/2024/03/d3ca81927196.html</id>
+    <published>2024-03-09T06:10:00.000Z</published>
+    <updated>2024-03-09T06:12:55.889Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="终端无法打开gazebo">1. 终端无法打开gazebo</h1><p>终端输入 gazebo 后直接返回，并没有打开 gazebo，一般是后台有 gazebo进程在跑。</p><span id="more"></span><ol type="1"><li><p>首先查看是否有另一个 gazebo 进程打开 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gazebo --verbose</span><br></pre></td></tr></table></figure></p></li><li><p>若报错并提示有进程已打开，则关闭 gazebo 进程即可<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">killall gzserver</span><br></pre></td></tr></table></figure></p></li></ol><h1 id="更改机器人位置">2. 更改机器人位置</h1><ul><li><ahref="http://gazebosim.org/tutorials?tut=ros_roslaunch">两种方法更改位置</a></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;终端无法打开gazebo&quot;&gt;1. 终端无法打开gazebo&lt;/h1&gt;
+&lt;p&gt;终端输入 gazebo 后直接返回，并没有打开 gazebo，一般是后台有 gazebo
+进程在跑。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="ROS" scheme="http://example.com/categories/ROS/"/>
+    
+    <category term="ROS笔记" scheme="http://example.com/categories/ROS/ROS%E7%AC%94%E8%AE%B0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Launch文件编写</title>
+    <link href="http://example.com/2024/03/fc172c3ee8ff.html"/>
+    <id>http://example.com/2024/03/fc172c3ee8ff.html</id>
+    <published>2024-03-09T06:10:00.000Z</published>
+    <updated>2024-03-09T06:12:59.845Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="示例分析">1. 示例分析</h1><p>这是一个在Rviz中加载 urdf模型的launch文件，以此为例子进行launch文件分析。 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">launch</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">arg</span> <span class="attr">name</span>=<span class="string">&quot;gui&quot;</span> <span class="attr">default</span>=<span class="string">&quot;False&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;robot_description&quot;</span> <span class="attr">command</span>=<span class="string">&quot;cat $(find vehicle_description)/urdf/lexus.urdf&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;use_gui&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$(arg gui)&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">node</span> <span class="attr">name</span>=<span class="string">&quot;joint_state_publisher&quot;</span> <span class="attr">pkg</span>=<span class="string">&quot;joint_state_publisher&quot;</span> <span class="attr">type</span>=<span class="string">&quot;joint_state_publisher&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">node</span> <span class="attr">name</span>=<span class="string">&quot;robot_state_publisher&quot;</span> <span class="attr">pkg</span>=<span class="string">&quot;robot_state_publisher&quot;</span> <span class="attr">type</span>=<span class="string">&quot;state_publisher&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">node</span> <span class="attr">name</span>=<span class="string">&quot;rviz&quot;</span> <span class="attr">pkg</span>=<span class="string">&quot;rviz&quot;</span> <span class="attr">type</span>=<span class="string">&quot;rviz&quot;</span> <span class="attr">args</span>=<span class="string">&quot;-d $(find urdf_tutorial)/urdf.rviz&quot;</span> <span class="attr">required</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">launch</span>&gt;</span></span><br></pre></td></tr></table></figure></p><span id="more"></span><h2 id="arg-name">1.1 arg name</h2><ol type="1"><li><code>&lt;arg  name="**"  default =“False"/&gt;</code> 或者<code>&lt;arg name=“---"  value=”---"/&gt;</code></li></ol><p>这是launch文件的局部变量，供内部使用，可以看到在下面调用变量时使用<code>$(arg **)</code>进行。</p><ol start="2" type="1"><li><p><code>default=“---"</code> 是变量的默认值，可以在命令行中使用<code>roslaunch</code> 命令时指定具体的值，例如: <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">roslaunch vehicle_description dispaly.launch gui:=&quot;----&quot; //gui 是定义的变量名字</span><br></pre></td></tr></table></figure></p></li><li><p><code>value=“---"</code> 就是指定了数值，无法更改。</p></li></ol><h2 id="param-name">1.2 param name</h2><ul><li><p><code>&lt;param name=“---"  value=”---" or command="命令" or textfile=“文件path"/&gt;</code></p><p>这是launch文件向ROS服务器<code>ros master</code>传递的参数，可以直接指定数值，或者要传递的是一个文件，可以用<code>textfile=“path"</code>指定文件，或在这里使用<code>command=”cat /filepath"</code>的方式打开这个文件进行传递，<code>cat</code>命令就是打开文件，这里与<code>textfile=“---"</code> 效果相同。</p></li></ul><h2 id="rosparam-file">1.3 rosparam file</h2><ul><li><p><code>&lt;rosparam file ="$(find 2dnav_pr2)/config/costmap_common_params.yaml" command="load" ns="local_costmap" /&gt;</code></p><p>这是用<code>yaml</code>配置文件的方式一次性载入多个参数，使用方法如上。</p></li></ul><h2 id="node-name">1.4 node name</h2><ul><li><p><code>&lt;node name="---"  pkg=“---" type=”----"/&gt;</code></p><p>这里就是launch文件最为关键的启动节点的方法了。</p><blockquote><ul><li>pkg：节点所在的功能包名称</li><li>name：节点运行的名称，将覆盖节点中init()赋予节点的名称</li><li>type：节点的可执行文件名称</li><li>output =“screen”：将节点的标准输出打印到终端屏幕，默认输出为日志文档；</li><li>respawn ="true"：复位属性，该节点停止时，会自动重启，默认为false；</li><li>required ="true"：必要节点，当该节点终止时，launch文件中的其他节点也被终止；</li><li>ns ="namespace"：命名空间，为节点内的相对名称添加命名空间前缀；</li><li>args = "arguments"：节点需要的输入参数。</li></ul></blockquote></li></ul><h2 id="remap">1.5 remap</h2><ul><li><p><code>&lt;remap from="/turtlebot/cmd_vel" to="/cmd_vel"/&gt;</code></p><p>重映射，将<code>/turtlebot/cmd_vel</code>消息重映射为<code>/cmd_vel</code>消息</p></li></ul><h2 id="include">1.6 include</h2><ul><li><p><code>&lt;include file="$(dirname)/other.launch" /&gt;</code></p><p>用<code>include</code>包含其他launch文件。</p></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;示例分析&quot;&gt;1. 示例分析&lt;/h1&gt;
+&lt;p&gt;这是一个在Rviz中加载 urdf
+模型的launch文件，以此为例子进行launch文件分析。 &lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;launch&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;arg&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;gui&amp;quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;default&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;False&amp;quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;param&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;robot_description&amp;quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;command&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;cat $(find vehicle_description)/urdf/lexus.urdf&amp;quot;&lt;/span&gt;/&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;param&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;use_gui&amp;quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;value&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;$(arg gui)&amp;quot;&lt;/span&gt;/&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;node&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;joint_state_publisher&amp;quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;pkg&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;joint_state_publisher&amp;quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;joint_state_publisher&amp;quot;&lt;/span&gt;/&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;node&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;robot_state_publisher&amp;quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;pkg&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;robot_state_publisher&amp;quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;state_publisher&amp;quot;&lt;/span&gt;/&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;node&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;rviz&amp;quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;pkg&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;rviz&amp;quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;rviz&amp;quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;args&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;-d $(find urdf_tutorial)/urdf.rviz&amp;quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;required&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;true&amp;quot;&lt;/span&gt;/&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;launch&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="ROS" scheme="http://example.com/categories/ROS/"/>
+    
+    <category term="ROS笔记" scheme="http://example.com/categories/ROS/ROS%E7%AC%94%E8%AE%B0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ROS控制程序时间间隔</title>
+    <link href="http://example.com/2024/03/8fcfbb5a0ae4.html"/>
+    <id>http://example.com/2024/03/8fcfbb5a0ae4.html</id>
+    <published>2024-03-09T06:10:00.000Z</published>
+    <updated>2024-03-09T06:13:04.999Z</updated>
+    
+    <content type="html"><![CDATA[<ol type="1"><li><code>ros::Duration(1.0).sleep()</code> 在当前位置阻塞<code>1s</code> <span id="more"></span></li></ol>]]></content>
+    
+    
+    <summary type="html">&lt;ol type=&quot;1&quot;&gt;
+&lt;li&gt;&lt;code&gt;ros::Duration(1.0).sleep()&lt;/code&gt; 在当前位置阻塞
+&lt;code&gt;1s&lt;/code&gt;</summary>
+    
+    
+    
+    <category term="ROS" scheme="http://example.com/categories/ROS/"/>
+    
+    <category term="ROS笔记" scheme="http://example.com/categories/ROS/ROS%E7%AC%94%E8%AE%B0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>rqt_plot使用</title>
+    <link href="http://example.com/2024/03/21ac3347f9de.html"/>
+    <id>http://example.com/2024/03/21ac3347f9de.html</id>
+    <published>2024-03-09T06:10:00.000Z</published>
+    <updated>2024-03-09T06:13:09.800Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="启用命令">1. 启用命令</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rqt_plot /current_velocity/twist/linear/x</span><br></pre></td></tr></table></figure><span id="more"></span><h1 id="调节轴距">2. 调节轴距</h1><p>界面上的 “放大镜” 工具，鼠标右键可以缩小界面。</p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;启用命令&quot;&gt;1. 启用命令&lt;/h1&gt;
+&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;rqt_plot /current_velocity/twist/linear/x&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    <category term="ROS" scheme="http://example.com/categories/ROS/"/>
+    
+    <category term="ROS笔记" scheme="http://example.com/categories/ROS/ROS%E7%AC%94%E8%AE%B0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>话题与消息</title>
+    <link href="http://example.com/2024/03/f028da3460ac.html"/>
+    <id>http://example.com/2024/03/f028da3460ac.html</id>
+    <published>2024-03-09T06:10:00.000Z</published>
+    <updated>2024-03-09T06:12:50.223Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="ros-中话题与消息">1. ROS 中话题与消息</h1><h2 id="定义">1.1 定义</h2><p>ROS中各节点之间的通信使用<strong>消息</strong>传递，消息有组织的存放在<strong>话题</strong>里，节点发布消息到话题里或者订阅话题以获得其他的消息。</p><span id="more"></span><h2 id="查看当前的节点图">1.2 查看当前的节点图</h2><p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rqt_graph</span><br></pre></td></tr></table></figure></p><p>使用该命令可以得到当前的节点图，节点与节点之间展示的是其通信的话题。</p><h2 id="查看消息的一些命令">1.3 查看消息的一些命令</h2><p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">rostopic list // 获得当前的活跃话题</span><br><span class="line">rostopic echo topic-name //在终端中显示该话题上发布的消息</span><br><span class="line">rostopic hz topic-name // 测试消息发布的频率</span><br><span class="line">rostopic bw topic-name // 测试每秒中发布消息所占的字节量</span><br><span class="line">rostopic info topic-name // 查看话题的基本信息，包括消息类型(Type),发布节点(Publishers),订阅节点(Subscribers)</span><br><span class="line"></span><br><span class="line">rosmsg show message-type-name //查看消息的详情</span><br><span class="line"></span><br><span class="line">rostopic pub -r rate-in-hz topic-name msg-type msg-content //使用命令行发布消息，其中 rate-in-hz 为发布频率</span><br><span class="line">rostopic pub -r 1 /turtle1/cmd_vel geometry_msgs/Twist &#x27;[0,0,0]&#x27;&#x27;[0,0,1]&#x27; //例子</span><br></pre></td></tr></table></figure></p><h2 id="消息的命名">1.4 消息的命名</h2><p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package-name/type-name <span class="comment">//第一项为消息所属包名，第二项为消息类型名</span></span><br></pre></td></tr></table></figure></p><h2 id="一些注意事项">1.5 一些注意事项</h2><ul><li>话题通信是多对多的，即同一个话题可以有多个发布者和多个订阅者。</li><li>ROS节点是松耦合的，一个节点不依赖于另外一个节点，节点之间唯一的交互就是基于话题和消息的同通信，即使只有一个节点也可以单独运行，因为它会一直等待订阅的话题，而不会直接报错。</li><li>消息的内容除了在命令行中显式的书写，还可以写在 YAML文件中，从而直接载入文件。</li></ul><h2 id="使用-rostopic-pub-直接发布命令">1.6 使用<code>rostopic pub</code> 直接发布命令</h2><p>使用 <code>rostopic pub</code>可以直接在命令行发布消息，格式就如同上面所示，但是由于消息的格式通常很复杂，所以bash 命令行中给出了足够的优化，主要输入完话题名后，按 <code>Tab</code>键可以补全消息类型，再按 <code>Tab</code>还可以直接给出消息的格式，直接填写即可。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">rostopic pub -1 /initialpose geometry_msgs/PoseWithCovarianceStamped &quot;header:</span><br><span class="line">  seq: 0</span><br><span class="line">  stamp:</span><br><span class="line">    secs: 0</span><br><span class="line">    nsecs: 0</span><br><span class="line">  frame_id: &#x27;world&#x27;</span><br><span class="line">pose:</span><br><span class="line">  pose:</span><br><span class="line">    position: &#123;x: 24.5, y: -7.15, z: 0.276&#125;</span><br><span class="line">    orientation: &#123;x: 0.0, y: 0.0, z: 0.0, w: 0.0&#125;</span><br><span class="line">  covariance: [0.25, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.25, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.06853892326654787]&quot; </span><br></pre></td></tr></table></figure><hr /><h1 id="ros-中消息发布">2. Ros 中消息发布</h1><h2 id="消息发布节点程序示例">2.1 消息发布节点程序示例</h2><p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"># &lt;ros/ros.h&gt;</span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;geometry_msgs/Twist.h&gt;</span> <span class="comment">//引入需要发布的消息类型，&quot;geometry_msgs&quot;是定义消息的功能包，”Twist“ 是消息类型</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ros::<span class="built_in">init</span>(argc,argv,<span class="string">&quot;publish_velocity&quot;</span>); <span class="comment">//初始化ROS, 每个程序都需要，至于其内部结构再观察，&quot;publish_velocity&quot; 是该节点的名字</span></span><br><span class="line">    ros::NodeHandle nh; <span class="comment">//创建节点处理对象</span></span><br><span class="line">    </span><br><span class="line">    ros::Publisher pub = nh.<span class="built_in">advertise</span>&lt;geometry_msgs::Twist&gt;(<span class="string">&quot;turtle1/cmd_vel&quot;</span>,<span class="number">1000</span>) <span class="comment">//生成一个发布对象，详细见说明1</span></span><br><span class="line">   </span><br><span class="line">    <span class="built_in">srand</span>(<span class="built_in">time</span>(<span class="number">0</span>));</span><br><span class="line">    </span><br><span class="line">    <span class="function">Ros::Rate <span class="title">rate</span><span class="params">(<span class="number">2</span>)</span></span>; <span class="comment">//控制循环速度，单位是HZ，也就控制了消息发布的速度，这里将循环控制到每秒2次</span></span><br><span class="line">    <span class="keyword">while</span>(ros::<span class="built_in">ok</span>()) <span class="comment">// 使用 ros::ok()判断节点是否正常工作</span></span><br><span class="line">    &#123;</span><br><span class="line">        geometry_msgs::Twist msg; <span class="comment">//创建消息对象</span></span><br><span class="line">        msg.linear.x = <span class="built_in">double</span>(<span class="built_in">rand</span>())/<span class="built_in">double</span>(RAND_MAX); <span class="comment">//可以看出消息的每个域都被按照其层级关系变成了类的共有成员，以便进行赋值</span></span><br><span class="line">        msg.angular.z = <span class="number">2</span>*<span class="built_in">double</span>(<span class="built_in">rand</span>())/<span class="built_in">double</span>(RAND_MAX)<span class="number">-1</span>;</span><br><span class="line">        </span><br><span class="line">        pub.<span class="built_in">publish</span>(msg);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// ROS_INFO_STREAM 是ros中一个类似输出流的设置，可在终端中看到输出</span></span><br><span class="line">        <span class="built_in">ROS_INFO_STREAM</span>(<span class="string">&quot;sending random velocity command:&quot;</span>&lt;&lt;<span class="string">&quot;linear=&quot;</span>&lt;&lt;msg.linear.x&lt;&lt;<span class="string">&quot;angular=&quot;</span>&lt;&lt;msg.angular.z);</span><br><span class="line">        </span><br><span class="line">        rate.<span class="built_in">sleep</span>(); <span class="comment">//配合rate(2)的设定，控制循环速度</span></span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h2 id="说明">2.2 说明</h2><h3 id="创建发布对象">2.2.1 创建发布对象</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ros::Publisher pub=node_handle.<span class="built_in">advertise</span>&lt;message_type&gt;(topic_name,queue_size)</span><br></pre></td></tr></table></figure><ul><li><code>message_type</code> 是消息类型，是C++的对象定义</li><li><code>topic_name</code>是字符串，是话题名，注意没有前斜杠(/)，例如本例子中<code>"turtle1/cmd_vel"</code>, 在 <code>rostopic list</code>列出的是<code>/turtle1/cmd_vel</code>，这里甚至可以是自己定义的话题名，不需要严格被限制到官方的话题中。</li><li><code>queue_size</code>是发布队列的大小，publish方法其实是将消息放到队列里，然后后台有线程负责实际发送消息，然后这个队列大小在这里定义，数字代表能容纳的消息数量。</li></ul><h3 id="节点是否停止工作的检查">2.2.2 节点是否停止工作的检查：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ros::<span class="built_in">ok</span>()</span><br></pre></td></tr></table></figure><ul><li>如果一直运行良好，则返回true，否则返回false</li><li>使用 <code>Ctrl-C</code>会返回false，但不是立刻终止该结点，而是会接着进行剩下的程序，这对于必要的收尾工作很重要。</li></ul><h3 id="编译相关">2.2.3 编译相关：</h3><ul><li>修改CMakeLists.txt 文件，声明消息的依赖库：</li></ul><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">find_package</span>(catkin REQUIRED COMPONENTS roscpp geometry_msgs)</span><br></pre></td></tr></table></figure><ul><li>修改 package.xml 文件，添加依赖项</li></ul><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build_depend</span>&gt;</span>geometry_msgs<span class="tag">&lt;/<span class="name">build_depend</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">run_depend</span>&gt;</span>geometry_msgs<span class="tag">&lt;/<span class="name">run_depend</span>&gt;</span></span><br></pre></td></tr></table></figure><hr /><h1 id="ros中消息订阅">3. Ros中消息订阅</h1><h2 id="消息订阅程序示例">3.1 消息订阅程序示例</h2><p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ros/ros.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;turtlesim/Pose.h&gt;</span> <span class="comment">//同样需要引入消息</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iomanip&gt;</span> <span class="comment">// 需要设置输出的浮点数精度</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">poseMessageReceived</span><span class="params">(<span class="type">const</span> turtlesim::Pose &amp;msg)</span> <span class="comment">//回调函数，当接收到消息时自动执行的程序，输入参数为需要接受的消息类型的引用</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">ROS_INFO_STREAM</span>(std::<span class="built_in">setprecision</span>(<span class="number">2</span>)&lt;&lt;std::fixd&lt;&lt;<span class="string">&quot;position=(&quot;</span>&lt;&lt;msg.x&lt;&lt;<span class="string">&quot;,&quot;</span>&lt;&lt;msg.y&lt;&lt;<span class="string">&quot;)&quot;</span>&lt;&lt;<span class="string">&quot;*direction=&quot;</span>&lt;&lt;msg.theta);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ros::<span class="built_in">init</span>(argc,argv,<span class="string">&quot;subscribe_to_pose&quot;</span>); <span class="comment">//常规操作，初始化</span></span><br><span class="line">    ros::NodeHandle nh;</span><br><span class="line">    </span><br><span class="line">    ros::Subscriber sub = nh.<span class="built_in">subscribe</span>(<span class="string">&quot;turtle1/pose&quot;</span>,<span class="number">1000</span>,&amp;poseMessageReceived); <span class="comment">//创建一个订阅对象，详见说明1</span></span><br><span class="line">    </span><br><span class="line">    ros::<span class="built_in">spin</span>();<span class="comment">//等待并执行回调函数，类似 while() 循环</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h2 id="说明-1">3.2 说明</h2><h3 id="创建订阅对象">3.2.1 创建订阅对象</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ros::Subscriber sub = node_handle.<span class="built_in">subscribe</span>(topic_name,queue_size,pointer_to_callback_function)</span><br></pre></td></tr></table></figure><ul><li>注意这里不同于发布者需要以模板参数形式指定消息类型，所以一个订阅对象是不需要知道消息类型的，主要通过回调函数去确认消息类型。</li><li><code>topic_name</code> 同发布对象。</li><li><code>queue_size</code> 是订阅队列的大小。ros中新消息到达时会被保存到一个队列中，这里定义这个队列的大小，需要等待回调函数去取出消息，这里清空队列的速度取决于回调函数的执行速度，所以回调函数的计算时间一般不过长，以免丢失消息。</li><li><code>pointer_to_callback_function</code>是指向回调函数的指针，注意只能用名字，不能加函数的括号()。</li></ul><h3 id="rosspin与-rosspinonce-区别">3.2.2<strong><code>ros::spin()</code>与 <code>ros::spinOnce()</code></strong>区别</h3><p>其处理机制详见<ahref="https://blog.csdn.net/weixin_40215443/article/details/103793316">这篇文章</a>。每次有新的消息到达，都会有回调函数进入回调函数队列然后直到主程序中有这俩函数时，才会去回调函数队列中取队头函数，并执行。</p><ul><li>主要使用区别在于当程序中还有没有其他重复工作需要做，如果不需要，则使用<code>ros::spin()</code>就可以；如果需要，那就写一个循环，循环内先做其他的重复工作，然后使用<code>ros::spinOnce()</code>来处理回调。</li><li><code>ros::spin()</code> 相当于</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(ros::<span class="built_in">ok</span>())</span><br><span class="line">&#123;</span><br><span class="line">  ros::<span class="built_in">spinOnce</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;ros-中话题与消息&quot;&gt;1. ROS 中话题与消息&lt;/h1&gt;
+&lt;h2 id=&quot;定义&quot;&gt;1.1 定义&lt;/h2&gt;
+&lt;p&gt;ROS
+中各节点之间的通信使用&lt;strong&gt;消息&lt;/strong&gt;传递，消息有组织的存放在&lt;strong&gt;话题&lt;/strong&gt;里，节点发布消息到话题里或者订阅话题以获得其他的消息。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="ROS" scheme="http://example.com/categories/ROS/"/>
+    
+    <category term="ROS笔记" scheme="http://example.com/categories/ROS/ROS%E7%AC%94%E8%AE%B0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>工作空间建立与编译</title>
+    <link href="http://example.com/2024/03/cfa9782ab392.html"/>
+    <id>http://example.com/2024/03/cfa9782ab392.html</id>
+    <published>2024-03-09T06:09:00.000Z</published>
+    <updated>2024-03-09T06:12:44.092Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="工作空间建立与编译">1. 工作空间建立与编译</h1><h2 id="新建-ros-工作空间">1. 1 新建 Ros 工作空间</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/lkx_ws/src</span><br><span class="line">cd ~/lkx_ws/src</span><br><span class="line">catkin_init_workspace </span><br><span class="line">cd ../</span><br><span class="line">catkin_make</span><br><span class="line"></span><br><span class="line">souce devel/setup.bash</span><br></pre></td></tr></table></figure><span id="more"></span><h2 id="在ros工作空间中新建功能包及相关编译选项">1.2在ROS工作空间中新建功能包及相关编译选项</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">catkin_create_pkg my_pkg roscpp rospy std_msgs // 第一个参数是包名，后面是依赖项。</span><br><span class="line">catkin_make // 在src同级文件夹进行编译，注意看终端输出，有可能还需要在build文件夹下进行make编译</span><br></pre></td></tr></table></figure><h2 id="在工作空间中查询功能包是否存在">1.3在工作空间中查询功能包是否存在</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rospack find pkg_name</span><br></pre></td></tr></table></figure><hr /><h1 id="因为更换网络导致ip地址变化的报错">2.因为更换网络导致IP地址变化的报错</h1><p>在 <code>.bashrc</code> 中更换ROS的通讯IP为当前电脑的IP <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit ./bashrc</span><br></pre></td></tr></table></figure><imgsrc="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/2024-03-08_23-15.png" /></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;工作空间建立与编译&quot;&gt;1. 工作空间建立与编译&lt;/h1&gt;
+&lt;h2 id=&quot;新建-ros-工作空间&quot;&gt;1. 1 新建 Ros 工作空间&lt;/h2&gt;
+&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;mkdir -p ~/lkx_ws/src&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cd ~/lkx_ws/src&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;catkin_init_workspace &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cd ../&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;catkin_make&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;souce devel/setup.bash&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    <category term="ROS" scheme="http://example.com/categories/ROS/"/>
+    
+    <category term="ROS笔记" scheme="http://example.com/categories/ROS/ROS%E7%AC%94%E8%AE%B0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>README</title>
+    <link href="http://example.com/2024/03/a50fe40306e3.html"/>
+    <id>http://example.com/2024/03/a50fe40306e3.html</id>
+    <published>2024-03-08T16:05:36.000Z</published>
+    <updated>2024-03-09T15:08:01.937Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="使用说明">1. 使用说明</h1><p>本分类主要存放在ROS中学习和操作的相关笔记，该页面为检索归类页面。</p><span id="more"></span><hr /><h1 id="教程">2. 教程</h1><a href="/2024/03/cfa9782ab392.html" title="工作空间建立与编译">工作空间建立与编译</a><ul><li><a href="/2024/03/cfa9782ab392.html" title="工作空间建立与编译">工作空间建立与编译</a></li><li><a href="/2024/03/f028da3460ac.html" title="话题与消息">话题与消息</a></li><li><a href="/2024/03/fc172c3ee8ff.html" title="Launch文件编写">Launch文件编写</a></li><li><a href="/2024/03/8fcfbb5a0ae4.html" title="ROS控制程序时间间隔">ROS控制程序时间间隔</a></li><li><a href="/2024/03/21ac3347f9de.html" title="rqt_plot使用">rqt_plot使用</a></li></ul><hr /><h1 id="避坑">3. 避坑</h1><ul><li><a href="/2024/03/d3ca81927196.html" title="Gazebo中bug集合">Gazebo中bug集合</a></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;使用说明&quot;&gt;1. 使用说明&lt;/h1&gt;
+&lt;p&gt;本分类主要存放在ROS中学习和操作的相关笔记，该页面为检索归类页面。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="ROS" scheme="http://example.com/categories/ROS/"/>
+    
+    <category term="ROS笔记检索" scheme="http://example.com/categories/ROS/ROS%E7%AC%94%E8%AE%B0%E6%A3%80%E7%B4%A2/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>共轭梯度法</title>
+    <link href="http://example.com/2024/03/528ef78b9929.html"/>
+    <id>http://example.com/2024/03/528ef78b9929.html</id>
+    <published>2024-03-04T16:00:00.000Z</published>
+    <updated>2024-03-09T16:14:09.385Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><strong>解决求无约束优化问题的极值点的问题。</strong></li><li><strong>对于n维度的二次型目标函数，可在n次搜索后得到极值点。</strong></li><li><strong>每次搜索方向为共轭方向。</strong></li></ul><span id="more"></span><hr /><h1 id="为什么要用共轭梯度">1. 为什么要用共轭梯度</h1><ul><li>梯度下降法受限制于搜索步长的学习率问题，可能需要多次搜索才能达到极值点；</li><li>最速下降法每次的下降方向都和上次的正交，因此会产生锯齿现象，在靠近极值点的时候会多次缓慢搜索。那么在同一个方向上可能多次下降，这不如一次在这个方向上一次搜索到底。</li></ul><hr /><h1 id="共轭向量法">2. 共轭向量法</h1><p>对于无约束的二次型目标函数： <span class="math display">\[f(x) = \frac{1}{2} x^{T}Ax -b^{T}x\]</span> 其中 <span class="math inline">\(A\)</span>是对称正定的，问题在于求取其最小值点 <spanclass="math inline">\(x^{*}\)</span>。也可以说是求以下方程的解，这两个问题等效。<span class="math display">\[Ax = b\]</span></p><blockquote><p>定理：若矩阵A为对称正定阵，并且一组向量 <spanclass="math inline">\(\{d_{0},d_{1}, ...,d_{m}\}\)</span>是关于A共轭的，那么这组向量是线性无关的。 说明：向量组<spanclass="math inline">\(\{d_{0},d_{1},...,d_{m}\}\)</span>关于矩阵A共轭，即 <span class="math display">\[d_{i}^{T}Ad_{j} = 0, \qquad \{i \neq j\}\]</span></p></blockquote><p>可以选取一组共轭向量作为每次变量迭代的方向，即 <spanclass="math inline">\(\{d_{0},d_{1},d_{2}, ... , d_{n-1}\}\)</span>，假设目标函数极值点为 <spanclass="math inline">\(x^{*}\)</span>，则 <span class="math display">\[x^{*} = x_{0} + \alpha_{0}d_{0} + \alpha_{1} d_{1}+ ...+\alpha_{n-1}d_{n-1}\]</span> 从 <span class="math inline">\(x_{i}\)</span> 迭代到 <spanclass="math inline">\(x_{i+1}\)</span> 的表达式为： <spanclass="math display">\[x_{i+1} = x_{i} + \alpha_{i} d_{i}\]</span> 那么 <span class="math inline">\(d_{i}\)</span>作为已知的方向，现在只需要求在这个方向上的步长 <spanclass="math inline">\(\alpha_{i}\)</span> 。</p><p>对于第 <span class="math inline">\(i\)</span> 步时，我们有 <spanclass="math display">\[\begin{aligned}d_{i}^{T} A &amp;(x^{*} - x_{0}) = \alpha_{i} d_{i}^{T} Ad_{i} ^{T} \\~\\\alpha_{i} &amp;= \frac{d_{i}^{T} A (x^{*} - x_{0})}{ d_{i}^{T} Ad_{i}^{T}} \\&amp;=\frac{d_{i}^{T} A (x^{*} - x_{i})}{ d_{i}^{T} Ad_{i} ^{T}}  +\frac{d_{i}^{T} A (x_{i} - x_{0})}{ d_{i}^{T} Ad_{i} ^{T}} \\&amp;= -\frac{d_{i}^{T} (Ax_{i}-b)}{ d_{i}^{T} Ad_{i} ^{T}} + 0 \\&amp;= -\frac{d_{i}^{T}g_{i}}{ d_{i}^{T} Ad_{i} ^{T}}\end{aligned}\]</span> 所以，迭代公式就为： <span class="math display">\[x_{i+1} = x_{i} - \frac{d_{i}^{T}g_{i}}{ d_{i}^{T} Ad_{i} ^{T}}  d_{i}\]</span></p><p>这叫做<strong>共轭向量法</strong>。前提是知道二次项系数 <spanclass="math inline">\(A\)</span>的一组完备的共轭向量组。这里加入了一些限制，比如 <spanclass="math inline">\(A\)</span>是对称矩阵，则其共轭向量组是正交的，也是共轭的。那么共轭向量组就是其特征向量组。</p><blockquote><p>共轭方向定理：记向量 <span class="math inline">\(\{d_{0},d_{1},…,d_{n−1}\}\)</span> 是 A 共轭的， <spanclass="math inline">\(x_{0} \inR^{n}\)</span> 是任意的一个 n 维向量，则按照 <spanclass="math inline">\(x_{i+1} = x_{i} + \alpha_{i} d_{i},g_{i}=Ax_{i}-b,\alpha_{i} = \frac{d_{i}^{T}g_{i}}{ d_{i}^{T} Ad_{i}^{T}}\)</span> 的迭代格式进行 n 步迭代，我们就能得到 <spanclass="math inline">\(x_{n} = x^{*}\)</span>。</p></blockquote><hr /><h1 id="共轭梯度法">3. 共轭梯度法</h1><p>在共轭向量法中，每次搜索的方向就是一个共轭向量的方向，共轭向量组需要事先获得。但要是可以在迭代过程中逐步获得当前的搜索方向，也就是共轭梯度，那就更好了。在第一次迭代给定初值 <span class="math inline">\(x_{0}\)</span>后，此时的搜索方向设定为梯度方向，即 <span class="math display">\[d_{0} = -g_{0}\]</span> 对于 <span class="math inline">\(x_{i+1}\)</span>时的搜索方向，我们可认为是上一位置的搜索方向 <spanclass="math inline">\(d_{i}\)</span> 和当前位置的梯度方向 <spanclass="math inline">\(g_{i+1}\)</span> 的线性组合： <spanclass="math display">\[d_{i+1} = -g_{i+1} + \beta_{i} d_{i}\]</span> 那么，要求解得到这个 <spanclass="math inline">\(\beta_{i}\)</span>： <span class="math display">\[\begin{aligned}d_{i}^{T} A d_{i+1} = 0 \\~\\d_{i}^{T}A(-g_{i+1}+\beta_{i}d_{i}) = 0 \\~\\\beta_{i} = \frac{d_{i}^{T}Ag_{i+1}}{d_{i}^{T}Ad_{i}}\end{aligned}\]</span> 于是对于共轭梯度法，迭代步骤便如下： 1. 令 <spanclass="math inline">\(k := 0\)</span>； 选择初始值 <spanclass="math inline">\(x_{0}\)</span>。 2. 计算 <spanclass="math inline">\(g_{0} = \nabla f(x_{0})\)</span> ，若 <spanclass="math inline">\(g_{0} = 0\)</span> ，停止迭代，否则令 <spanclass="math inline">\(d_{0} = g_{0}\)</span>； 4. 计算 <spanclass="math inline">\(\alpha_{0} =-\frac{d_{0}^{T}g_{0}}{d_{0}^{T}Ad_{0} ^{T}}\)</span>； 5. 完成第一次迭代： <spanclass="math inline">\(x_{1} = x_{0} + \alpha_{0} d_{0}\)</span>； 6.计算 <span class="math inline">\({i+1}\)</span> 时刻梯度 <spanclass="math inline">\(g_{i+1} = \nabla f(x_{i+1})\)</span> ； 7. 计算<span class="math inline">\(i+1\)</span> 时刻搜索方向 <spanclass="math inline">\(d_{i+1} = -g_{i+1} + \beta_{i} d_{i}\)</span>，其中<span class="math inline">\(\beta_{i} =\frac{d_{i}^{T}Ag_{i+1}}{d_{i}^{T}Ad_{i}}\)</span>。 8. 计算 <spanclass="math inline">\(i+1\)</span> 时刻步长 <spanclass="math inline">\(\alpha_{i+1} = -\frac{d_{i+1}^{T}g_{i+1}}{d_{i+1}^{T} Ad_{i+1} ^{T}}\)</span>； 9. 搜索得到 <spanclass="math inline">\(i+2\)</span> 时刻 <spanclass="math inline">\(x_{i+2} = x_{i+1}+\alpha_{i+1}d_{i+1}\)</span></p><hr /><h1 id="补充">4. 补充</h1><ul><li>共轭法的每一个方向的步长是确定的，不然没有办法最终 <spanclass="math inline">\(n\)</span>步到达极值点（极值点是共轭向量的线性组合）。当然也可以设置为固定步长的学习率，这就不能保证<span class="math inline">\(n\)</span> 步之后到达极值点了。</li><li>共轭向量组的求解有很多方法，这里是假定当前搜索方向是当前梯度和上一位置搜索方向的线性组合。还有一些其他方法：</li></ul><ol type="1"><li>Fletcher-Reeves （FR）法： <span class="math inline">\(\beta_{i} =\frac{g_{i+1}^{T}g_{i+1}}{g_{i}^{T}g_{i}}\)</span></li><li>Polak-Ribière （PR）法：<span class="math inline">\(\beta_{i}=\frac{g_{i+1}^{T}(g_{i+1} - g_{i})}{g_{i}^{T}g_{i}}\)</span></li></ol>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;解决求无约束优化问题的极值点的问题。&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;对于n维度的二次型目标函数，可在n次搜索后得到极值点。&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;每次搜索方向为共轭方向。&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="最优化方法" scheme="http://example.com/categories/%E6%9C%80%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/"/>
     
     
   </entry>

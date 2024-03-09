@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="高斯牛顿法主要为了解决最小二乘问题，构造了能拟合替代海塞矩阵的矩阵，从而用牛顿法去求解最优值。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高斯牛顿法">
+<meta property="og:url" content="http://example.com/2024/03/91eeeeac8bd1.html">
+<meta property="og:site_name" content="LinkX的技术站">
+<meta property="og:description" content="高斯牛顿法主要为了解决最小二乘问题，构造了能拟合替代海塞矩阵的矩阵，从而用牛顿法去求解最优值。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-03-09T16:05:00.000Z">
+<meta property="article:modified_time" content="2024-03-09T16:22:20.554Z">
+<meta property="article:author" content="LinkX">
+<meta property="article:tag" content="技术分享，人生碎念">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2024/03/91eeeeac8bd1.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2024/03/91eeeeac8bd1.html","path":"2024/03/91eeeeac8bd1.html","title":"高斯牛顿法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>高斯牛顿法 | LinkX的技术站</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="LinkX的技术站" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">LinkX的技术站</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-life"><a href="/life/" rel="section"><i class="fa fa-bicycle fa-fw"></i>生活</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E9%97%AE%E9%A2%98"><span class="nav-text">1. 最小二乘问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E7%89%9B%E9%A1%BF%E6%B3%95%E5%B1%80%E9%99%90%E6%80%A7"><span class="nav-text">2. 高斯牛顿法局限性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">3. 参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="LinkX"
+      src="/uploads/avatar.gif">
+  <p class="site-author-name" itemprop="name">LinkX</p>
+  <div class="site-description" itemprop="description">程序、自动驾驶技术和人生感悟的记录</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/reflector-li" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;reflector-li" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/03/91eeeeac8bd1.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+      <meta itemprop="name" content="LinkX">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LinkX的技术站">
+      <meta itemprop="description" content="程序、自动驾驶技术和人生感悟的记录">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="高斯牛顿法 | LinkX的技术站">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          高斯牛顿法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-03-10 00:05:00 / 修改时间：00:22:20" itemprop="dateCreated datePublished" datetime="2024-03-10T00:05:00+08:00">2024-03-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9C%80%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">最优化方法</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><strong>高斯牛顿法主要为了解决最小二乘问题，构造了能拟合替代海塞矩阵的矩阵，从而用牛顿法去求解最优值。</strong></p>
+<span id="more"></span>
+<h1 id="最小二乘问题">1. 最小二乘问题</h1>
+<ul>
+<li>线性最小二乘</li>
+</ul>
+<p>用直线 <span class="math inline">\(y = \theta^{T} x, x\in R^{n}, y\in
+R\)</span> 去拟合给定的输入输出数据，有 m 组数据，则构建残差模型： <span
+class="math display">\[
+f(\theta) = \frac{1}{2} ||A\theta-b||^{2}
+\]</span> 其中 <span class="math display">\[
+\begin{aligned}
+A = [x_{1},x_{2},x_{3}...x_{m}]^{T} \quad x_{i} \in R^{n}\\
+b = [y_{1},y_{2},y_{3}...y_{m}]^{T} \quad y_{i} \in R
+\end{aligned}
+\]</span></p>
+<p>线性最小二乘求解，直接对 <span
+class="math inline">\(f(\theta)\)</span> 求导，令导数为0，则可以得到：
+<span class="math display">\[
+\begin{aligned}
+\frac{\partial f(\theta)}{\partial \theta} &amp;= A^{T}(A\theta-b) \\
+&amp; = 0 \\
+\end{aligned}
+\]</span> 所以直接求解得到： <span class="math display">\[
+\theta = (A^{T}A)^{-1}A^{T}b
+\]</span></p>
+<ul>
+<li>非线性最小二乘问题</li>
+</ul>
+<p>对于目标函数： <span class="math display">\[
+F(x) = \frac{1}{2} ||f(x)||^{2} = \frac{1}{2}f^{T}(x)f(x), \quad f(x) =
+[f_{1}(x),f_{2}(x) ... f_{m}(x)]^{T}, \quad x\in R^{n}
+\]</span> 将 <span class="math inline">\(f(x)\)</span> 在 <span
+class="math inline">\(x_{k}\)</span> 处进行一阶泰勒展开，得到： <span
+class="math display">\[
+f(x_{k+1}) = f(x_{k}) + J(x_{k}) (x_{k+1}-x_{k})
+\]</span> 注意，这里的 <span class="math inline">\(J(x_{k})\)</span> 是
+<span class="math inline">\(f(x)\)</span> 的一阶导数，而不是 <span
+class="math inline">\(F(x)\)</span> 的一阶导数。则： <span
+class="math display">\[
+\begin{aligned}
+\frac{\partial F(x_{k+1})}{\partial x_{k+1}} &amp;=
+\frac{1}{2}f^{T}(x_{k+1})J(x_{k}) + \frac{1}{2} J^{T}(x_{k})f(x_{k+1})
+\\
+&amp;=J^{T}(x_{k})f(x_{k}) + J^{T}(x_{k})J(x_{k})(x_{k+1} - x_{k})
+\end{aligned}
+\]</span>
+按照高斯牛顿法的思想，需要一阶导数为零，则可以得到迭代时的递增方式：
+<span class="math display">\[
+x_{k+1} = x_{k} - (J^{T}(x_{k})J(x_{k}))^{-1}J^{T}(x_{k})f(x_{k})
+\]</span> 而原始目标函数 <span class="math inline">\(F(x)\)</span>
+的一阶导数： <span class="math display">\[
+\begin{aligned}
+g(x) &amp;= F&#39;(x) \\
+&amp;= \frac{1}{2}f^{T}(x)J(x) + \frac{1}{2}J^{T}(x)f(x) \\
+&amp;= J^{T}f(x)
+\end{aligned}
+\]</span> 所以高斯牛顿法的步数递增可以表示为： <span
+class="math display">\[
+x_{k+1} = x_{k} -  (J^{T}(x_{k})J(x_{k}))^{-1}g(x_{k})
+\]</span></p>
+<p>注意和牛顿法进行对比： !<a href="/2024/03/c814794462ec.html" title="牛顿法">牛顿法</a></p>
+<p>可以看出，高斯牛顿法就是使用 <span
+class="math inline">\(J^{T}(x_{k})J(x_{k})\)</span> 来对原始目标函数
+<span class="math inline">\(F(x_{k})\)</span> 的海塞矩阵 <span
+class="math inline">\(F&#39;&#39;(x_{k})\)</span> 进行了近似。</p>
+<hr />
+<h1 id="高斯牛顿法局限性">2. 高斯牛顿法局限性</h1>
+<ul>
+<li><span class="math inline">\(J^{T}(x_{k})J(x_{k})\)</span>
+只具备半正定性质，但可能求解出来是奇异矩阵，导致求逆失败，从而计算下一步位置
+<span class="math inline">\(x_{k+1}\)</span> 失败；</li>
+<li>当计算得到的 <span class="math inline">\(x_{k+1}\)</span> 相对 <span
+class="math inline">\(x_{k}\)</span>
+的变化太大，从而用二阶展开无法近似函数，导致收敛失败。</li>
+</ul>
+<hr />
+<h1 id="参考">3. 参考</h1>
+<ul>
+<li><a
+target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42138662/article/details/109289129">参考1</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/03/d3ca81927196.html" rel="prev" title="Gazebo中bug集合">
+                  <i class="fa fa-angle-left"></i> Gazebo中bug集合
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/03/c814794462ec.html" rel="next" title="牛顿法">
+                  牛顿法 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">LinkX</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

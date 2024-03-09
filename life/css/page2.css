@@ -1,0 +1,142 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: Cambria;
+  user-select: none;
+}
+body {
+  background-color: rgb(255, 255, 255);
+}
+.shell {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+  overflow: hidden; /* 内部元素超出本容器后直接隐藏 */
+}
+.page {
+  /*transform: translateY(-110%); /*让元素移出可视画面*/
+  position: absolute; /* 绝对定位，坐标相对于父元素来定位, relative 是相对自己本身上一次位置进行定位 */
+  width: 100%; /*相对父元素百分比*/
+  height: 40%;
+  background-color: #96a48b;
+}
+
+.pageImage {
+  position: absolute; /* 绝对定位，坐标相对于父元素来定位, relative 是相对自己本身上一次位置进行定位 */
+  width: 80%; /*相对父元素百分比*/
+  height: 75%;
+  bottom: 15px;
+  left: 10%;
+  background: url("../img/page2.png");
+  /*filter: brightness(80%);*/
+  background-size: cover;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+.pageImage h1 {
+  font-size: 75px;
+  text-align: center;
+  color: azure;
+  margin-top: -10%;
+  animation: imEffect;
+  animation-duration: 2s;
+  animation-iteration-count: 1; /* 播放几次动画*/
+}
+@keyframes imEffect {
+  0% {
+    /* % 表示执行时间，0%表示开始 */
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(-50px);
+  }
+  100% {
+    /* 100%表示结束 */
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.container {
+  animation-name: buttonEffect;
+  animation-duration: 3s;
+  animation-iteration-count: 1; /* 播放几次动画*/
+}
+
+.newButton {
+  display: block; /*显示模式，有inline和block，block是块状，内部可以添加其他元素，是个容器*/
+  width: 20%;
+  color: black;
+  font-size: 40px;
+  border-bottom: #000 solid 4px;
+  text-align: center;
+  position: absolute;
+  top: 20%;
+  margin: 50px;
+  left: calc(20% + (var(--i) * 40%));
+  z-index: 999; /*元素堆叠顺序，越大越能显示在上面*/ /*元素过渡时间，下面应该会有这个元素的变化*/
+}
+
+@keyframes buttonEffect {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+label:hover {
+  cursor: pointer; /*鼠标移上去会变成手的形状*/
+  border-bottom: solid 4px rgb(220, 220, 220); /* 设置底部边框为实线，大小和颜色*/
+}
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.wrongSelect {
+  position: absolute; /* 绝对定位，坐标相对于父元素来定位, relative 是相对自己本身上一次位置进行定位 */
+  width: 10%; /*相对父元素百分比*/
+  height: 20%;
+  top: 32%;
+  right: 3%;
+  background: url("../img/page_face2.jpg") no-repeat;
+  /*filter: brightness(80%);*/
+  background-size: contain;
+  opacity: 0;
+}
+
+button {
+  display: none;
+}
+button:active + .newButton {
+  animation-name: shake;
+  animation-duration: 0.4s;
+  animation-iteration-count: 1;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(2px, 2px);
+  }
+  25% {
+    transform: translate(-2px, -2px);
+  }
+  50% {
+    transform: translate(0px, 0px);
+  }
+  75% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(-2px, 2px);
+  }
+}

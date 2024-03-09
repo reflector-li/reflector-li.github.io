@@ -1,0 +1,216 @@
+@font-face {
+  font-family: "myFonts"; /*字体名称*/
+  src: url("../fonts/FZZJ-FYJW.TTF"); /*字体文件地址*/
+}
+* {
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+}
+
+.frame {
+  scroll-snap-align: start;
+  width: 100vw;
+  height: 100vh;
+}
+
+.frame:nth-child(1) {
+  display: flex;
+  justify-content: space-evenly;
+  perspective: 1000px;
+  background-blend-mode: multiply;
+  background-color: rgba(0, 0, 0, 0.1);
+  background-image: url(../img/back.png);
+  background-size: cover;
+}
+
+.frame:nth-child(2) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-blend-mode: multiply;
+  background-color: rgba(0, 0, 0, 0.1);
+  background-image: url(../img/back2.png);
+  background-size: cover;
+}
+
+.cardFrame {
+  width: 300px;
+  height: 400px;
+  margin-top: 2%;
+  /* position: absolute; */
+}
+.card {
+  width: 300px;
+  height: 400px;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  transform-style: preserve-3d;
+  background-size: cover;
+  transition: 1.5s;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+  background-blend-mode: multiply;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.card:hover {
+  box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.5);
+}
+.cardFrame:nth-child(1) .card {
+  background-image: url("../img/Ann1.jpg");
+}
+.cardFrame:nth-child(2) .card {
+  background-image: url("../img/Ann2.jpg");
+}
+.cardFrame:nth-child(3) .card {
+  background-image: url("../img/Ann3.jpg");
+}
+
+.cardFrame:nth-child(1):hover .card {
+  transform: rotateY(180deg);
+  background-image: url("../img/Ann4.jpg");
+}
+.cardFrame:nth-child(2):hover .card {
+  transform: rotateY(180deg);
+  background-image: url("../img/Ann5.jpg");
+}
+.cardFrame:nth-child(3):hover .card {
+  transform: rotateY(180deg);
+  background-image: url("../img/Ann6.jpg");
+}
+
+.wordA,
+.wordB {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.8);
+  font: 900 55px "";
+  /* 设置字体间距 */
+  letter-spacing: 5px;
+  line-height: 400px;
+}
+.wordA {
+  transform: translateZ(70px);
+}
+.wordB {
+  transform: translateZ(-70px) rotateY(180deg);
+}
+
+.cardB {
+  position: relative;
+  width: 500px;
+  height: 600px;
+  /* background: #fff; */
+  background-blend-mode: multiply;
+  background: rgba(0, 0, 0, 0.1);
+  background-image: url(../img/background3-1.png);
+  background-size: cover;
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
+  transition: 1s;
+}
+.cardB:hover {
+  transform: translateX(50%);
+}
+.cardB .imgBox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transform-origin: left;
+  transform-style: preserve-3d;
+  background: #000;
+  transition: 1s;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
+}
+
+.cardB:hover .imgBox {
+  transform: rotateY(-180deg);
+}
+
+.cardB .imgBox img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.cardB .imgBox img:nth-child(2) {
+  transform: rotateY(-180deg);
+}
+
+.cardB .details {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+
+  /* align-items: center; */
+}
+
+.cardB .details .content {
+  /* display: flex; */
+  display: flex;
+  justify-content: center;
+  /* justify-content: center; */
+  /* 
+  width: 100%;
+  height: 100%; */
+  font-family: "myFonts";
+  align-items: center;
+  /* flex-direction: column; */
+}
+
+.cardB .details .content h2 {
+  text-align: center;
+  /* font-weight: 700; */
+  /* left: 40%; */
+  font-size: 30px;
+}
+
+.cardB .details .content p {
+  /* top: 40%; */
+  margin: 20px;
+  /* text-align: center; */
+  /* font-weight: 700; */
+  line-height: 1em;
+  font-size: 22px;
+}
+
+.cardB .details .newButton {
+  /* display: flex; */
+  width: 18%;
+  left: 13%;
+  bottom: 30%;
+  color: #000;
+  font-size: 20px;
+  border: #677d6b solid 4px;
+  text-align: center;
+  position: absolute;
+  /* bottom: 10%;
+  margin: 50px;
+  right: 10%; */
+}
+
+.cardB .details .newButton:hover {
+  border: #dd8c30 solid 4px;
+}
+a {
+  font-family: "myFonts";
+  color: #000;
+  text-decoration: none;
+}
