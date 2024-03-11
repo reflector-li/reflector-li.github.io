@@ -87,27 +87,6 @@ windows 下编译安装这些基本库的方法；&lt;/li&gt;
   </entry>
   
   <entry>
-    <title>系统迁移笔记</title>
-    <link href="http://example.com/2024/03/69ab30be14c0.html"/>
-    <id>http://example.com/2024/03/69ab30be14c0.html</id>
-    <published>2024-03-11T01:11:00.000Z</published>
-    <updated>2024-03-11T01:28:44.740Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li>由于笔记本只有一个硬盘位，所以想扩大硬盘容量只能换硬盘。但又不想重装系统及各种软件，所以需要进行系统迁移。希望达到的效果就是原硬盘上的系统和数据全都拷贝到新硬盘上，并且还能够适时的调整各个分区大小。</li></ul><span id="more"></span><h3 id="方法">1. 方法</h3><p>使用<ahref="https://www.abackup.com/download.html">傲梅轻松备份</a>软件。 -选择 <code>克隆</code> 下的 <code>磁盘克隆</code>；</p><figure><imgsrc="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20220614225157.png"alt="|600" /><figcaption aria-hidden="true">|600</figcaption></figure><ul><li>选定 <code>源磁盘</code> 和<code>目标磁盘</code>，选定目标磁盘后会提示清除目标磁盘上数据，因此得提前做好备份。</li><li>选择左下角<code>编辑分区</code>，可以手动调整克隆到目标磁盘后的各个分区大小。</li><li>调整分区结束后勾选 <code>SSD对齐</code> ，然后进行克隆。</li><li>将新的硬盘安装到笔记本上就行，因为无论是引导方式还是硬盘格式都相同，所以并不需要做其他更改，也不需要使用WinPE 系统进行修复。</li></ul><hr /><h3 id="参考">2. 参考</h3><ul><li><ahref="https://www.bilibili.com/video/BV1dT4y1S7aY?spm_id_from=333.337.search-card.all.click&amp;vd_source=97148d62a78c37f00cbb88ddd5b68f54">教程</a></li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;ul&gt;
-&lt;li&gt;由于笔记本只有一个硬盘位，所以想扩大硬盘容量只能换硬盘。但又不想重装系统及各种软件，所以需要进行系统迁移。希望达到的效果就是原硬盘上的系统和数据全都拷贝到新硬盘上，并且还能够适时的调整各个分区大小。&lt;/li&gt;
-&lt;/ul&gt;</summary>
-    
-    
-    
-    <category term="环境配置日志" scheme="http://example.com/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%97%A5%E5%BF%97/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>VsCode配置使用</title>
     <link href="http://example.com/2024/03/d681f865a872.html"/>
     <id>http://example.com/2024/03/d681f865a872.html</id>
@@ -489,6 +468,30 @@ windows 下编译安装这些基本库的方法；&lt;/li&gt;
     <summary type="html">&lt;ul&gt;
 &lt;li&gt;使用 &lt;code&gt;virtualenv&lt;/code&gt; 创建Python虚拟环境的基本配置方法；&lt;/li&gt;
 &lt;li&gt;不同虚拟环境设置不同Python 版本的方法；&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="Ubuntu" scheme="http://example.com/categories/Ubuntu/"/>
+    
+    <category term="linux笔记" scheme="http://example.com/categories/Ubuntu/linux%E7%AC%94%E8%AE%B0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>查看文件及文件夹大小</title>
+    <link href="http://example.com/2024/03/1875b8f30cd2.html"/>
+    <id>http://example.com/2024/03/1875b8f30cd2.html</id>
+    <published>2024-03-10T08:20:00.000Z</published>
+    <updated>2024-03-11T00:51:43.637Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>linux 中查看文件以及文件夹大小的各项命令，包括<code>ls</code>，<code>ll</code> 和 <code>du</code>。</li></ul><span id="more"></span><h3 id="ls-命令">1. ls 命令</h3><ul><li><p><code>ls</code> ： 查看当前目录下各文件</p></li><li><p><code>ls -l</code>： 查看各文件详细信息，第一列代表文件属性，-为普通文件，d 为文件夹，l 为软连接。 注意 <code>autoscan*</code> 后的<code>*</code> 表示有可执行权限。 <imgsrc="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20230309134455.png"alt="|500" /></p></li><li><p><code>ls -lh</code> : 以 KB 或 MB的形式显示文件大小，注意对于文件夹，这里的数值并不是这个文件夹下所有文件大小，只是这个文件夹符所占大小。查看文件夹大小使用<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -sh 文件夹 </span><br></pre></td></tr></table></figure></p></li></ul><hr /><h3 id="ll-命令">2. ll 命令</h3><p><code>ll</code> 命令实际就是 <code>ls -l</code>的简写，所以有以下等效： - <code>ll -s</code> -&gt; <code>ls -ls</code>- <code>ll -h</code> -&gt; <code>ls -lh</code></p><hr /><h3 id="du-命令">3. du 命令</h3><ul><li><p>查看文件夹下各个文件夹及其本身大小 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -h --max-depth=1</span><br></pre></td></tr></table></figure></p></li><li><p>查看本文件夹总大小 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -sh</span><br></pre></td></tr></table></figure></p></li><li><p>查看本文件夹下某个子文件夹大小 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -sh 文件夹名</span><br></pre></td></tr></table></figure></p></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;linux 中查看文件以及文件夹大小的各项命令，包括
+&lt;code&gt;ls&lt;/code&gt;，&lt;code&gt;ll&lt;/code&gt; 和 &lt;code&gt;du&lt;/code&gt;。&lt;/li&gt;
 &lt;/ul&gt;</summary>
     
     
