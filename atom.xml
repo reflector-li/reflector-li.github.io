@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-03-11T00:51:43.637Z</updated>
+  <updated>2024-03-11T01:28:44.740Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,97 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Windows下Eigen、osqp和osqp-eigen库的安装使用</title>
+    <link href="http://example.com/2024/03/fc1fc6c9cd69.html"/>
+    <id>http://example.com/2024/03/fc1fc6c9cd69.html</id>
+    <published>2024-03-11T01:19:00.000Z</published>
+    <updated>2024-03-11T01:28:44.740Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>项目 <a href="https://github.com/reflector-li/EMplanner">EMPlanner</a> 中需要使用到 Eigen，osqp以及osqp-eigen库，这里介绍如何在windows 下编译安装这些基本库的方法；</li><li>这里只进行依赖库安装说明，需要项目还是在 linux下开发，环境配置会简单很多。</li></ul><span id="more"></span><h3 id="eigen-库编译安装与使用">1. Eigen 库编译安装与使用</h3><h4 id="编译安装-eigen">1.1 编译安装 Eigen</h4><ul><li><ahref="https://eigen.tuxfamily.org/index.php?title=Main_Page">Eigen3官网</a></li><li>Eigen 可以不用编译成库，因为其所有文件都是 <code>.hpp</code>头文件形式，没有库文件，可以直接放在自己工程文件中使用，只要在CMakeLists.txt 的 <code>include_directories()</code>中放入Eigen目录即可。但最好还是将 Eigen编译成库文件使用，编译安装方法<a href="/2024/03/aa6722f125a9.html" title="Cmake">见这里</a>，可以自定义安装目录，最后使用<code>find_package(Eigen3 REQUIRED)</code> 就可以找到对应的<code>.make</code>文件，比较神奇，因为按理来说需要指定安装的目录来查找对应的文件。</li></ul><h4 id="使用-eigen">1.2 使用 Eigen</h4><p>这里是直接将 Eigen 编译安装了，CMakeLists.txt 文档可写成如下形式：<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.20</span>)  </span><br><span class="line"><span class="keyword">project</span>(smoothFrenet)</span><br><span class="line"></span><br><span class="line"><span class="keyword">find_package</span>(Eigen3 REQUIRED)</span><br><span class="line"><span class="keyword">add_executable</span>(main main)  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">target_link_libraries</span>(main Eigen3::Eigen)</span><br></pre></td></tr></table></figure></p><hr /><h3 id="osqp-库编译安装与使用">2. osqp 库编译安装与使用</h3><h4 id="编译安装-osqp">2.1 编译安装 osqp</h4><ul><li><ahref="https://osqp.org/docs/get_started/sources.html">osqp官网</a></li><li>osqp 库的安装与 Eigen类似，安装方法同样参考<a href="/2024/03/aa6722f125a9.html" title="Cmake">这里</a>。因为直接安装到系统目录需要管理员权限，并且每次使用都要赋予权限，比较麻烦，所以还是将其安装到自定义的文件夹内。</li></ul><h4 id="使用-osqp">2.2 使用 osqp</h4><p>主要介绍 CMakeLists.txt 文档的编写： <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.20</span>)  </span><br><span class="line"><span class="keyword">project</span>(<span class="keyword">test</span>)  </span><br><span class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD <span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定 osqp 安装目录，不然找不到对应的cmake文件</span></span><br><span class="line"><span class="keyword">find_package</span>(osqp REQUIRED  </span><br><span class="line">             PATHS D:/cppThirdParty/libInstall/osqpLib              </span><br><span class="line">              NO_DEFAULT_PATH)</span><br><span class="line">              </span><br><span class="line"><span class="keyword">add_executable</span>(<span class="keyword">test</span> main.cpp)  </span><br><span class="line"></span><br><span class="line"><span class="comment">#使用静态库 osqp::osqpstatic,对应的是 .a 文件，而不要使用 osqp::osqp</span></span><br><span class="line"><span class="keyword">target_link_libraries</span>(<span class="keyword">test</span> osqp::osqpstatic)</span><br></pre></td></tr></table></figure><strong>注意点：</strong> 1. <code>find_package()</code> 时指定路径； 2.使用静态库 <code>osqp::osqptatic</code>。</p><hr /><h3 id="osqp-eigen-库的编译安装与使用">3. osqp-eigen库的编译安装与使用</h3><ul><li><a href="https://robotology.github.io/osqp-eigen/">osqp-eigen官网</a></li></ul><p>osqp 主要是用 c语言完成，关于矩阵的表示与运算比较底层，所以使用起来很不方便。因此使用在osqp 基础上开发的 osqp-eigen 库会方便很多。其依赖于 osqp 和Eigen，按照上面的常规步骤进行编译可以成功，但在使用时会找不到库文件，问题可以出在这两个地方：1. 因为 osqp 库是安装在自定义目录，所以 osqp-eigen没有找到要使用的库文件。 这里我已经将 osqp-eigen 的相关<code>.cmake</code>文件进行了更改，并且最后编译也通过了，所以问题出在这里的可能性比较小，但由于无法排查，所以在这里也记录一下。2. 编译该库没有生成 <code>.a</code> 文件，只生成了<code>libOsqpEigen.dll.a</code> 和 <code>libOsqpEigen.dll</code>两种库文件。而按照之前在 cmake 中使用的情况，貌似即使是在 windows内，也是需要使用 <code>.a</code> 的库文件，所以怀疑问题出在这里。</p><p>由于始终无法正常使用，所以准备自己将这个库编译一下。</p><h4 id="编译-osqp-eigen-库">3.1 编译 osqp-eigen 库</h4><p>主要使用 cmake 中 <code>add_library()</code>完成静态库编译，下面是详细的 CMakeLists.txt： <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.20</span>)</span><br><span class="line"><span class="keyword">project</span>(osqp_eigen)</span><br><span class="line"><span class="keyword">include_directories</span>(./<span class="keyword">include</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将 ./src 下面的全部.cpp 文件放到变量 DIR_LIB_SRCS 中</span></span><br><span class="line"><span class="keyword">aux_source_directory</span>(./src DIR_LIB_SRCS)</span><br><span class="line"></span><br><span class="line"><span class="keyword">find_package</span>(Eigen3 REQUIRED)</span><br><span class="line"></span><br><span class="line"><span class="keyword">find_package</span>(osqp REQUIRED</span><br><span class="line">        PATHS D:/cppThirdParty/libInstall/osqpLib</span><br><span class="line">        NO_DEFAULT_PATH)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成静态库</span></span><br><span class="line"><span class="keyword">add_library</span>(osqp_eigen STATIC <span class="variable">$&#123;DIR_LIB_SRCS&#125;</span>)</span><br><span class="line"><span class="comment"># 链接需要使用的外部库</span></span><br><span class="line"><span class="keyword">target_link_libraries</span>(osqp_eigen Eigen3::Eigen osqp::osqpstatic)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装生成的静态库文件osqp_eigen 至&lt;CMAKE_INSTALL_PREFIX&gt;/lib中，ARCHIVE 代表静态库</span></span><br><span class="line"><span class="keyword">install</span>(TARGETS osqp_eigen ARCHIVE DESTINATION lib)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将整个 ./include下面的文件夹安装至 &lt;CMAKE_INSTALL_PREFIX&gt;/include中，这里是头文件</span></span><br><span class="line"><span class="keyword">install</span>(DIRECTORY ./<span class="keyword">include</span>/ DESTINATION <span class="keyword">include</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">message</span>(STATUS <span class="variable">$&#123;DIR_LIB_SRCS&#125;</span><span class="string">&quot;--构建库完成&quot;</span>)</span><br></pre></td></tr></table></figure></p><p>然后按照<a href="/2024/03/aa6722f125a9.html" title="Cmake">常规编译安装步骤</a>就可以将头文件和库文件安装到设定位置了。</p><h4 id="使用-osqp-eigen-库">3.2 使用 osqp-eigen 库</h4><p>这里因为没有写相关的 <code>.cmake</code>配置文件，所以就无法使用相关的 <code>find_package()</code>来自动寻找库文件了，所以手动配置一下，后续再考虑自动查找的设置。</p><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.20</span>)  </span><br><span class="line"><span class="keyword">project</span>(osqp_eigen)  </span><br><span class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD <span class="number">14</span>)  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 这里在 &lt;CMAKE_PREFIX_PATH&gt; 中添加了osqp安装库的位置，所以下面的 find_package()就不用再重新设置路径了</span></span><br><span class="line"><span class="keyword">set</span>(CMAKE_PREFIX_PATH <span class="variable">$&#123;CMAKE_PREFIX_PATH&#125;</span> “D:/cppThirdParty/libInstall/osqpLib”) </span><br><span class="line"><span class="keyword">set</span>(OSQPEIGEN_INCLUDE_DIR D:/cppThirdParty/libInstall/osqpEigenLib/<span class="keyword">include</span>)  </span><br><span class="line"><span class="keyword">set</span>(OSQPEIGEN_LIB_DIR D:/cppThirdParty/libInstall/osqpEigenLib/lib)  </span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"><span class="keyword">find_package</span>(Eigen3 REQUIRED)  </span><br><span class="line"><span class="keyword">find_package</span>(osqp REQUIRED)  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">include_directories</span>(<span class="variable">$&#123;OSQPEIGEN_INCLUDE_DIR&#125;</span>)  </span><br><span class="line"><span class="keyword">link_directories</span>(<span class="variable">$&#123;OSQPEIGEN_LIB_DIR&#125;</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">add_executable</span>(main main.cpp)  </span><br><span class="line"><span class="keyword">target_link_libraries</span>(main libosqp_eigen.a Eigen3::Eigen osqp::osqpstatic)</span><br></pre></td></tr></table></figure><hr /><h3 id="使用例子">4. 使用例子</h3><ul><li><ahref="https://blog.csdn.net/gophae/article/details/115122792">各种优化问题</a></li><li><ahref="https://github.com/robotology/osqp-eigen/blob/master/example/src/MPCExample.cpp">官方example</a></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;项目 &lt;a href=&quot;https://github.com/reflector-li/EMplanner&quot;&gt;EM
+Planner&lt;/a&gt; 中需要使用到 Eigen，osqp以及osqp-eigen库，这里介绍如何在
+windows 下编译安装这些基本库的方法；&lt;/li&gt;
+&lt;li&gt;这里只进行依赖库安装说明，需要项目还是在 linux
+下开发，环境配置会简单很多。&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="环境配置日志" scheme="http://example.com/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%97%A5%E5%BF%97/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Windows下Ipopt优化库安装</title>
+    <link href="http://example.com/2024/03/9aad1447aa31.html"/>
+    <id>http://example.com/2024/03/9aad1447aa31.html</id>
+    <published>2024-03-11T01:14:00.000Z</published>
+    <updated>2024-03-11T01:30:05.361Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>Ipopt 是进行非线性优化问题求解的三方库，这里介绍在 Windows环境下的安装方法；</li><li>这里只进行依赖库安装说明，需要项目还是在 linux下开发，环境配置会简单很多。</li></ul><span id="more"></span><h3 id="类unix环境-msys2-mingw-安装">1. 类UNIX环境 MSYS2 / MINGW安装</h3><ul><li><a href="https://www.msys2.org/">官网下载安装</a></li></ul><p><strong>注意！！！</strong> 以下编译 HSL 时出现的问题都是由于运行的是<code>msys2.exe</code> 这个终端，包括找不到 <code>gcc</code>编译器等原因。实际应该使用 <code>mingw64.exe</code> 终端！</p><ul><li>安装其他软件包： <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman --disable-download-timeout -S binutils diffutils git grep make patch pkg-config</span><br></pre></td></tr></table></figure></li></ul><p>Note: 这里在安装时可能有些包提示签名未授权，类似这样的提示</p><blockquote><p>error: gcc-libs: signature from "David Macek <ahref="mailto:david.macek.0@gmail.com"class="email">david.macek.0@gmail.com</a>" is unknown trust</p></blockquote><p>这里需要更新一下 Key 就行：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman-key --keyserver keyserver.ubuntu.com --refresh-keys</span><br></pre></td></tr></table></figure><ul><li>使用 GNU 编译器</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman --disable-download-timeout -S mingw-w64-x86_64-gcc mingw-w64-x86_64-gcc-fortran</span><br></pre></td></tr></table></figure><ul><li>使用 MINGW 时，可以安装对应的 Lapack</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S mingw-w64-x86_64-lapack</span><br></pre></td></tr></table></figure><hr /><h3 id="安装-ipopt-的依赖库">2. 安装 Ipopt 的依赖库</h3><p><ahref="https://coin-or.github.io/Ipopt/index.html">ipopt官网</a></p><ul><li><p>OpenBLAS 直接从 github 的网站上下载二进制文件包即可。对于linux，直接使用apt-get安装。 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libopenblas-dev</span><br></pre></td></tr></table></figure></p></li><li><p>LAPACK 已经在前面安装 MinGW 时安装了。</p></li><li><p>HSL 这里使用的是个人免费版本，然后需要在 Msys 中使用源码编译。需要注意的点包括：</p><ol type="1"><li><p>Windows 下的路径表示与 Unix下的表示不同，因此需要进行转换，官方提供了转换工具 <code>cygpath</code>，使用示例： <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">cygpath - u <span class="string">&quot;D:\ipoptProject\ThirdParty-HSL&quot;</span></span></span><br><span class="line">-</span><br><span class="line">u</span><br><span class="line">/d/ipoptProject/ThirdParty-HSL</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> /d/ipoptProject/ThirdParty-HSL</span></span><br></pre></td></tr></table></figure></p></li><li><p>若编译时提示找不到 gcc 编译器，但是在 mingw64/bin中存在编译器，则检查路径是否包括编译器：<br /><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="variable">$PATH</span> <span class="comment">#若不包括路径，则添加上去</span></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">PATH=<span class="variable">$PATH</span>:/mingw64/bin</span></span><br></pre></td></tr></table></figure></p></li></ol></li></ul><hr /><h3 id="编译测试文件">3. 编译测试文件</h3><p>这是 example/examples/hs071_cpp 中 makefile的编译顺序，在终端中按照如此方式进行可正常编译。这里使用的是包管理器<code>pkg-config</code> 去处理需要添加的库路径与库文件。<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> g++ -O2 -DNDEBUG  `PKG_CONFIG_PATH=/mingw64/lib/pkgconfig:/mingw64/lib/pkgconfig:/mingw64/share/pkgconfig pkg-config --cflags ipopt`  -c -o hs071_main.o hs071_main.cpp</span><br><span class="line"><span class="number">2.</span> g++ -O2 -DNDEBUG  `PKG_CONFIG_PATH=/mingw64/lib/pkgconfig:/mingw64/lib/pkgconfig:/mingw64/share/pkgconfig pkg-config --cflags ipopt`  -c -o hs071_nlp.o hs071_nlp.cpp</span><br><span class="line"><span class="number">3.</span> g++  -O2 -DNDEBUG  -o hs071_cpp.exe hs071_main.o hs071_nlp.o  `PKG_CONFIG_PATH=/mingw64/lib/pkgconfig:/mingw64/lib/pkgconfig:/mingw64/share/pkgconfig pkg-config --libs ipopt`</span><br></pre></td></tr></table></figure></p><p>其中 <code>pkg-config  --cflags --libs ipopt</code> 命令实际是找到<code>ipopt</code> 库中头文件，库文件所在目录，以及要链接的必要库名称：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ PKG_CONFIG_PATH=/mingw64/lib/pkgconfig:/mingw64/lib/pkgconfig:/mingw64/share/pkgconfig pkg-config --cflags --libs ipopt</span><br><span class="line">-I/mingw64/include/coin-or -I/mingw64/include/coin-or/hsl -I/mingw64/include/coin-or/mumps -L/mingw64/lib -lipopt -lcoinhsl -lcoinmumps -llapack -lblas</span><br><span class="line"></span><br></pre></td></tr></table></figure></p><p>但是我想直接使用 <code>-o</code>命令生成可执行文件，不需要产生中间文件，于是做了以下尝试： <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ hs071_nlp.cpp hs071_main.cpp -o main.exe -I. <span class="string">&#x27;PKG_CONFIG_PATH=/mingw64/lib/pkgconfig:/mingw64/lib/pkgconfig:/mingw64/share/pkgconfig pkg-config --cflags --libs ipopt&#x27;</span></span><br></pre></td></tr></table></figure>却会报错如下： <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">In file included from hs071_nlp.cpp:<span class="number">7</span>:</span><br><span class="line">hs071_nlp.hpp:<span class="number">10</span>:<span class="number">10</span>: fatal error: IpTNLP.hpp: No such file <span class="keyword">or</span> directory</span><br><span class="line">   <span class="number">10</span> | <span class="meta">#<span class="keyword">include</span> <span class="string">&quot;IpTNLP.hpp&quot;</span></span></span><br><span class="line">      |          ^~~~~~~~~~~~</span><br><span class="line">compilation terminated.</span><br><span class="line">hs071_main.cpp:<span class="number">8</span>:<span class="number">10</span>: fatal error: IpIpoptApplication.hpp: No such file <span class="keyword">or</span> directory</span><br><span class="line">    <span class="number">8</span> | <span class="meta">#<span class="keyword">include</span> <span class="string">&quot;IpIpoptApplication.hpp&quot;</span></span></span><br><span class="line">      |          ^~~~~~~~~~~~~~~~~~~~~~~~</span><br><span class="line">compilation terminated.</span><br></pre></td></tr></table></figure></p><p>然后就折腾了一整天，按理来说应该是没有问题的，直到我写这个文档时，才发现了这个问题，原来PKG_CONFIG_PATH=...ipopt 这段配置语句是用 ` ` 括起来的，而不是单引号 ' '。所以正确的语句应该是 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ hs071_nlp.cpp hs071_main.cpp -o main.exe -I. `PKG_CONFIG_PATH=/mingw64/lib/pkgconfig:/mingw64/lib/pkgconfig:/mingw64/share/pkgconfig pkg-config --cflags --libs ipopt`</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;Ipopt 是进行非线性优化问题求解的三方库，这里介绍在 Windows
+环境下的安装方法；&lt;/li&gt;
+&lt;li&gt;这里只进行依赖库安装说明，需要项目还是在 linux
+下开发，环境配置会简单很多。&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="环境配置日志" scheme="http://example.com/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%97%A5%E5%BF%97/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>系统迁移笔记</title>
+    <link href="http://example.com/2024/03/5eb90ffb0562.html"/>
+    <id>http://example.com/2024/03/5eb90ffb0562.html</id>
+    <published>2024-03-11T01:11:00.000Z</published>
+    <updated>2024-03-11T01:31:05.405Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>由于笔记本只有一个硬盘位，所以想扩大硬盘容量只能换硬盘。但又不想重装系统及各种软件，所以需要进行系统迁移。希望达到的效果就是原硬盘上的系统和数据全都拷贝到新硬盘上，并且还能够适时的调整各个分区大小。</li></ul><span id="more"></span><h3 id="方法">1. 方法</h3><p>使用<ahref="https://www.abackup.com/download.html">傲梅轻松备份</a>软件。</p><ul><li><p>选择 <code>克隆</code> 下的 <code>磁盘克隆</code>；</p><figure><imgsrc="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20220614225157.png"alt="|600" /><figcaption aria-hidden="true">|600</figcaption></figure></li><li><p>选定 <code>源磁盘</code> 和<code>目标磁盘</code>，选定目标磁盘后会提示清除目标磁盘上数据，因此得提前做好备份。</p></li><li><p>选择左下角<code>编辑分区</code>，可以手动调整克隆到目标磁盘后的各个分区大小。</p></li><li><p>调整分区结束后勾选 <code>SSD对齐</code> ，然后进行克隆。</p></li><li><p>将新的硬盘安装到笔记本上就行，因为无论是引导方式还是硬盘格式都相同，所以并不需要做其他更改，也不需要使用WinPE 系统进行修复。</p></li></ul><hr /><h3 id="参考">2. 参考</h3><ul><li><ahref="https://www.bilibili.com/video/BV1dT4y1S7aY?spm_id_from=333.337.search-card.all.click&amp;vd_source=97148d62a78c37f00cbb88ddd5b68f54">教程</a></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;由于笔记本只有一个硬盘位，所以想扩大硬盘容量只能换硬盘。但又不想重装系统及各种软件，所以需要进行系统迁移。希望达到的效果就是原硬盘上的系统和数据全都拷贝到新硬盘上，并且还能够适时的调整各个分区大小。&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="环境配置日志" scheme="http://example.com/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%97%A5%E5%BF%97/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>系统迁移笔记</title>
+    <link href="http://example.com/2024/03/69ab30be14c0.html"/>
+    <id>http://example.com/2024/03/69ab30be14c0.html</id>
+    <published>2024-03-11T01:11:00.000Z</published>
+    <updated>2024-03-11T01:28:44.740Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>由于笔记本只有一个硬盘位，所以想扩大硬盘容量只能换硬盘。但又不想重装系统及各种软件，所以需要进行系统迁移。希望达到的效果就是原硬盘上的系统和数据全都拷贝到新硬盘上，并且还能够适时的调整各个分区大小。</li></ul><span id="more"></span><h3 id="方法">1. 方法</h3><p>使用<ahref="https://www.abackup.com/download.html">傲梅轻松备份</a>软件。 -选择 <code>克隆</code> 下的 <code>磁盘克隆</code>；</p><figure><imgsrc="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20220614225157.png"alt="|600" /><figcaption aria-hidden="true">|600</figcaption></figure><ul><li>选定 <code>源磁盘</code> 和<code>目标磁盘</code>，选定目标磁盘后会提示清除目标磁盘上数据，因此得提前做好备份。</li><li>选择左下角<code>编辑分区</code>，可以手动调整克隆到目标磁盘后的各个分区大小。</li><li>调整分区结束后勾选 <code>SSD对齐</code> ，然后进行克隆。</li><li>将新的硬盘安装到笔记本上就行，因为无论是引导方式还是硬盘格式都相同，所以并不需要做其他更改，也不需要使用WinPE 系统进行修复。</li></ul><hr /><h3 id="参考">2. 参考</h3><ul><li><ahref="https://www.bilibili.com/video/BV1dT4y1S7aY?spm_id_from=333.337.search-card.all.click&amp;vd_source=97148d62a78c37f00cbb88ddd5b68f54">教程</a></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;由于笔记本只有一个硬盘位，所以想扩大硬盘容量只能换硬盘。但又不想重装系统及各种软件，所以需要进行系统迁移。希望达到的效果就是原硬盘上的系统和数据全都拷贝到新硬盘上，并且还能够适时的调整各个分区大小。&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="环境配置日志" scheme="http://example.com/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%97%A5%E5%BF%97/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>VsCode配置使用</title>
@@ -405,96 +496,6 @@
     <category term="Ubuntu" scheme="http://example.com/categories/Ubuntu/"/>
     
     <category term="linux笔记" scheme="http://example.com/categories/Ubuntu/linux%E7%AC%94%E8%AE%B0/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>查看文件及文件夹大小</title>
-    <link href="http://example.com/2024/03/1875b8f30cd2.html"/>
-    <id>http://example.com/2024/03/1875b8f30cd2.html</id>
-    <published>2024-03-10T08:20:00.000Z</published>
-    <updated>2024-03-11T00:51:43.637Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li>linux 中查看文件以及文件夹大小的各项命令，包括<code>ls</code>，<code>ll</code> 和 <code>du</code>。</li></ul><span id="more"></span><h3 id="ls-命令">1. ls 命令</h3><ul><li><p><code>ls</code> ： 查看当前目录下各文件</p></li><li><p><code>ls -l</code>： 查看各文件详细信息，第一列代表文件属性，-为普通文件，d 为文件夹，l 为软连接。 注意 <code>autoscan*</code> 后的<code>*</code> 表示有可执行权限。 <imgsrc="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20230309134455.png"alt="|500" /></p></li><li><p><code>ls -lh</code> : 以 KB 或 MB的形式显示文件大小，注意对于文件夹，这里的数值并不是这个文件夹下所有文件大小，只是这个文件夹符所占大小。查看文件夹大小使用<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -sh 文件夹 </span><br></pre></td></tr></table></figure></p></li></ul><hr /><h3 id="ll-命令">2. ll 命令</h3><p><code>ll</code> 命令实际就是 <code>ls -l</code>的简写，所以有以下等效： - <code>ll -s</code> -&gt; <code>ls -ls</code>- <code>ll -h</code> -&gt; <code>ls -lh</code></p><hr /><h3 id="du-命令">3. du 命令</h3><ul><li><p>查看文件夹下各个文件夹及其本身大小 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -h --max-depth=1</span><br></pre></td></tr></table></figure></p></li><li><p>查看本文件夹总大小 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -sh</span><br></pre></td></tr></table></figure></p></li><li><p>查看本文件夹下某个子文件夹大小 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -sh 文件夹名</span><br></pre></td></tr></table></figure></p></li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;ul&gt;
-&lt;li&gt;linux 中查看文件以及文件夹大小的各项命令，包括
-&lt;code&gt;ls&lt;/code&gt;，&lt;code&gt;ll&lt;/code&gt; 和 &lt;code&gt;du&lt;/code&gt;。&lt;/li&gt;
-&lt;/ul&gt;</summary>
-    
-    
-    
-    <category term="Ubuntu" scheme="http://example.com/categories/Ubuntu/"/>
-    
-    <category term="linux笔记" scheme="http://example.com/categories/Ubuntu/linux%E7%AC%94%E8%AE%B0/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>KKT条件</title>
-    <link href="http://example.com/2024/03/db850e69690f.html"/>
-    <id>http://example.com/2024/03/db850e69690f.html</id>
-    <published>2024-03-09T16:06:00.000Z</published>
-    <updated>2024-03-11T00:51:43.637Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li><p>等式约束的优化问题：使用拉格朗日乘数法构建拉格朗日函数，利用求取极值的必要性，转换为无约束优化问题，可以使用<a href="/2024/03/57eb35381a43.html" title="梯度下降法">梯度下降法</a>、<a href="/2024/03/c814794462ec.html" title="牛顿法">牛顿法</a>，<a href="/2024/03/528ef78b9929.html" title="共轭梯度法">共轭梯度法</a>等方法进行迭代求解。</p></li><li><p>带有不等式约束的优化问题：构建广义拉格朗日函数，然后使用KKT条件进行求解。</p></li></ul><span id="more"></span><hr /><h3 id="基本原理">1. 基本原理</h3><p>对于带约束的优化问题（不一定是凸问题）： <spanclass="math display">\[\begin{array}{ll}\min &amp; f_0(\boldsymbol{x}), \boldsymbol{x} \in \mathbb{R}^n \\&amp; f_i(\boldsymbol{x}) \leq 0 \text {, 其中 } \mathrm{i}=1,2,3 \ldots\mathrm{m} \\\text { s.t. } &amp; h_i(\boldsymbol{x})=0 \text {, 其中 }\mathrm{i}=1,2,3 \ldots q\end{array}\]</span></p><h4 id="首先构建拉格朗日函数将原问题进行等价转换">1.1首先构建拉格朗日函数，将原问题进行等价转换：</h4><figure><imgsrc="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20230914115357.png"alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption></figure><p>问题：为什么拉格朗日乘子<span class="math inline">\(\lambda \geq0\)</span>？ 答：为了使得原函数 <spanclass="math inline">\(f_{0}(x)\)</span> 等价为极大的拉格朗日函数。也就是上面的当 x在可行域和不在可行域时需要满足的条件，从而将原问题等价为极小极大拉格朗日问题。</p><h4 id="将原问题转换为对偶问题就是最大最小过程进行交换">1.2将原问题转换为对偶问题，就是最大最小过程进行交换：</h4><figure><imgsrc="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20230914115857.png"alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption></figure><p>这里，对偶问题进行进一步转化： <span class="math display">\[\begin{array}{ll}对偶问题: &amp;\max _{\lambda, v} L(x,\lambda, v) \\\text { s.t. } &amp; \nabla_{\boldsymbol{x}} L(\boldsymbol{x},\boldsymbol{\lambda}, \boldsymbol{v})=\mathbf{0} \\&amp; \boldsymbol{\lambda} \geq \mathbf{0}\end{array}\]</span></p><p>注意对偶函数 <spanclass="math inline">\(g(\lambda,v)\)</span>的变量为 <spanclass="math inline">\(\lambda,v\)</span> ，然后分析对偶函数： - <spanclass="math inline">\(g(\lambda,v)\)</span>是关于变量的线性函数，因此既是凸函数也是凹函数； - 对偶问题可行域为<span class="math inline">\(\lambda \geq 0\)</span>，是半空间，因此为凸空间。</p><p>所以无论原问题是不是凸问题，对偶问题一定是凸问题。 <imgsrc="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20230914121015.png"alt="image.png" /></p><h4 id="对偶问题于原问题之间解的关系">1.3对偶问题于原问题之间解的关系</h4><ul><li><strong>对偶问题的解是原问题解的下界，这是弱对偶关系，即 <spanclass="math inline">\(P* \geq D*\)</span></strong>。</li><li><strong>对偶问题的解是原问题的解，这是强对偶关系，即 <spanclass="math inline">\(P* = D*\)</span></strong></li></ul><figure><imgsrc="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20230914121450.png"alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption></figure><h4 id="原始问题要是一个强对偶问题">1.4 原始问题要是一个强对偶问题</h4><p>需要满足： - 原始问题为凸问题； - 满足 Slack 条件； <imgsrc="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20230914122308.png"alt="image.png" /></p><h4 id="最终如何求解一个带约束的凸优化问题">1.5最终，如何求解一个带约束的凸优化问题</h4><p>使用 KKT 条件求解，KKT条件是原始问题为强对偶问题的<strong>必要条件</strong>，也就是说原始问题如果是强对偶，那么一定满足KKT条件，但满足KKT条件，不一定是强对偶。</p><p>互补松弛是构建拉格朗日函数时需要满足的，就是松弛条件和紧致条件的特性的统一表示。</p><figure><imgsrc="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20230914122648.png"alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption></figure><hr /><h3 id="补充">2. 补充</h3><ul><li>松弛条件和紧致条件</li></ul><figure><imgsrc="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20230914114514.png"alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption></figure><hr /><h3 id="参考">3. 参考</h3><ul><li><ahref="https://zhuanlan.zhihu.com/p/38163970">KKT条件简要说明</a></li><li><ahref="https://brezezee.github.io/2019/08/02/ML/SVM/Lagrange_duality/">拉格朗日对偶性</a></li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;等式约束的优化问题：使用拉格朗日乘数法构建拉格朗日函数，利用求取极值的必要性，转换为无约束优化问题，可以使用&lt;a href=&quot;/2024/03/57eb35381a43.html&quot; title=&quot;梯度下降法&quot;&gt;梯度下降法&lt;/a&gt;、&lt;a href=&quot;/2024/03/c814794462ec.html&quot; title=&quot;牛顿法&quot;&gt;牛顿法&lt;/a&gt;，&lt;a href=&quot;/2024/03/528ef78b9929.html&quot; title=&quot;共轭梯度法&quot;&gt;共轭梯度法&lt;/a&gt;等方法进行迭代求解。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;带有不等式约束的优化问题：构建广义拉格朗日函数，然后使用KKT条件进行求解。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;</summary>
-    
-    
-    
-    <category term="最优化方法" scheme="http://example.com/categories/%E6%9C%80%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>梯度下降法</title>
-    <link href="http://example.com/2024/03/57eb35381a43.html"/>
-    <id>http://example.com/2024/03/57eb35381a43.html</id>
-    <published>2024-03-09T16:06:00.000Z</published>
-    <updated>2024-03-11T00:51:43.637Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li>求解无约束优化问题的经典方法；</li><li>步长（学习率）通过人为设定；</li></ul><span id="more"></span><h3 id="基本原理">1. 基本原理</h3><p>对于无约束优化问题： <span class="math display">\[min \quad f(x)\]</span> 将目标函数在 <span class="math inline">\(x_{k}\)</span>处进行一阶泰勒展开 <span class="math display">\[\begin{aligned}f(x_{k+1}) &amp;= f(x_{k}) + g(x_{k})(x_{k+1} - x_{k}) \\g(x_{k}) &amp;= f&#39;(x_{k})\end{aligned}\]</span></p><p>梯度下降法的目标是希望 <span class="math inline">\(f(x)\)</span>在当前所在位置向下降量最大的方向扩展，即： <span class="math display">\[\begin{aligned}f(x_{k+1}) - f(x_{k}) &amp;= g(x_{k}) \cdot \alpha \vec{v} \\&amp; = \alpha \times ||g(x_{k})|| \times ||\vec{v}|| \times cos(\theta)\end{aligned}\]</span> 所以要使得 <span class="math inline">\(f(x_{k+1}) -f(x_{k})\)</span> 的绝对值最大，并且为负，需要 <spanclass="math inline">\(cos(\theta) = -1\)</span>，即 <spanclass="math inline">\(\vec{v} = -g(x_{k})\)</span>，所以有： <spanclass="math display">\[x_{k+1} = x_{k} - \alpha \times g(x_{k})\]</span></p><hr /><h3 id="局限性">2. 局限性</h3><ul><li>在靠近极值点时更新步长会变得很小，由此造成迭代次数过大。</li></ul><hr /><h3 id="参考">3. 参考</h3><ul><li><ahref="https://zhuanlan.zhihu.com/p/99477577">梯度下降算法的数学推导_</a></li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;ul&gt;
-&lt;li&gt;求解无约束优化问题的经典方法；&lt;/li&gt;
-&lt;li&gt;步长（学习率）通过人为设定；&lt;/li&gt;
-&lt;/ul&gt;</summary>
-    
-    
-    
-    <category term="最优化方法" scheme="http://example.com/categories/%E6%9C%80%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>牛顿法</title>
-    <link href="http://example.com/2024/03/c814794462ec.html"/>
-    <id>http://example.com/2024/03/c814794462ec.html</id>
-    <published>2024-03-09T16:05:00.000Z</published>
-    <updated>2024-03-11T00:51:43.637Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li>求解无约束优化问题的经典方法；</li><li>需要目标函数的二阶导数（海塞矩阵）获取步长；</li></ul><span id="more"></span><h3 id="基本原理">1. 基本原理</h3><p>同样对于无约束优化问题： <span class="math display">\[min \quad f(x)\]</span></p><p>我们求其导数的零点，就可以得到函数极值，并且若 <spanclass="math inline">\(f&#39;&#39;(x_{k})&gt;0\)</span> ，那么 <spanclass="math inline">\(x_{k}\)</span> 就是函数极小值点。</p><ol type="1"><li>将目标函数在 <span class="math inline">\(x_{k}\)</span>处进行二阶泰勒展开： <span class="math display">\[f(x_{k+1}) = f(x_{k}) + f&#39;(x_{k})(x_{k+1} - x_{k}) +\frac{1}{2}f&#39;&#39;(x_{k})(x_{k+1}-x_{k})^{2}\]</span></li><li>求一阶导数零点，即 <span class="math display">\[\begin{aligned}f&#39;(x_{k}) + f&#39;&#39;(x_{k})(x_{k+1}-x_{k}) &amp;=f(x_{k+1})&#39;  \\&amp; = 0 \\\end{aligned}\]</span></li><li>得到递增方向： <span class="math display">\[\begin{aligned}x_{k+1} &amp;= x_{k} - (f&#39;&#39;(x_{k}))^{-1}f&#39;(x_{k}) \\&amp;= x_{k} - (f&#39;&#39;(x_{k}))^{-1}g(x_{k})\end{aligned}\]</span></li></ol><hr /><h3 id="对比">2. 对比<a href="/2024/03/57eb35381a43.html" title="梯度下降法">梯度下降法</a></h3><ul><li>梯度下降法： <span class="math display">\[x_{k+1} = x_{k} - \alpha \times g(x_{k})\]</span></li><li>牛顿法： <span class="math display">\[x_{k+1} = x_{k} - (f&#39;&#39;(x_{k}))^{-1}g(x_{k})\]</span></li></ul><p>所以牛顿法其实是通过海塞矩阵求取了一个步长，其迭代速度相比梯度下降法会快很多，但是海塞矩阵的求解与求逆却相对要难很多。</p><hr /><h3 id="局限性">3. 局限性</h3><ul><li>要求给定的方程需要二阶可导</li><li>非凸函数的海塞矩阵不一定有逆</li><li>数据较大的时候，海塞矩阵的计算量偏大</li></ul><hr /><h3 id="参考">4. 参考</h3><ul><li><ahref="https://zhuanlan.zhihu.com/p/162901829">牛顿法、高斯—牛顿法（Gauss–Newton）和其他拟牛顿法</a></li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;ul&gt;
-&lt;li&gt;求解无约束优化问题的经典方法；&lt;/li&gt;
-&lt;li&gt;需要目标函数的二阶导数（海塞矩阵）获取步长；&lt;/li&gt;
-&lt;/ul&gt;</summary>
-    
-    
-    
-    <category term="最优化方法" scheme="http://example.com/categories/%E6%9C%80%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/"/>
     
     
   </entry>

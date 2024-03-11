@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="项目 EM Planner 中需要使用到 Eigen，osqp以及osqp-eigen库，这里介绍如何在 windows 下编译安装这些基本库的方法； 这里只进行依赖库安装说明，需要项目还是在 linux 下开发，环境配置会简单很多。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows下Eigen、osqp和osqp-eigen库的安装使用">
+<meta property="og:url" content="http://example.com/2024/03/fc1fc6c9cd69.html">
+<meta property="og:site_name" content="LinkX的技术站">
+<meta property="og:description" content="项目 EM Planner 中需要使用到 Eigen，osqp以及osqp-eigen库，这里介绍如何在 windows 下编译安装这些基本库的方法； 这里只进行依赖库安装说明，需要项目还是在 linux 下开发，环境配置会简单很多。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-03-11T01:19:00.000Z">
+<meta property="article:modified_time" content="2024-03-11T01:28:44.740Z">
+<meta property="article:author" content="LinkX">
+<meta property="article:tag" content="技术分享，人生碎念">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2024/03/fc1fc6c9cd69.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2024/03/fc1fc6c9cd69.html","path":"2024/03/fc1fc6c9cd69.html","title":"Windows下Eigen、osqp和osqp-eigen库的安装使用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Windows下Eigen、osqp和osqp-eigen库的安装使用 | LinkX的技术站</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="LinkX的技术站" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">LinkX的技术站</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-life"><a href="/life/" rel="section"><i class="fa fa-bicycle fa-fw"></i>生活</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#eigen-%E5%BA%93%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8"><span class="nav-text">1. Eigen 库编译安装与使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85-eigen"><span class="nav-text">1.1 编译安装 Eigen</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-eigen"><span class="nav-text">1.2 使用 Eigen</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#osqp-%E5%BA%93%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8"><span class="nav-text">2. osqp 库编译安装与使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85-osqp"><span class="nav-text">2.1 编译安装 osqp</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-osqp"><span class="nav-text">2.2 使用 osqp</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#osqp-eigen-%E5%BA%93%E7%9A%84%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8"><span class="nav-text">3. osqp-eigen
+库的编译安装与使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E8%AF%91-osqp-eigen-%E5%BA%93"><span class="nav-text">3.1 编译 osqp-eigen 库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-osqp-eigen-%E5%BA%93"><span class="nav-text">3.2 使用 osqp-eigen 库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E4%BE%8B%E5%AD%90"><span class="nav-text">4. 使用例子</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="LinkX"
+      src="/uploads/avatar.gif">
+  <p class="site-author-name" itemprop="name">LinkX</p>
+  <div class="site-description" itemprop="description">程序、自动驾驶技术和人生感悟的记录</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/reflector-li" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;reflector-li" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/03/fc1fc6c9cd69.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+      <meta itemprop="name" content="LinkX">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LinkX的技术站">
+      <meta itemprop="description" content="程序、自动驾驶技术和人生感悟的记录">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Windows下Eigen、osqp和osqp-eigen库的安装使用 | LinkX的技术站">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Windows下Eigen、osqp和osqp-eigen库的安装使用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-03-11 09:19:00 / 修改时间：09:28:44" itemprop="dateCreated datePublished" datetime="2024-03-11T09:19:00+08:00">2024-03-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">环境配置日志</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><ul>
+<li>项目 <a target="_blank" rel="noopener" href="https://github.com/reflector-li/EMplanner">EM
+Planner</a> 中需要使用到 Eigen，osqp以及osqp-eigen库，这里介绍如何在
+windows 下编译安装这些基本库的方法；</li>
+<li>这里只进行依赖库安装说明，需要项目还是在 linux
+下开发，环境配置会简单很多。</li>
+</ul>
+<span id="more"></span>
+<h3 id="eigen-库编译安装与使用">1. Eigen 库编译安装与使用</h3>
+<h4 id="编译安装-eigen">1.1 编译安装 Eigen</h4>
+<ul>
+<li><a
+target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/index.php?title=Main_Page">Eigen3
+官网</a></li>
+<li>Eigen 可以不用编译成库，因为其所有文件都是 <code>.hpp</code>
+头文件形式，没有库文件，可以直接放在自己工程文件中使用，只要在
+CMakeLists.txt 的 <code>include_directories()</code>
+中放入Eigen目录即可。但最好还是将 Eigen
+编译成库文件使用，编译安装方法<a href="/2024/03/aa6722f125a9.html" title="Cmake">见这里</a>，可以自定义安装目录，最后使用
+<code>find_package(Eigen3 REQUIRED)</code> 就可以找到对应的
+<code>.make</code>
+文件，比较神奇，因为按理来说需要指定安装的目录来查找对应的文件。</li>
+</ul>
+<h4 id="使用-eigen">1.2 使用 Eigen</h4>
+<p>这里是直接将 Eigen 编译安装了，CMakeLists.txt 文档可写成如下形式：
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.20</span>)  </span><br><span class="line"><span class="keyword">project</span>(smoothFrenet)</span><br><span class="line"></span><br><span class="line"><span class="keyword">find_package</span>(Eigen3 REQUIRED)</span><br><span class="line"><span class="keyword">add_executable</span>(main main)  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">target_link_libraries</span>(main Eigen3::Eigen)</span><br></pre></td></tr></table></figure></p>
+<hr />
+<h3 id="osqp-库编译安装与使用">2. osqp 库编译安装与使用</h3>
+<h4 id="编译安装-osqp">2.1 编译安装 osqp</h4>
+<ul>
+<li><a
+target="_blank" rel="noopener" href="https://osqp.org/docs/get_started/sources.html">osqp官网</a></li>
+<li>osqp 库的安装与 Eigen
+类似，安装方法同样参考<a href="/2024/03/aa6722f125a9.html" title="Cmake">这里</a>。因为直接安装到系统目录需要管理员权限，并且每次使用都要赋予权限，比较麻烦，所以还是将其安装到自定义的文件夹内。</li>
+</ul>
+<h4 id="使用-osqp">2.2 使用 osqp</h4>
+<p>主要介绍 CMakeLists.txt 文档的编写： <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.20</span>)  </span><br><span class="line"><span class="keyword">project</span>(<span class="keyword">test</span>)  </span><br><span class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD <span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定 osqp 安装目录，不然找不到对应的cmake文件</span></span><br><span class="line"><span class="keyword">find_package</span>(osqp REQUIRED  </span><br><span class="line">             PATHS D:/cppThirdParty/libInstall/osqpLib              </span><br><span class="line">              NO_DEFAULT_PATH)</span><br><span class="line">              </span><br><span class="line"><span class="keyword">add_executable</span>(<span class="keyword">test</span> main.cpp)  </span><br><span class="line"></span><br><span class="line"><span class="comment">#使用静态库 osqp::osqpstatic,对应的是 .a 文件，而不要使用 osqp::osqp</span></span><br><span class="line"><span class="keyword">target_link_libraries</span>(<span class="keyword">test</span> osqp::osqpstatic)</span><br></pre></td></tr></table></figure>
+<strong>注意点：</strong> 1. <code>find_package()</code> 时指定路径； 2.
+使用静态库 <code>osqp::osqptatic</code>。</p>
+<hr />
+<h3 id="osqp-eigen-库的编译安装与使用">3. osqp-eigen
+库的编译安装与使用</h3>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://robotology.github.io/osqp-eigen/">osqp-eigen
+官网</a></li>
+</ul>
+<p>osqp 主要是用 c
+语言完成，关于矩阵的表示与运算比较底层，所以使用起来很不方便。因此使用在
+osqp 基础上开发的 osqp-eigen 库会方便很多。其依赖于 osqp 和
+Eigen，按照上面的常规步骤进行编译可以成功，但在使用时会找不到库文件，问题可以出在这两个地方：
+1. 因为 osqp 库是安装在自定义目录，所以 osqp-eigen
+没有找到要使用的库文件。 这里我已经将 osqp-eigen 的相关
+<code>.cmake</code>
+文件进行了更改，并且最后编译也通过了，所以问题出在这里的可能性比较小，但由于无法排查，所以在这里也记录一下。
+2. 编译该库没有生成 <code>.a</code> 文件，只生成了
+<code>libOsqpEigen.dll.a</code> 和 <code>libOsqpEigen.dll</code>
+两种库文件。而按照之前在 cmake 中使用的情况，貌似即使是在 windows
+内，也是需要使用 <code>.a</code> 的库文件，所以怀疑问题出在这里。</p>
+<p>由于始终无法正常使用，所以准备自己将这个库编译一下。</p>
+<h4 id="编译-osqp-eigen-库">3.1 编译 osqp-eigen 库</h4>
+<p>主要使用 cmake 中 <code>add_library()</code>
+完成静态库编译，下面是详细的 CMakeLists.txt： <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.20</span>)</span><br><span class="line"><span class="keyword">project</span>(osqp_eigen)</span><br><span class="line"><span class="keyword">include_directories</span>(./<span class="keyword">include</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将 ./src 下面的全部.cpp 文件放到变量 DIR_LIB_SRCS 中</span></span><br><span class="line"><span class="keyword">aux_source_directory</span>(./src DIR_LIB_SRCS)</span><br><span class="line"></span><br><span class="line"><span class="keyword">find_package</span>(Eigen3 REQUIRED)</span><br><span class="line"></span><br><span class="line"><span class="keyword">find_package</span>(osqp REQUIRED</span><br><span class="line">        PATHS D:/cppThirdParty/libInstall/osqpLib</span><br><span class="line">        NO_DEFAULT_PATH)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成静态库</span></span><br><span class="line"><span class="keyword">add_library</span>(osqp_eigen STATIC <span class="variable">$&#123;DIR_LIB_SRCS&#125;</span>)</span><br><span class="line"><span class="comment"># 链接需要使用的外部库</span></span><br><span class="line"><span class="keyword">target_link_libraries</span>(osqp_eigen Eigen3::Eigen osqp::osqpstatic)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装生成的静态库文件osqp_eigen 至&lt;CMAKE_INSTALL_PREFIX&gt;/lib中，ARCHIVE 代表静态库</span></span><br><span class="line"><span class="keyword">install</span>(TARGETS osqp_eigen ARCHIVE DESTINATION lib)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将整个 ./include下面的文件夹安装至 &lt;CMAKE_INSTALL_PREFIX&gt;/include中，这里是头文件</span></span><br><span class="line"><span class="keyword">install</span>(DIRECTORY ./<span class="keyword">include</span>/ DESTINATION <span class="keyword">include</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">message</span>(STATUS <span class="variable">$&#123;DIR_LIB_SRCS&#125;</span><span class="string">&quot;--构建库完成&quot;</span>)</span><br></pre></td></tr></table></figure></p>
+<p>然后按照<a href="/2024/03/aa6722f125a9.html" title="Cmake">常规编译安装步骤</a>就可以将头文件和库文件安装到设定位置了。</p>
+<h4 id="使用-osqp-eigen-库">3.2 使用 osqp-eigen 库</h4>
+<p>这里因为没有写相关的 <code>.cmake</code>
+配置文件，所以就无法使用相关的 <code>find_package()</code>
+来自动寻找库文件了，所以手动配置一下，后续再考虑自动查找的设置。</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.20</span>)  </span><br><span class="line"><span class="keyword">project</span>(osqp_eigen)  </span><br><span class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD <span class="number">14</span>)  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 这里在 &lt;CMAKE_PREFIX_PATH&gt; 中添加了osqp安装库的位置，所以下面的 find_package()就不用再重新设置路径了</span></span><br><span class="line"><span class="keyword">set</span>(CMAKE_PREFIX_PATH <span class="variable">$&#123;CMAKE_PREFIX_PATH&#125;</span> “D:/cppThirdParty/libInstall/osqpLib”) </span><br><span class="line"><span class="keyword">set</span>(OSQPEIGEN_INCLUDE_DIR D:/cppThirdParty/libInstall/osqpEigenLib/<span class="keyword">include</span>)  </span><br><span class="line"><span class="keyword">set</span>(OSQPEIGEN_LIB_DIR D:/cppThirdParty/libInstall/osqpEigenLib/lib)  </span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"><span class="keyword">find_package</span>(Eigen3 REQUIRED)  </span><br><span class="line"><span class="keyword">find_package</span>(osqp REQUIRED)  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">include_directories</span>(<span class="variable">$&#123;OSQPEIGEN_INCLUDE_DIR&#125;</span>)  </span><br><span class="line"><span class="keyword">link_directories</span>(<span class="variable">$&#123;OSQPEIGEN_LIB_DIR&#125;</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">add_executable</span>(main main.cpp)  </span><br><span class="line"><span class="keyword">target_link_libraries</span>(main libosqp_eigen.a Eigen3::Eigen osqp::osqpstatic)</span><br></pre></td></tr></table></figure>
+<hr />
+<h3 id="使用例子">4. 使用例子</h3>
+<ul>
+<li><a
+target="_blank" rel="noopener" href="https://blog.csdn.net/gophae/article/details/115122792">各种优化问题</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://github.com/robotology/osqp-eigen/blob/master/example/src/MPCExample.cpp">官方example</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/03/9aad1447aa31.html" rel="prev" title="Windows下Ipopt优化库安装">
+                  <i class="fa fa-angle-left"></i> Windows下Ipopt优化库安装
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">LinkX</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
