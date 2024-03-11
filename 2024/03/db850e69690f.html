@@ -27,7 +27,7 @@
 <meta property="og:description" content="等式约束的优化问题：使用拉格朗日乘数法构建拉格朗日函数，利用求取极值的必要性，转换为无约束优化问题，可以使用梯度下降法、牛顿法，共轭梯度法等方法进行迭代求解。 带有不等式约束的优化问题：构建广义拉格朗日函数，然后使用KKT条件进行求解。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-03-09T16:06:00.000Z">
-<meta property="article:modified_time" content="2024-03-09T16:17:19.701Z">
+<meta property="article:modified_time" content="2024-03-11T00:51:43.637Z">
 <meta property="article:author" content="LinkX">
 <meta property="article:tag" content="技术分享，人生碎念">
 <meta name="twitter:card" content="summary">
@@ -113,11 +113,11 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A6%96%E5%85%88%E6%9E%84%E5%BB%BA%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E5%87%BD%E6%95%B0%E5%B0%86%E5%8E%9F%E9%97%AE%E9%A2%98%E8%BF%9B%E8%A1%8C%E7%AD%89%E4%BB%B7%E8%BD%AC%E6%8D%A2"><span class="nav-text">1.
-首先构建拉格朗日函数，将原问题进行等价转换：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%86%E5%8E%9F%E9%97%AE%E9%A2%98%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%AF%B9%E5%81%B6%E9%97%AE%E9%A2%98%E5%B0%B1%E6%98%AF%E6%9C%80%E5%A4%A7%E6%9C%80%E5%B0%8F%E8%BF%87%E7%A8%8B%E8%BF%9B%E8%A1%8C%E4%BA%A4%E6%8D%A2"><span class="nav-text">2.
-将原问题转换为对偶问题，就是最大最小过程进行交换：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E5%81%B6%E9%97%AE%E9%A2%98%E4%BA%8E%E5%8E%9F%E9%97%AE%E9%A2%98%E4%B9%8B%E9%97%B4%E8%A7%A3%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text">3.
-对偶问题于原问题之间解的关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E5%A7%8B%E9%97%AE%E9%A2%98%E8%A6%81%E6%98%AF%E4%B8%80%E4%B8%AA%E5%BC%BA%E5%AF%B9%E5%81%B6%E9%97%AE%E9%A2%98"><span class="nav-text">4. 原始问题要是一个强对偶问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E5%A6%82%E4%BD%95%E6%B1%82%E8%A7%A3%E4%B8%80%E4%B8%AA%E5%B8%A6%E7%BA%A6%E6%9D%9F%E7%9A%84%E5%87%B8%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98"><span class="nav-text">5.
-最终，如何求解一个带约束的凸优化问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A5%E5%85%85"><span class="nav-text">6. 补充</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">7. 参考</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-text">1. 基本原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A6%96%E5%85%88%E6%9E%84%E5%BB%BA%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E5%87%BD%E6%95%B0%E5%B0%86%E5%8E%9F%E9%97%AE%E9%A2%98%E8%BF%9B%E8%A1%8C%E7%AD%89%E4%BB%B7%E8%BD%AC%E6%8D%A2"><span class="nav-text">1.1
+首先构建拉格朗日函数，将原问题进行等价转换：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%86%E5%8E%9F%E9%97%AE%E9%A2%98%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%AF%B9%E5%81%B6%E9%97%AE%E9%A2%98%E5%B0%B1%E6%98%AF%E6%9C%80%E5%A4%A7%E6%9C%80%E5%B0%8F%E8%BF%87%E7%A8%8B%E8%BF%9B%E8%A1%8C%E4%BA%A4%E6%8D%A2"><span class="nav-text">1.2
+将原问题转换为对偶问题，就是最大最小过程进行交换：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E5%81%B6%E9%97%AE%E9%A2%98%E4%BA%8E%E5%8E%9F%E9%97%AE%E9%A2%98%E4%B9%8B%E9%97%B4%E8%A7%A3%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text">1.3
+对偶问题于原问题之间解的关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E5%A7%8B%E9%97%AE%E9%A2%98%E8%A6%81%E6%98%AF%E4%B8%80%E4%B8%AA%E5%BC%BA%E5%AF%B9%E5%81%B6%E9%97%AE%E9%A2%98"><span class="nav-text">1.4 原始问题要是一个强对偶问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E5%A6%82%E4%BD%95%E6%B1%82%E8%A7%A3%E4%B8%80%E4%B8%AA%E5%B8%A6%E7%BA%A6%E6%9D%9F%E7%9A%84%E5%87%B8%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98"><span class="nav-text">1.5
+最终，如何求解一个带约束的凸优化问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E5%85%85"><span class="nav-text">2. 补充</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">3. 参考</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -132,14 +132,19 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -198,9 +203,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-03-10 00:06:00 / 修改时间：00:17:19" itemprop="dateCreated datePublished" datetime="2024-03-10T00:06:00+08:00">2024-03-10</time>
+      <time title="创建时间：2024-03-10 00:06:00" itemprop="dateCreated datePublished" datetime="2024-03-10T00:06:00+08:00">2024-03-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-11 08:51:43" itemprop="dateModified" datetime="2024-03-11T08:51:43+08:00">2024-03-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -227,6 +238,7 @@
 </ul>
 <span id="more"></span>
 <hr />
+<h3 id="基本原理">1. 基本原理</h3>
 <p>对于带约束的优化问题（不一定是凸问题）： <span
 class="math display">\[
 \begin{array}{ll}
@@ -237,7 +249,7 @@ class="math display">\[
 \mathrm{i}=1,2,3 \ldots q
 \end{array}
 \]</span></p>
-<h4 id="首先构建拉格朗日函数将原问题进行等价转换">1.
+<h4 id="首先构建拉格朗日函数将原问题进行等价转换">1.1
 首先构建拉格朗日函数，将原问题进行等价转换：</h4>
 <figure>
 <img
@@ -250,7 +262,7 @@ alt="image.png" />
 class="math inline">\(f_{0}(x)\)</span> 等价为
 极大的拉格朗日函数。也就是上面的当 x
 在可行域和不在可行域时需要满足的条件，从而将原问题等价为极小极大拉格朗日问题。</p>
-<h4 id="将原问题转换为对偶问题就是最大最小过程进行交换">2.
+<h4 id="将原问题转换为对偶问题就是最大最小过程进行交换">1.2
 将原问题转换为对偶问题，就是最大最小过程进行交换：</h4>
 <figure>
 <img
@@ -276,7 +288,7 @@ class="math inline">\(g(\lambda,v)\)</span>
 <p>所以无论原问题是不是凸问题，对偶问题一定是凸问题。 <img
 src="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20230914121015.png"
 alt="image.png" /></p>
-<h4 id="对偶问题于原问题之间解的关系">3.
+<h4 id="对偶问题于原问题之间解的关系">1.3
 对偶问题于原问题之间解的关系</h4>
 <ul>
 <li><strong>对偶问题的解是原问题解的下界，这是弱对偶关系，即 <span
@@ -290,11 +302,11 @@ src="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20230914121
 alt="image.png" />
 <figcaption aria-hidden="true">image.png</figcaption>
 </figure>
-<h4 id="原始问题要是一个强对偶问题">4. 原始问题要是一个强对偶问题</h4>
+<h4 id="原始问题要是一个强对偶问题">1.4 原始问题要是一个强对偶问题</h4>
 <p>需要满足： - 原始问题为凸问题； - 满足 Slack 条件； <img
 src="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20230914122308.png"
 alt="image.png" /></p>
-<h4 id="最终如何求解一个带约束的凸优化问题">5.
+<h4 id="最终如何求解一个带约束的凸优化问题">1.5
 最终，如何求解一个带约束的凸优化问题</h4>
 <p>使用 KKT 条件求解，KKT
 条件是原始问题为强对偶问题的<strong>必要条件</strong>，也就是说原始问题如果是强对偶，那么一定满足KKT条件，但满足KKT条件，不一定是强对偶。</p>
@@ -305,7 +317,8 @@ src="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20230914122
 alt="image.png" />
 <figcaption aria-hidden="true">image.png</figcaption>
 </figure>
-<h4 id="补充">6. 补充</h4>
+<hr />
+<h3 id="补充">2. 补充</h3>
 <ul>
 <li>松弛条件和紧致条件</li>
 </ul>
@@ -316,7 +329,7 @@ alt="image.png" />
 <figcaption aria-hidden="true">image.png</figcaption>
 </figure>
 <hr />
-<h4 id="参考">7. 参考</h4>
+<h3 id="参考">3. 参考</h3>
 <ul>
 <li><a
 target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/38163970">KKT条件简要说明</a></li>
@@ -336,13 +349,13 @@ target="_blank" rel="noopener" href="https://brezezee.github.io/2019/08/02/ML/SV
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/03/c814794462ec.html" rel="prev" title="牛顿法">
-                  <i class="fa fa-angle-left"></i> 牛顿法
+                <a href="/2024/03/57eb35381a43.html" rel="prev" title="梯度下降法">
+                  <i class="fa fa-angle-left"></i> 梯度下降法
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/03/57eb35381a43.html" rel="next" title="梯度下降法">
-                  梯度下降法 <i class="fa fa-angle-right"></i>
+                <a href="/2024/03/1875b8f30cd2.html" rel="next" title="查看文件及文件夹大小">
+                  查看文件及文件夹大小 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>

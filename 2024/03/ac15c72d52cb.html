@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="git 的一系列基本操作； 解析 git 的设计原理，包括 git merge 和 git rebase 等；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git">
+<meta property="og:url" content="http://example.com/2024/03/ac15c72d52cb.html">
+<meta property="og:site_name" content="LinkX的技术站">
+<meta property="og:description" content="git 的一系列基本操作； 解析 git 的设计原理，包括 git merge 和 git rebase 等；">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-03-10T11:10:00.000Z">
+<meta property="article:modified_time" content="2024-03-11T00:51:43.637Z">
+<meta property="article:author" content="LinkX">
+<meta property="article:tag" content="技术分享，人生碎念">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2024/03/ac15c72d52cb.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2024/03/ac15c72d52cb.html","path":"2024/03/ac15c72d52cb.html","title":"Git"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Git | LinkX的技术站</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="LinkX的技术站" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">LinkX的技术站</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-life"><a href="/life/" rel="section"><i class="fa fa-bicycle fa-fw"></i>生活</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%94%AF"><span class="nav-text">1. 分支</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%88%86%E6%94%AF"><span class="nav-text">1.1 查看分支</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%87%E6%8D%A2%E5%88%86%E6%94%AF"><span class="nav-text">1.2 切换分支</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A8%E9%80%81%E5%88%86%E6%94%AF%E5%88%B0%E8%BF%9C%E7%AB%AF"><span class="nav-text">1.3 推送分支到远端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E5%88%86%E6%94%AF"><span class="nav-text">1.4 删除分支</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B8%85%E7%A9%BA%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E6%96%B9%E6%B3%95"><span class="nav-text">1.5 清空远程分支方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6%E6%88%96%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-text">3. 忽略文件或文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-merge-%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C"><span class="nav-text">4. git merge 相关操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-merge-%E5%92%8C-git-rebase-%E5%8C%BA%E5%88%AB"><span class="nav-text">5. git merge 和 git rebase
+区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#git-rebase"><span class="nav-text">5.2 git rebase</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="LinkX"
+      src="/uploads/avatar.gif">
+  <p class="site-author-name" itemprop="name">LinkX</p>
+  <div class="site-description" itemprop="description">程序、自动驾驶技术和人生感悟的记录</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/reflector-li" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;reflector-li" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/03/ac15c72d52cb.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+      <meta itemprop="name" content="LinkX">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LinkX的技术站">
+      <meta itemprop="description" content="程序、自动驾驶技术和人生感悟的记录">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Git | LinkX的技术站">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Git
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-03-10 19:10:00" itemprop="dateCreated datePublished" datetime="2024-03-10T19:10:00+08:00">2024-03-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-11 08:51:43" itemprop="dateModified" datetime="2024-03-11T08:51:43+08:00">2024-03-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Ubuntu/" itemprop="url" rel="index"><span itemprop="name">Ubuntu</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Ubuntu/linux%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">linux笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><ul>
+<li>git 的一系列基本操作；</li>
+<li>解析 git 的设计原理，包括 <code>git merge</code> 和
+<code>git rebase</code> 等；</li>
+</ul>
+<span id="more"></span>
+<h3 id="分支">1. 分支</h3>
+<h4 id="查看分支">1.1 查看分支</h4>
+<p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git branch # 查看本地分支</span><br><span class="line">git branch -r  #查看远程分支</span><br><span class="line">git branch -a #查看所有分支，红色为远程</span><br></pre></td></tr></table></figure></p>
+<h4 id="切换分支">1.2 切换分支</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout [branch] #切换到已有分支</span><br><span class="line">git checkout -b [newbranch] #创建并切换到新分支</span><br></pre></td></tr></table></figure>
+<h4 id="推送分支到远端">1.3 推送分支到远端</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin [newbranch] #首次推送分支到远端，之后直接使用 git push origin [newbranch] 即可</span><br></pre></td></tr></table></figure>
+<h4 id="删除分支">1.4 删除分支</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git push origin --delete [branch] #删除远端分支</span><br><span class="line">git branch -D [branch] #删除本地分支</span><br></pre></td></tr></table></figure>
+<h4 id="清空远程分支方法">1.5 清空远程分支方法</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git rm -r --cached . #清除本地缓存</span><br><span class="line">git commit -m&quot;delete&quot;</span><br><span class="line">git push origin main </span><br></pre></td></tr></table></figure>
+<table style="width:7%;">
+<colgroup>
+<col style="width: 6%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### 2. 克隆 #### 2.1 克隆特定分支文件 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone -b [branch] [仓库链接] </span><br></pre></td></tr></table></figure></td>
+</tr>
+<tr class="even">
+<td>#### 2.2 一次性批量克隆仓库到本地 使用 <code>vcs</code>
+命令实现批量下载，例如某 <code>build_depends.repos</code> 文件内容如下
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">repositories:</span><br><span class="line">  common:</span><br><span class="line">    type: git</span><br><span class="line">    url: https://gitlab.com/autowarefoundation/autoware.ai/common.git</span><br><span class="line">    version: master</span><br><span class="line">  lanelet2:</span><br><span class="line">    type: git</span><br><span class="line">    url: https://github.com/fzi-forschungszentrum-informatik/Lanelet2.git</span><br><span class="line">    version: master</span><br><span class="line">  messages:</span><br><span class="line">    type: git</span><br><span class="line">    url: https://gitlab.com/autowarefoundation/autoware.ai/messages.git</span><br><span class="line">    version: master</span><br><span class="line">  mrt_cmake_modules:</span><br><span class="line">    type: git</span><br><span class="line">    url: https://github.com/KIT-MRT/mrt_cmake_modules.git</span><br><span class="line">    version: master</span><br></pre></td></tr></table></figure></td>
+</tr>
+<tr class="odd">
+<td>在同级文件夹下使用命令： <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vcs <span class="keyword">import</span> ..&lt;&lt;build_depends.repos</span><br></pre></td></tr></table></figure>
+将文件中的仓库批量下载至上一级文件夹 <code>..</code> 当中。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="忽略文件或文件夹">3. 忽略文件或文件夹</h3>
+<ul>
+<li><p>在git工作空间下创建 <code>.gitignore</code> 文件（注意不是在
+<code>.git</code> 文件夹下创建），若要忽略 <code>build</code> 和
+<code>.vscode</code> 文件夹，则可以在 <code>.gitignore</code> 中写道：
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">.gitignore文件内容</span></span><br><span class="line">build</span><br><span class="line">.vscode</span><br></pre></td></tr></table></figure></p></li>
+<li><p>若要忽略的文件已经添加到缓存区，删除 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git ls-files #缓存查看</span><br><span class="line">git rm -r --cached [要忽略文件夹]</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;提交描述&quot;</span><br></pre></td></tr></table></figure></p></li>
+</ul>
+<hr />
+<h3 id="git-merge-相关操作">4. git merge 相关操作</h3>
+<ul>
+<li><code>--ff</code></li>
+<li><code>--no-ff</code></li>
+</ul>
+<hr />
+<h3 id="git-merge-和-git-rebase-区别">5. git merge 和 git rebase
+区别</h3>
+<p>两种方式都是合并分支，但是有差别。 #### 5.1 git merge 1.
+<strong>简介：</strong> git merge 合并以后，两个分支的commit
+信息还各自按照时间线保留，只不过是一种交叉方式的合并，在 git
+树中存在交叉。 2. <strong>使用场景：</strong> 由各自的 feature 分支向
+develop 分支合并。 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout main</span><br><span class="line">git merge --no-ff develop </span><br></pre></td></tr></table></figure></p>
+<figure>
+<img
+src="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20230714003355.png"
+alt="image.png|400" />
+<figcaption aria-hidden="true">image.png|400</figcaption>
+</figure>
+<h4 id="git-rebase">5.2 git rebase</h4>
+<ol type="1">
+<li><strong>简介：</strong> 顾名思义，就是重新选择基础，也就是重新选择
+rebase
+的分支为基础，然后达到一个线性合并的方式。会找到两个分支的上一个共有
+commit，然后插入 rebase 分支的新 commit 。</li>
+<li><strong>使用场景：</strong>
+在本地清理自己的各种分支，主打一个简洁，并不需要多关注以前的 commit
+时间和信息。 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout main</span><br><span class="line">git rebase develop</span><br></pre></td></tr></table></figure></li>
+</ol>
+<figure>
+<img
+src="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20230714003932.png"
+alt="image.png|400" />
+<figcaption aria-hidden="true">image.png|400</figcaption>
+</figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/03/565a36c551fa.html" rel="prev" title="g++编译规则">
+                  <i class="fa fa-angle-left"></i> g++编译规则
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/03/1b7d9387f42b.html" rel="next" title="update-alternatives管理不同版本软件">
+                  update-alternatives管理不同版本软件 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">LinkX</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

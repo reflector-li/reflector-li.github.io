@@ -19,15 +19,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="1. 基本原理 对于无约束优化问题： \[ min \quad f(x) \] 将目标函数在 \(x_{k}\) 处进行一阶泰勒展开 \[ \begin{aligned} f(x_{k+1}) &amp;&#x3D; f(x_{k}) + g(x_{k})(x_{k+1} - x_{k}) \\ g(x_{k}) &amp;&#x3D; f&#39;(x_{k}) \end{aligned} \]">
+    <meta name="description" content="求解无约束优化问题的经典方法； 步长（学习率）通过人为设定；">
 <meta property="og:type" content="article">
 <meta property="og:title" content="梯度下降法">
 <meta property="og:url" content="http://example.com/2024/03/57eb35381a43.html">
 <meta property="og:site_name" content="LinkX的技术站">
-<meta property="og:description" content="1. 基本原理 对于无约束优化问题： \[ min \quad f(x) \] 将目标函数在 \(x_{k}\) 处进行一阶泰勒展开 \[ \begin{aligned} f(x_{k+1}) &amp;&#x3D; f(x_{k}) + g(x_{k})(x_{k+1} - x_{k}) \\ g(x_{k}) &amp;&#x3D; f&#39;(x_{k}) \end{aligned} \]">
+<meta property="og:description" content="求解无约束优化问题的经典方法； 步长（学习率）通过人为设定；">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-03-09T16:06:00.000Z">
-<meta property="article:modified_time" content="2024-03-09T16:14:09.385Z">
+<meta property="article:modified_time" content="2024-03-11T00:51:43.637Z">
 <meta property="article:author" content="LinkX">
 <meta property="article:tag" content="技术分享，人生碎念">
 <meta name="twitter:card" content="summary">
@@ -113,7 +113,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-text">1. 基本原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B1%80%E9%99%90%E6%80%A7"><span class="nav-text">2. 局限性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">3. 参考</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-text">1. 基本原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%80%E9%99%90%E6%80%A7"><span class="nav-text">2. 局限性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">3. 参考</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -128,14 +128,19 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -194,9 +199,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-03-10 00:06:00 / 修改时间：00:14:09" itemprop="dateCreated datePublished" datetime="2024-03-10T00:06:00+08:00">2024-03-10</time>
+      <time title="创建时间：2024-03-10 00:06:00" itemprop="dateCreated datePublished" datetime="2024-03-10T00:06:00+08:00">2024-03-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-11 08:51:43" itemprop="dateModified" datetime="2024-03-11T08:51:43+08:00">2024-03-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -217,7 +228,12 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="基本原理">1. 基本原理</h1>
+    <div class="post-body" itemprop="articleBody"><ul>
+<li>求解无约束优化问题的经典方法；</li>
+<li>步长（学习率）通过人为设定；</li>
+</ul>
+<span id="more"></span>
+<h3 id="基本原理">1. 基本原理</h3>
 <p>对于无约束优化问题： <span class="math display">\[
 min \quad f(x)
 \]</span> 将目标函数在 <span class="math inline">\(x_{k}\)</span>
@@ -227,7 +243,6 @@ f(x_{k+1}) &amp;= f(x_{k}) + g(x_{k})(x_{k+1} - x_{k}) \\
 g(x_{k}) &amp;= f&#39;(x_{k})
 \end{aligned}
 \]</span></p>
-<span id="more"></span>
 <p>梯度下降法的目标是希望 <span class="math inline">\(f(x)\)</span>
 在当前所在位置向下降量最大的方向扩展，即： <span class="math display">\[
 \begin{aligned}
@@ -242,12 +257,12 @@ class="math display">\[
 x_{k+1} = x_{k} - \alpha \times g(x_{k})
 \]</span></p>
 <hr />
-<h1 id="局限性">2. 局限性</h1>
+<h3 id="局限性">2. 局限性</h3>
 <ul>
 <li>在靠近极值点时更新步长会变得很小，由此造成迭代次数过大。</li>
 </ul>
 <hr />
-<h1 id="参考">3. 参考</h1>
+<h3 id="参考">3. 参考</h3>
 <ul>
 <li><a
 target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/99477577">梯度下降算法的数学推导_</a></li>
@@ -265,11 +280,14 @@ target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/99477577">梯�
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/03/db850e69690f.html" rel="prev" title="KKT条件">
-                  <i class="fa fa-angle-left"></i> KKT条件
+                <a href="/2024/03/c814794462ec.html" rel="prev" title="牛顿法">
+                  <i class="fa fa-angle-left"></i> 牛顿法
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2024/03/db850e69690f.html" rel="next" title="KKT条件">
+                  KKT条件 <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>

@@ -27,7 +27,7 @@
 <meta property="og:description" content="高斯牛顿法主要为了解决最小二乘问题，构造了能拟合替代海塞矩阵的矩阵，从而用牛顿法去求解最优值。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-03-09T16:05:00.000Z">
-<meta property="article:modified_time" content="2024-03-09T16:22:20.554Z">
+<meta property="article:modified_time" content="2024-03-11T00:51:43.637Z">
 <meta property="article:author" content="LinkX">
 <meta property="article:tag" content="技术分享，人生碎念">
 <meta name="twitter:card" content="summary">
@@ -113,7 +113,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E9%97%AE%E9%A2%98"><span class="nav-text">1. 最小二乘问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E7%89%9B%E9%A1%BF%E6%B3%95%E5%B1%80%E9%99%90%E6%80%A7"><span class="nav-text">2. 高斯牛顿法局限性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">3. 参考</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E9%97%AE%E9%A2%98"><span class="nav-text">1. 最小二乘问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E7%89%9B%E9%A1%BF%E6%B3%95%E5%B1%80%E9%99%90%E6%80%A7"><span class="nav-text">2. 高斯牛顿法局限性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">3. 参考</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -128,14 +128,19 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -194,9 +199,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-03-10 00:05:00 / 修改时间：00:22:20" itemprop="dateCreated datePublished" datetime="2024-03-10T00:05:00+08:00">2024-03-10</time>
+      <time title="创建时间：2024-03-10 00:05:00" itemprop="dateCreated datePublished" datetime="2024-03-10T00:05:00+08:00">2024-03-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-11 08:51:43" itemprop="dateModified" datetime="2024-03-11T08:51:43+08:00">2024-03-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -217,9 +228,11 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p><strong>高斯牛顿法主要为了解决最小二乘问题，构造了能拟合替代海塞矩阵的矩阵，从而用牛顿法去求解最优值。</strong></p>
+    <div class="post-body" itemprop="articleBody"><ul>
+<li>高斯牛顿法主要为了解决最小二乘问题，构造了能拟合替代海塞矩阵的矩阵，从而用牛顿法去求解最优值。</li>
+</ul>
 <span id="more"></span>
-<h1 id="最小二乘问题">1. 最小二乘问题</h1>
+<h3 id="最小二乘问题">1. 最小二乘问题</h3>
 <ul>
 <li>线性最小二乘</li>
 </ul>
@@ -284,7 +297,7 @@ class="math inline">\(J^{T}(x_{k})J(x_{k})\)</span> 来对原始目标函数
 <span class="math inline">\(F(x_{k})\)</span> 的海塞矩阵 <span
 class="math inline">\(F&#39;&#39;(x_{k})\)</span> 进行了近似。</p>
 <hr />
-<h1 id="高斯牛顿法局限性">2. 高斯牛顿法局限性</h1>
+<h3 id="高斯牛顿法局限性">2. 高斯牛顿法局限性</h3>
 <ul>
 <li><span class="math inline">\(J^{T}(x_{k})J(x_{k})\)</span>
 只具备半正定性质，但可能求解出来是奇异矩阵，导致求逆失败，从而计算下一步位置
@@ -294,7 +307,7 @@ class="math inline">\(x_{k}\)</span>
 的变化太大，从而用二阶展开无法近似函数，导致收敛失败。</li>
 </ul>
 <hr />
-<h1 id="参考">3. 参考</h1>
+<h3 id="参考">3. 参考</h3>
 <ul>
 <li><a
 target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42138662/article/details/109289129">参考1</a></li>
