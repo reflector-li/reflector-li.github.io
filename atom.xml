@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-03-11T01:28:44.740Z</updated>
+  <updated>2024-03-12T02:45:51.262Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,144 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>环境配置索引</title>
+    <link href="http://example.com/2024/03/c6992dae00e1.html"/>
+    <id>http://example.com/2024/03/c6992dae00e1.html</id>
+    <published>2024-03-12T02:44:00.000Z</published>
+    <updated>2024-03-12T02:45:51.262Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>本页面存放一系列环境配置内容文档的索引；</li></ul><span id="more"></span><h3 id="windows-环境">1. Windows 环境</h3><ul><li>[[Windows系统迁移笔记]]</li><li><a href="/2024/03/fc1fc6c9cd69.html" title="Windows下Eigen、osqp和osqp-eigen库的安装使用">Windows下Eigen、osqp和osqp-eigen库的安装使用</a></li><li><a href="/2024/03/9aad1447aa31.html" title="Windows下Ipopt优化库安装">Windows下Ipopt优化库安装</a></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;本页面存放一系列环境配置内容文档的索引；&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="环境配置日志" scheme="http://example.com/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%97%A5%E5%BF%97/"/>
+    
+    
+    <category term="#环境配置索引" scheme="http://example.com/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E7%B4%A2%E5%BC%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>凸优化基础</title>
+    <link href="http://example.com/2024/03/b5bc8dd591f5.html"/>
+    <id>http://example.com/2024/03/b5bc8dd591f5.html</id>
+    <published>2024-03-12T02:43:00.000Z</published>
+    <updated>2024-03-12T02:45:51.262Z</updated>
+    
+    <content type="html"><![CDATA[<p>凸优化问题的两个基本条件： - 目标函数 cost function是凸函数，即存在极小值； -求解空间是凸空间，是完整的空间，而不是破碎的。</p><span id="more"></span>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;凸优化问题的两个基本条件： - 目标函数 cost function
+是凸函数，即存在极小值； -
+求解空间是凸空间，是完整的空间，而不是破碎的。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="最优化方法" scheme="http://example.com/categories/%E6%9C%80%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>最优化方法索引</title>
+    <link href="http://example.com/2024/03/017bb123671c.html"/>
+    <id>http://example.com/2024/03/017bb123671c.html</id>
+    <published>2024-03-12T02:39:00.000Z</published>
+    <updated>2024-03-12T02:45:51.262Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>本页面主要存放最优化方法学习笔记的索引，方便进行页面检索；</li></ul><span id="more"></span><h3 id="基础理论">1. 基础理论</h3><ul><li><a href="/2024/03/b5bc8dd591f5.html" title="凸优化基础">凸优化基础</a></li><li><a href="/2024/03/db850e69690f.html" title="KKT条件">KKT条件</a></li></ul><hr /><h3 id="优化方法">2. 优化方法</h3><ul><li><a href="/2024/03/57eb35381a43.html" title="梯度下降法">梯度下降法</a></li><li><a href="/2024/03/c814794462ec.html" title="牛顿法">牛顿法</a></li><li><a href="/2024/03/528ef78b9929.html" title="共轭梯度法">共轭梯度法</a></li><li><a href="/2024/03/91eeeeac8bd1.html" title="高斯牛顿法">高斯牛顿法</a></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;本页面主要存放最优化方法学习笔记的索引，方便进行页面检索；&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="最优化方法" scheme="http://example.com/categories/%E6%9C%80%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/"/>
+    
+    
+    <category term="#最优化方法索引" scheme="http://example.com/tags/%E6%9C%80%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95%E7%B4%A2%E5%BC%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python笔记索引</title>
+    <link href="http://example.com/2024/03/944e778b7f6e.html"/>
+    <id>http://example.com/2024/03/944e778b7f6e.html</id>
+    <published>2024-03-12T02:30:00.000Z</published>
+    <updated>2024-03-12T02:45:51.262Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>本页面主要存放平时 Python使用过程中的笔记索引，方便进行文章检索；</li></ul><span id="more"></span><h3 id="python语言特性">1. Python语言特性</h3><ul><li><a href="/2024/03/cfb368e8b4c6.html" title="多线程与多进程">多线程与多进程</a></li></ul><hr /><h3 id="实用代码">2. 实用代码</h3><ul><li><a href="/2024/03/ff932a6a77c6.html" title="D-star算法实现">D-star算法实现</a></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;本页面主要存放平时 Python
+使用过程中的笔记索引，方便进行文章检索；&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="Python" scheme="http://example.com/categories/Python/"/>
+    
+    
+    <category term="#Python笔记索引" scheme="http://example.com/tags/Python%E7%AC%94%E8%AE%B0%E7%B4%A2%E5%BC%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>D-star算法实现</title>
+    <link href="http://example.com/2024/03/ff932a6a77c6.html"/>
+    <id>http://example.com/2024/03/ff932a6a77c6.html</id>
+    <published>2024-03-12T02:30:00.000Z</published>
+    <updated>2024-03-12T02:35:56.989Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>Python 实现路径规划中的D*算法；</li></ul><span id="more"></span><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># @Time    : 2018/12/13 0013 22:30</span></span><br><span class="line"><span class="comment"># @Author  : 心一</span></span><br><span class="line"><span class="comment"># @Site    : </span></span><br><span class="line"><span class="comment"># @File    : D_star.py</span></span><br><span class="line"><span class="comment"># @Software: PyCharm</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">from</span> sys <span class="keyword">import</span> maxsize <span class="comment"># 导入最大数，2^63-1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">State</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x, y</span>):</span><br><span class="line">        self.x = x</span><br><span class="line">        self.y = y</span><br><span class="line">        self.parent = <span class="literal">None</span></span><br><span class="line">        self.state = <span class="string">&quot;.&quot;</span></span><br><span class="line">        self.t = <span class="string">&quot;new&quot;</span></span><br><span class="line">        self.h = <span class="number">0</span></span><br><span class="line">        self.k = <span class="number">0</span>  <span class="comment"># k即为f</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">cost</span>(<span class="params">self, state</span>):</span><br><span class="line">        <span class="keyword">if</span> self.state == <span class="string">&quot;#&quot;</span> <span class="keyword">or</span> state.state == <span class="string">&quot;#&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> maxsize  <span class="comment"># 存在障碍物时，距离无穷大</span></span><br><span class="line">        <span class="keyword">return</span> math.sqrt(math.<span class="built_in">pow</span>((self.x - state.x), <span class="number">2</span>) +</span><br><span class="line">                         math.<span class="built_in">pow</span>((self.y - state.y), <span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">set_state</span>(<span class="params">self, state</span>):</span><br><span class="line">        <span class="keyword">if</span> state <span class="keyword">not</span> <span class="keyword">in</span> [<span class="string">&quot;S&quot;</span>, <span class="string">&quot;.&quot;</span>, <span class="string">&quot;#&quot;</span>, <span class="string">&quot;E&quot;</span>, <span class="string">&quot;*&quot;</span>,<span class="string">&quot;+&quot;</span>]:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        self.state = state</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Map</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    创建地图</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, row, col</span>):</span><br><span class="line">        self.row = row</span><br><span class="line">        self.col = col</span><br><span class="line">        self.<span class="built_in">map</span> = self.init_map()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">init_map</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="comment"># 初始化map</span></span><br><span class="line">        map_list = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(self.row):</span><br><span class="line">            tmp = []</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(self.col):</span><br><span class="line">                tmp.append(State(i, j))</span><br><span class="line">            map_list.append(tmp)</span><br><span class="line">        <span class="keyword">return</span> map_list</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">print_map</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(self.row):</span><br><span class="line">            tmp = <span class="string">&quot;&quot;</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(self.col):</span><br><span class="line">                tmp += self.<span class="built_in">map</span>[i][j].state + <span class="string">&quot; &quot;</span></span><br><span class="line">            <span class="built_in">print</span>(tmp)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_neighbers</span>(<span class="params">self, state</span>):</span><br><span class="line">        <span class="comment"># 获取8邻域</span></span><br><span class="line">        state_list = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> [-<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>]:</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> [-<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>]:</span><br><span class="line">                <span class="keyword">if</span> i == <span class="number">0</span> <span class="keyword">and</span> j == <span class="number">0</span>:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">if</span> state.x + i &lt; <span class="number">0</span> <span class="keyword">or</span> state.x + i &gt;= self.row:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">if</span> state.y + j &lt; <span class="number">0</span> <span class="keyword">or</span> state.y + j &gt;= self.col:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                state_list.append(self.<span class="built_in">map</span>[state.x + i][state.y + j])</span><br><span class="line">        <span class="keyword">return</span> state_list</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">set_obstacle</span>(<span class="params">self, point_list</span>):</span><br><span class="line">        <span class="comment"># 设置障碍物的位置</span></span><br><span class="line">        <span class="keyword">for</span> x, y <span class="keyword">in</span> point_list:</span><br><span class="line">            <span class="keyword">if</span> x &lt; <span class="number">0</span> <span class="keyword">or</span> x &gt;= self.row <span class="keyword">or</span> y &lt; <span class="number">0</span> <span class="keyword">or</span> y &gt;= self.col:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            self.<span class="built_in">map</span>[x][y].set_state(<span class="string">&quot;#&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dstar</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, maps</span>):</span><br><span class="line">        self.<span class="built_in">map</span> = maps</span><br><span class="line">        self.open_list = <span class="built_in">set</span>()  <span class="comment"># 创建空集合</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">process_state</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        D*算法的主要过程</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        x = self.min_state()    <span class="comment"># 获取open list列表中最小k的节点</span></span><br><span class="line">        <span class="keyword">if</span> x <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        k_old = self.get_kmin() <span class="comment">#获取open list列表中最小k节点的k值</span></span><br><span class="line">        self.remove(x)  <span class="comment"># 从openlist中移除</span></span><br><span class="line">        <span class="comment"># 判断openlist中</span></span><br><span class="line">        <span class="keyword">if</span> k_old &lt; x.h:</span><br><span class="line">            <span class="keyword">for</span> y <span class="keyword">in</span> self.<span class="built_in">map</span>.get_neighbers(x):</span><br><span class="line">                <span class="keyword">if</span> y.h &lt;= k_old <span class="keyword">and</span> x.h &gt; y.h + x.cost(y):</span><br><span class="line">                    x.parent = y</span><br><span class="line">                    x.h = y.h + x.cost(y)</span><br><span class="line">        <span class="comment"># 领域的 h 值发生了改变</span></span><br><span class="line">        <span class="keyword">if</span> k_old == x.h:</span><br><span class="line">            <span class="keyword">for</span> y <span class="keyword">in</span> self.<span class="built_in">map</span>.get_neighbers(x):</span><br><span class="line">                <span class="keyword">if</span> y.t == <span class="string">&quot;new&quot;</span> <span class="keyword">or</span> y.parent == x <span class="keyword">and</span> y.h != x.h + x.cost(y) \</span><br><span class="line">                        <span class="keyword">or</span> y.parent != x <span class="keyword">and</span> y.h &gt; x.h + x.cost(y):</span><br><span class="line">                    y.parent = x</span><br><span class="line">                    self.insert(y, x.h + x.cost(y))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">for</span> y <span class="keyword">in</span> self.<span class="built_in">map</span>.get_neighbers(x):</span><br><span class="line">                <span class="keyword">if</span> y.t == <span class="string">&quot;new&quot;</span> <span class="keyword">or</span> y.parent == x <span class="keyword">and</span> y.h != x.h + x.cost(y):</span><br><span class="line">                    y.parent = x</span><br><span class="line">                    self.insert(y, x.h + x.cost(y))</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">if</span> y.parent != x <span class="keyword">and</span> y.h &gt; x.h + x.cost(y):</span><br><span class="line">                        self.insert(x, x.h)</span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        <span class="keyword">if</span> y.parent != x <span class="keyword">and</span> x.h &gt; y.h + x.cost(y) \</span><br><span class="line">                                <span class="keyword">and</span> y.t == <span class="string">&quot;close&quot;</span> <span class="keyword">and</span> y.h &gt; k_old:</span><br><span class="line">                            self.insert(y, y.h)</span><br><span class="line">        <span class="keyword">return</span> self.get_kmin()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">min_state</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.open_list:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        min_state = <span class="built_in">min</span>(self.open_list, key=<span class="keyword">lambda</span> x: x.k)  <span class="comment"># 获取openlist中k值最小对应的节点</span></span><br><span class="line">        <span class="keyword">return</span> min_state</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_kmin</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="comment"># 获取openlist表中k(f)值最小的k</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.open_list:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        k_min = <span class="built_in">min</span>([x.k <span class="keyword">for</span> x <span class="keyword">in</span> self.open_list])</span><br><span class="line">        <span class="keyword">return</span> k_min</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">insert</span>(<span class="params">self, state, h_new</span>):</span><br><span class="line">        <span class="keyword">if</span> state.t == <span class="string">&quot;new&quot;</span>:</span><br><span class="line">            state.k = h_new</span><br><span class="line">        <span class="keyword">elif</span> state.t == <span class="string">&quot;open&quot;</span>:</span><br><span class="line">            state.k = <span class="built_in">min</span>(state.k, h_new)</span><br><span class="line">        <span class="keyword">elif</span> state.t == <span class="string">&quot;close&quot;</span>:</span><br><span class="line">            state.k = <span class="built_in">min</span>(state.h, h_new)</span><br><span class="line">        state.h = h_new</span><br><span class="line">        state.t = <span class="string">&quot;open&quot;</span></span><br><span class="line">        self.open_list.add(state)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">remove</span>(<span class="params">self, state</span>):</span><br><span class="line">        <span class="keyword">if</span> state.t == <span class="string">&quot;open&quot;</span>:</span><br><span class="line">            state.t = <span class="string">&quot;close&quot;</span></span><br><span class="line">        self.open_list.remove(state)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">modify_cost</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="keyword">if</span> x.t == <span class="string">&quot;close&quot;</span>:  <span class="comment"># 是以一个openlist，通过parent递推整条路径上的cost</span></span><br><span class="line">            self.insert(x, x.parent.h + x.cost(x.parent))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">self, start, end</span>):</span><br><span class="line">        self.insert(end,<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            self.process_state()</span><br><span class="line">            <span class="keyword">if</span> start.t == <span class="string">&quot;close&quot;</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        start.set_state(<span class="string">&quot;S&quot;</span>)</span><br><span class="line">        s = start</span><br><span class="line">        <span class="keyword">while</span> s != end:</span><br><span class="line">            s = s.parent</span><br><span class="line">            s.set_state(<span class="string">&quot;+&quot;</span>)</span><br><span class="line">        s.set_state(<span class="string">&quot;E&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;障碍物未发生变化时，搜索的路径如下：&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;opset 大小：&quot;</span>, <span class="built_in">len</span>(self.open_list))</span><br><span class="line">        self.<span class="built_in">map</span>.print_map()</span><br><span class="line">        tmp = start <span class="comment"># 起始点不变</span></span><br><span class="line">        self.<span class="built_in">map</span>.set_obstacle([(<span class="number">1</span>,<span class="number">2</span>)]) <span class="comment"># 障碍物发生变化</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        从起始点开始，往目标点行进，当遇到障碍物时，重新修改代价，再寻找路径</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">while</span> tmp != end:</span><br><span class="line">            tmp.set_state(<span class="string">&quot;*&quot;</span>)</span><br><span class="line">            <span class="comment"># self.map.print_map()</span></span><br><span class="line">            <span class="comment"># print(&quot;&quot;)</span></span><br><span class="line">            <span class="keyword">if</span> tmp.parent.state == <span class="string">&quot;#&quot;</span>:</span><br><span class="line">                self.modify(tmp)</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            tmp = tmp.parent</span><br><span class="line">        tmp.set_state(<span class="string">&quot;E&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;障碍物发生变化时，搜索的路径如下(*为更新的路径)：&#x27;</span>)</span><br><span class="line">        self.<span class="built_in">map</span>.print_map()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">modify</span>(<span class="params">self, state</span>):</span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        当障碍物发生变化时，从目标点往起始点回推，更新由于障碍物发生变化而引起的路径代价的变化</span></span><br><span class="line"><span class="string">        :param state:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        self.modify_cost(state)</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            k_min = self.process_state()</span><br><span class="line">            <span class="keyword">if</span> k_min &gt;= state.h:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    m = Map(<span class="number">4</span>,<span class="number">4</span>)</span><br><span class="line">    <span class="comment"># m.set_obstacle([(4, 3), (4, 4), (4, 5), (4, 6), (5, 3), (6, 3), (7, 3)])</span></span><br><span class="line">    start = m.<span class="built_in">map</span>[<span class="number">3</span>][<span class="number">0</span>]</span><br><span class="line">    end = m.<span class="built_in">map</span>[<span class="number">0</span>][<span class="number">3</span>]</span><br><span class="line">    dstar = Dstar(m)</span><br><span class="line">    dstar.run(start, end)</span><br><span class="line">    <span class="comment"># m.print_map()</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;Python 实现路径规划中的D*算法；&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="Python" scheme="http://example.com/categories/Python/"/>
+    
+    <category term="实用代码" scheme="http://example.com/categories/Python/%E5%AE%9E%E7%94%A8%E4%BB%A3%E7%A0%81/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>多线程与多进程</title>
+    <link href="http://example.com/2024/03/cfb368e8b4c6.html"/>
+    <id>http://example.com/2024/03/cfb368e8b4c6.html</id>
+    <published>2024-03-12T02:27:00.000Z</published>
+    <updated>2024-03-12T02:35:56.989Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>对 Python 中并发和并行概念；</li><li>GIL锁介绍解释；</li></ul><span id="more"></span><h3 id="基本概念">1. 基本概念</h3><h4 id="并发与并行">1.1 并发与并行</h4><ul><li><p><strong>并发(concurrency)：</strong>CPU单核运行，只不过将任务分块，使用GIL(全局解释器锁，Cpython解释器特性)锁定当前执行任务块，释放后执行其他线程任务块，造成多任务同时处理的宏观效果。对应于python 中的多线程 (thread) <imgsrc="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20230311194859.png"alt="|400" /></p></li><li><p><strong>并行(parallel)：</strong>多核同时处理任务，真正的同步处理。对应于python中多进程（multiprocessing）。 <imgsrc="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20230311195210.png"alt="|400" /></p></li></ul><h4 id="gil锁为什么产生">1.2 GIL锁为什么产生</h4><ul><li><strong>核心原因：</strong>CPU处理和IO读取可以同步，因此可以将等待IO读取的时间用来处理其他任务，从而提高效率。</li><li>python开发时多是单核处理器，为解决多任务之间数据同步和完整问题，所以使用GIL锁。</li></ul><h4 id="计算任务分类">1.3 计算任务分类</h4><ul><li><strong>CPU密集型计算(CPU-bound)：</strong>IO读取较少，主要使用CPU核心计算功能的任务，例如矩阵运算，适合使用多进程处理。</li><li><strong>IO密集型计算(IO-bound)：</strong>IO处理很多（硬盘、磁盘和网络数据交互）等，数值处理和计算较少，适合使用多线程处理。</li></ul><hr /><h3 id="线程安全">2. 线程安全</h3><p>由于GIL存在，多线程在切换时可能会产生数据读写冲突，一般通过对线程加锁解决。</p><hr /><h3 id="线程池">3. 线程池</h3><p>在多线程中，创建和销毁线程很耗时，如果能够做好线程的管理和复用，那可以进一步提高效率。线程池的使用就是为了实现这一目的，并且简化了线程的创建。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> concurrent <span class="keyword">import</span> futures <span class="comment"># futures 是python 中实现线程池的重要模块</span></span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;对 Python 中并发和并行概念；&lt;/li&gt;
+&lt;li&gt;GIL锁介绍解释；&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="Python" scheme="http://example.com/categories/Python/"/>
+    
+    <category term="Python语言特性" scheme="http://example.com/categories/Python/Python%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Windows下Eigen、osqp和osqp-eigen库的安装使用</title>
@@ -110,17 +248,17 @@ windows 下编译安装这些基本库的方法；&lt;/li&gt;
   </entry>
   
   <entry>
-    <title>README</title>
-    <link href="http://example.com/2024/03/f2d08d879624.html"/>
-    <id>http://example.com/2024/03/f2d08d879624.html</id>
+    <title>linux笔记索引</title>
+    <link href="http://example.com/2024/03/1267f843f03d.html"/>
+    <id>http://example.com/2024/03/1267f843f03d.html</id>
     <published>2024-03-10T11:35:00.000Z</published>
-    <updated>2024-03-11T00:53:09.303Z</updated>
+    <updated>2024-03-12T02:49:19.372Z</updated>
     
-    <content type="html"><![CDATA[<ul><li>本仓库主要存放在ubuntu(linux)使用过程的一系列教程和注意事项。</li></ul><span id="more"></span><h3 id="软件教程">1. 软件教程</h3><ul><li><a href="/2024/03/1b808778e65d.html" title="创建Python虚拟环境">创建Python虚拟环境</a></li><li><a href="/2024/03/d3c98baa0d11.html" title="Ubuntu安装卸载软件的各类方法">Ubuntu安装卸载软件的各类方法</a></li><li><a href="/2024/03/773fc7eb7c9a.html" title="AppImage文件创建快捷方式">AppImage文件创建快捷方式</a></li><li><a href="/2024/03/ac15c72d52cb.html" title="Git">Git</a></li><li><a href="/2024/03/1f72a9d2ee08.html" title="Vim">Vim</a></li><li><a href="/2024/03/aa6722f125a9.html" title="Cmake">Cmake</a></li><li><a href="/2024/03/565a36c551fa.html" title="g++编译规则">g++编译规则</a></li><li><a href="/2024/03/1b7d9387f42b.html" title="update-alternatives管理不同版本软件">update-alternatives管理不同版本软件</a></li><li><a href="/2024/03/d681f865a872.html" title="VsCode配置使用">VsCode配置使用</a></li></ul><hr /><h3 id="linux常用命令">2. linux常用命令</h3><ul><li><a href="/2024/03/1875b8f30cd2.html" title="查看文件及文件夹大小">查看文件及文件夹大小</a></li><li><a href="/2024/03/961d865ad079.html" title="删除root权限的文件夹">删除root权限的文件夹</a></li><li><a href="/2024/03/596479257e81.html" title="添加与删除环境变量">添加与删除环境变量</a></li><li><a href="/2024/03/6cba42028c3d.html" title="压缩与解压缩文件夹">压缩与解压缩文件夹</a></li><li><a href="/2024/03/e7d261d37b2f.html" title="内核查看与更改">内核查看与更改</a></li></ul><hr /><h3 id="注意事项">3. 注意事项</h3><ul><li><a href="/2024/03/19dbbdee38e4.html" title="Legacy电脑安装ubuntu注意事项">Legacy电脑安装ubuntu注意事项</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<ul><li>本页面主要存放在ubuntu(linux)使用过程的一系列教程和注意事项的文章索引，方便查找对应文章。</li></ul><span id="more"></span><h3 id="软件教程">1. 软件教程</h3><ul><li><a href="/2024/03/1b808778e65d.html" title="创建Python虚拟环境">创建Python虚拟环境</a></li><li><a href="/2024/03/d3c98baa0d11.html" title="Ubuntu安装卸载软件的各类方法">Ubuntu安装卸载软件的各类方法</a></li><li><a href="/2024/03/773fc7eb7c9a.html" title="AppImage文件创建快捷方式">AppImage文件创建快捷方式</a></li><li><a href="/2024/03/ac15c72d52cb.html" title="Git">Git</a></li><li><a href="/2024/03/1f72a9d2ee08.html" title="Vim">Vim</a></li><li><a href="/2024/03/aa6722f125a9.html" title="Cmake">Cmake</a></li><li><a href="/2024/03/565a36c551fa.html" title="g++编译规则">g++编译规则</a></li><li><a href="/2024/03/1b7d9387f42b.html" title="update-alternatives管理不同版本软件">update-alternatives管理不同版本软件</a></li><li><a href="/2024/03/d681f865a872.html" title="VsCode配置使用">VsCode配置使用</a></li></ul><hr /><h3 id="linux常用命令">2. linux常用命令</h3><ul><li><a href="/2024/03/1875b8f30cd2.html" title="查看文件及文件夹大小">查看文件及文件夹大小</a></li><li><a href="/2024/03/961d865ad079.html" title="删除root权限的文件夹">删除root权限的文件夹</a></li><li><a href="/2024/03/596479257e81.html" title="添加与删除环境变量">添加与删除环境变量</a></li><li><a href="/2024/03/6cba42028c3d.html" title="压缩与解压缩文件夹">压缩与解压缩文件夹</a></li><li><a href="/2024/03/e7d261d37b2f.html" title="内核查看与更改">内核查看与更改</a></li></ul><hr /><h3 id="注意事项">3. 注意事项</h3><ul><li><a href="/2024/03/19dbbdee38e4.html" title="Legacy电脑安装ubuntu注意事项">Legacy电脑安装ubuntu注意事项</a></li></ul>]]></content>
     
     
     <summary type="html">&lt;ul&gt;
-&lt;li&gt;本仓库主要存放在ubuntu(linux)使用过程的一系列教程和注意事项。&lt;/li&gt;
+&lt;li&gt;本页面主要存放在ubuntu(linux)使用过程的一系列教程和注意事项的文章索引，方便查找对应文章。&lt;/li&gt;
 &lt;/ul&gt;</summary>
     
     
@@ -342,157 +480,6 @@ windows 下编译安装这些基本库的方法；&lt;/li&gt;
 &lt;/ul&gt;
 &lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br</summary>
       
-    
-    
-    
-    <category term="Ubuntu" scheme="http://example.com/categories/Ubuntu/"/>
-    
-    <category term="linux笔记" scheme="http://example.com/categories/Ubuntu/linux%E7%AC%94%E8%AE%B0/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu安装卸载软件的各类方法</title>
-    <link href="http://example.com/2024/03/d3c98baa0d11.html"/>
-    <id>http://example.com/2024/03/d3c98baa0d11.html</id>
-    <published>2024-03-10T08:31:00.000Z</published>
-    <updated>2024-03-11T00:51:43.637Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li>总结ubuntu中各种安装和卸载软件的方法，包括<code>snap</code>，<code>dpkg</code> 等。</li></ul><span id="more"></span><h3 id="snap方式">1. snap方式</h3><p>对于 typora： - 安装： <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo snap install typora</span><br></pre></td></tr></table></figure> - 卸载： <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo snap remove typora</span><br></pre></td></tr></table></figure></p><hr /><h3 id="deb-文件">2. <code>.deb</code> 文件</h3><ul><li>安装： <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i [file.deb]</span><br></pre></td></tr></table></figure></li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;ul&gt;
-&lt;li&gt;总结ubuntu中各种安装和卸载软件的方法，包括
-&lt;code&gt;snap&lt;/code&gt;，&lt;code&gt;dpkg&lt;/code&gt; 等。&lt;/li&gt;
-&lt;/ul&gt;</summary>
-    
-    
-    
-    <category term="Ubuntu" scheme="http://example.com/categories/Ubuntu/"/>
-    
-    <category term="linux笔记" scheme="http://example.com/categories/Ubuntu/linux%E7%AC%94%E8%AE%B0/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Legacy电脑安装ubuntu注意事项</title>
-    <link href="http://example.com/2024/03/19dbbdee38e4.html"/>
-    <id>http://example.com/2024/03/19dbbdee38e4.html</id>
-    <published>2024-03-10T08:30:00.000Z</published>
-    <updated>2024-03-11T00:51:43.637Z</updated>
-    
-    <content type="html"><![CDATA[<p>电脑主板的引导方式分为 legacy 引导和 UEFI引导。较新主板的引导都为UEFI，而lagacy引导需要注意以下事项： -引导方式是 legacy，需要用EASYBCD 创建引导。 -在安装ubuntu时分区的文件格式均为 ext3。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;电脑主板的引导方式分为 legacy 引导和 UEFI
-引导。较新主板的引导都为UEFI，而lagacy引导需要注意以下事项： -
-引导方式是 legacy，需要用EASYBCD 创建引导。 -
-在安装ubuntu时分区的文件格式均为 ext3。&lt;/p&gt;
-</summary>
-      
-    
-    
-    
-    <category term="Ubuntu" scheme="http://example.com/categories/Ubuntu/"/>
-    
-    <category term="linux笔记" scheme="http://example.com/categories/Ubuntu/linux%E7%AC%94%E8%AE%B0/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>删除root权限的文件夹</title>
-    <link href="http://example.com/2024/03/961d865ad079.html"/>
-    <id>http://example.com/2024/03/961d865ad079.html</id>
-    <published>2024-03-10T08:26:00.000Z</published>
-    <updated>2024-03-11T00:51:43.637Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li><code>sudo rm -rf [dirname]</code></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;sudo rm -rf [dirname]&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</summary>
-      
-    
-    
-    
-    <category term="Ubuntu" scheme="http://example.com/categories/Ubuntu/"/>
-    
-    <category term="linux笔记" scheme="http://example.com/categories/Ubuntu/linux%E7%AC%94%E8%AE%B0/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>内核查看与更改</title>
-    <link href="http://example.com/2024/03/e7d261d37b2f.html"/>
-    <id>http://example.com/2024/03/e7d261d37b2f.html</id>
-    <published>2024-03-10T08:24:00.000Z</published>
-    <updated>2024-03-11T00:51:43.637Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li>ubuntu查看并更换系统内核的方法；</li><li>禁止在 <code>upgrade</code> 命令下更新内核的方法；</li></ul><span id="more"></span><h3 id="内核查看">1. 内核查看</h3><ul><li><p>当前内核版本 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -a</span><br></pre></td></tr></table></figure></p></li><li><p>已安装的所有内核 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg --get-selections |grep linux-image</span><br></pre></td></tr></table></figure></p></li></ul><figure><imgsrc="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20221017144927.png"alt="|500" /><figcaption aria-hidden="true">|500</figcaption></figure><hr /><h3 id="删除内核">2. 删除内核</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove --purge linux-image-4.15.0-194-generic</span><br><span class="line">sudo apt autoremove #删除内核的一些依赖文件</span><br></pre></td></tr></table></figure><hr /><h3 id="安装新内核">3. 安装新内核</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install linux-headers-4.15.0-47-generic linux-image-4.15.0-47-generic</span><br></pre></td></tr></table></figure><p>安装成功以后重启，在 <code>advanced options</code>中可以看到新安装的内核。</p><hr /><h3 id="禁止自动更新内核">4. 禁止自动更新内核</h3><p>禁止在使用 <code>upgrade</code>命令时自动更新内核，需要修改两个配置文件： <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /etc/apt/apt.conf.d/10periodic</span><br><span class="line">sudo gedit /etc/apt/apt.conf.d/20auto-upgrades</span><br></pre></td></tr></table></figure></p><p>将其内容修改为： <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">APT::Periodic::Update-Package-Lists &quot;0&quot;;</span><br><span class="line">APT::Periodic::Download-Upgradeable-Packages &quot;0&quot;;</span><br><span class="line">APT::Periodic::AutocleanInterval &quot;0&quot;;</span><br><span class="line">APT::Periodic::Unattended-Upgrade &quot;0&quot;;</span><br></pre></td></tr></table></figure></p><p>若需要打开自动更新配置文件，则将内容更改为： <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">APT::Periodic::Update-Package-Lists &quot;2&quot;;</span><br><span class="line">APT::Periodic::Download-Upgradeable-Packages &quot;1&quot;;</span><br><span class="line">APT::Periodic::AutocleanInterval &quot;0&quot;;</span><br><span class="line">APT::Periodic::Unattended-Upgrade &quot;1&quot;;</span><br></pre></td></tr></table></figure></p><hr /><h3 id="参考">5. 参考</h3><ul><li><ahref="https://blog.csdn.net/davidhzq/article/details/102651588?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-102651588-blog-121861359.pc_relevant_multi_platform_whitelistv4&amp;spm=1001.2101.3001.4242.1&amp;utm_relevant_index=2">禁止自动更新内核</a></li><li><a href="https://javaforall.cn/172312.html">安装新内核</a></li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;ul&gt;
-&lt;li&gt;ubuntu查看并更换系统内核的方法；&lt;/li&gt;
-&lt;li&gt;禁止在 &lt;code&gt;upgrade&lt;/code&gt; 命令下更新内核的方法；&lt;/li&gt;
-&lt;/ul&gt;</summary>
-    
-    
-    
-    <category term="Ubuntu" scheme="http://example.com/categories/Ubuntu/"/>
-    
-    <category term="linux笔记" scheme="http://example.com/categories/Ubuntu/linux%E7%AC%94%E8%AE%B0/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>创建Python虚拟环境</title>
-    <link href="http://example.com/2024/03/1b808778e65d.html"/>
-    <id>http://example.com/2024/03/1b808778e65d.html</id>
-    <published>2024-03-10T08:20:00.000Z</published>
-    <updated>2024-03-11T00:51:43.637Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li>使用 <code>virtualenv</code> 创建Python虚拟环境的基本配置方法；</li><li>不同虚拟环境设置不同Python 版本的方法；</li></ul><span id="more"></span><h3 id="基础设置">1. 基础设置</h3><ul><li><p>下载功能包 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo pip3 install virtualenv </span><br><span class="line">sudo pip3 install virtualenvwrapper</span><br></pre></td></tr></table></figure></p></li><li><p>创建存放虚拟路径的文件夹 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir $HOME/.virtualenvs</span><br></pre></td></tr></table></figure></p></li><li><p>添加环境变量，注意因为是用 pip3 下载的功能包，则需要指定使用python3 运行。打开 <code>.bashrc</code> 文件，并添加以下内容：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export WORKON_HOME=$HOME/.virtualenvs</span><br><span class="line">export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3</span><br><span class="line">export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv</span><br><span class="line"></span><br><span class="line">source /usr/local/bin/virtualenvwrapper.sh</span><br></pre></td></tr></table></figure></p></li><li><p>使得环境配置生效 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source .bashrc</span><br></pre></td></tr></table></figure></p></li><li><p>创建虚拟环境 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkvirtualenv [虚拟环境] # 默认是在 python2 中</span><br><span class="line">mkvirtualenv -p python3 [虚拟环境名称] #python3 版本</span><br></pre></td></tr></table></figure></p></li><li><p>查看所有创建的虚拟环境 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">workon</span><br></pre></td></tr></table></figure></p></li><li><p>进入某一虚拟环境 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">workon [虚拟环境名]</span><br></pre></td></tr></table></figure></p></li><li><p>退出虚拟环境 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deactivate</span><br></pre></td></tr></table></figure></p></li><li><p>删除虚拟环境</p></li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">必须先退出虚拟环境再进行删除</span> </span><br><span class="line">rmvirtualenv [虚拟环境名称]</span><br></pre></td></tr></table></figure><hr /><h3 id="创建不同-python-版本的虚拟环境">2. 创建不同 python版本的虚拟环境</h3><p>上述配置中使用的解释器为系统python，若想在虚拟环境中使用不同的python解释器，需要下载安装自己所需python版本，然后在创建虚拟环境时指定python。 - 自定义下载安装 python <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">wget -c https://www.python.org/ftp/python/3.9.0/Python-3.9.0.tgz</span><br><span class="line">tax -xzvf Python-3.9.0.tgz</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">wget -P ~/Downloads https://www.python.org/ftp/python/3.10.0/Python-3.10.0.tar.xz</span></span><br><span class="line"></span><br><span class="line">./configure </span><br><span class="line">make</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">自定义python安装路径，不要和系统混淆</span></span><br><span class="line">make install DESTDIR=~/python_version/python3.9.0_build </span><br></pre></td></tr></table></figure> - 创建 virtualenv虚拟环境时指定python解释器</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkvirtualenv -p ~/python_version/python3.9.0_build/python3.9 [虚拟环境名]</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-    <summary type="html">&lt;ul&gt;
-&lt;li&gt;使用 &lt;code&gt;virtualenv&lt;/code&gt; 创建Python虚拟环境的基本配置方法；&lt;/li&gt;
-&lt;li&gt;不同虚拟环境设置不同Python 版本的方法；&lt;/li&gt;
-&lt;/ul&gt;</summary>
-    
-    
-    
-    <category term="Ubuntu" scheme="http://example.com/categories/Ubuntu/"/>
-    
-    <category term="linux笔记" scheme="http://example.com/categories/Ubuntu/linux%E7%AC%94%E8%AE%B0/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>查看文件及文件夹大小</title>
-    <link href="http://example.com/2024/03/1875b8f30cd2.html"/>
-    <id>http://example.com/2024/03/1875b8f30cd2.html</id>
-    <published>2024-03-10T08:20:00.000Z</published>
-    <updated>2024-03-11T00:51:43.637Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li>linux 中查看文件以及文件夹大小的各项命令，包括<code>ls</code>，<code>ll</code> 和 <code>du</code>。</li></ul><span id="more"></span><h3 id="ls-命令">1. ls 命令</h3><ul><li><p><code>ls</code> ： 查看当前目录下各文件</p></li><li><p><code>ls -l</code>： 查看各文件详细信息，第一列代表文件属性，-为普通文件，d 为文件夹，l 为软连接。 注意 <code>autoscan*</code> 后的<code>*</code> 表示有可执行权限。 <imgsrc="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20230309134455.png"alt="|500" /></p></li><li><p><code>ls -lh</code> : 以 KB 或 MB的形式显示文件大小，注意对于文件夹，这里的数值并不是这个文件夹下所有文件大小，只是这个文件夹符所占大小。查看文件夹大小使用<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -sh 文件夹 </span><br></pre></td></tr></table></figure></p></li></ul><hr /><h3 id="ll-命令">2. ll 命令</h3><p><code>ll</code> 命令实际就是 <code>ls -l</code>的简写，所以有以下等效： - <code>ll -s</code> -&gt; <code>ls -ls</code>- <code>ll -h</code> -&gt; <code>ls -lh</code></p><hr /><h3 id="du-命令">3. du 命令</h3><ul><li><p>查看文件夹下各个文件夹及其本身大小 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -h --max-depth=1</span><br></pre></td></tr></table></figure></p></li><li><p>查看本文件夹总大小 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -sh</span><br></pre></td></tr></table></figure></p></li><li><p>查看本文件夹下某个子文件夹大小 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -sh 文件夹名</span><br></pre></td></tr></table></figure></p></li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;ul&gt;
-&lt;li&gt;linux 中查看文件以及文件夹大小的各项命令，包括
-&lt;code&gt;ls&lt;/code&gt;，&lt;code&gt;ll&lt;/code&gt; 和 &lt;code&gt;du&lt;/code&gt;。&lt;/li&gt;
-&lt;/ul&gt;</summary>
     
     
     
