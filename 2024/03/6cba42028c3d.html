@@ -27,7 +27,7 @@
 <meta property="og:description" content=".tar，.tar.gz ，.bz2 和 .zip 文件的压缩和解压方法。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-03-10T08:44:00.000Z">
-<meta property="article:modified_time" content="2024-03-11T00:51:43.637Z">
+<meta property="article:modified_time" content="2024-03-12T12:04:55.968Z">
 <meta property="article:author" content="LinkX">
 <meta property="article:tag" content="技术分享，人生碎念">
 <meta name="twitter:card" content="summary">
@@ -113,8 +113,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#tar-%E6%96%87%E4%BB%B6%E7%9A%84%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E5%8E%8B"><span class="nav-number">1.</span> <span class="nav-text">1. .tar 文件的压缩与解压</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tar.gz-%E6%96%87%E4%BB%B6%E7%9A%84%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E5%8E%8B"><span class="nav-number">2.</span> <span class="nav-text">2. .tar.gz
-文件的压缩与解压</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bz2-%E6%96%87%E4%BB%B6%E7%9A%84%E5%8E%8B%E7%BC%A9"><span class="nav-number">3.</span> <span class="nav-text">3. .bz2 文件的压缩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zip-%E6%96%87%E4%BB%B6%E7%9A%84%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E5%8E%8B"><span class="nav-number">4.</span> <span class="nav-text">4. .zip 文件的压缩与解压</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#tar-%E6%96%87%E4%BB%B6%E7%9A%84%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E5%8E%8B"><span class="nav-number">1.</span> <span class="nav-text">1. .tar 文件的压缩与解压</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%8E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 解压</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%8B%E7%BC%A9"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 压缩</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tar.gz-%E6%96%87%E4%BB%B6%E7%9A%84%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E5%8E%8B"><span class="nav-number">2.</span> <span class="nav-text">2. .tar.gz
+文件的压缩与解压</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%8B%E7%BC%A9-1"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 压缩</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%8E%8B-1"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 解压</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bz2-%E6%96%87%E4%BB%B6%E7%9A%84%E5%8E%8B%E7%BC%A9"><span class="nav-number">3.</span> <span class="nav-text">3. .bz2 文件的压缩</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%8B%E7%BC%A9-2"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 压缩</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%8E%8B-2"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 解压</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zip-%E6%96%87%E4%BB%B6%E7%9A%84%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E5%8E%8B"><span class="nav-number">4.</span> <span class="nav-text">4. .zip 文件的压缩与解压</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%8B%E7%BC%A9-3"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 压缩</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%8E%8B-3"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 解压</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -211,7 +211,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-03-11 08:51:43" itemprop="dateModified" datetime="2024-03-11T08:51:43+08:00">2024-03-11</time>
+      <time title="修改时间：2024-03-12 20:04:55" itemprop="dateModified" datetime="2024-03-12T20:04:55+08:00">2024-03-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -242,24 +242,30 @@
 </ul>
 <span id="more"></span>
 <h3 id="tar-文件的压缩与解压">1. <code>.tar</code> 文件的压缩与解压</h3>
-<p><strong>1. 压缩</strong></p>
+<h4 id="解压">1.1 解压</h4>
 <p>以 test 文件夹为例，压缩为 <code>test.tar</code> 压缩包</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">格式：tar -vcf 打包后的文件名(xxx.tar) 需要打包的文件夹(xxx)</span></span><br><span class="line">tar -vcf test.tar test</span><br></pre></td></tr></table></figure>
-<p><strong>2. 解压</strong></p>
+<h4 id="压缩">1.2 压缩</h4>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">格式：tar -vxf 打包后的文件名(xxx.tar)</span></span><br><span class="line">tar -vxf test.tar</span><br></pre></td></tr></table></figure>
 <hr />
 <h3 id="tar.gz-文件的压缩与解压">2. <code>.tar.gz</code>
 文件的压缩与解压</h3>
-<p><strong>1. 压缩</strong> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">格式：tar -vczf 打包压缩后的文件名(xxx.tar.gz) 需要打包的文件夹(xxx)</span></span><br><span class="line">tar -vczf test.tar.gz test</span><br></pre></td></tr></table></figure></p>
-<p><strong>2. 解压缩</strong> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">格式：tar -vxzf 打包压缩后的文件名(xxx.tar.gz)</span></span><br><span class="line">tar -vxzf test.tar.gz</span><br></pre></td></tr></table></figure></p>
+<h4 id="压缩-1">2.1 压缩</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">格式：tar -vczf 打包压缩后的文件名(xxx.tar.gz) 需要打包的文件夹(xxx)</span></span><br><span class="line">tar -vczf test.tar.gz test</span><br></pre></td></tr></table></figure>
+<h4 id="解压-1">2.2 解压</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">格式：tar -vxzf 打包压缩后的文件名(xxx.tar.gz)</span></span><br><span class="line">tar -vxzf test.tar.gz</span><br></pre></td></tr></table></figure>
 <hr />
 <h3 id="bz2-文件的压缩">3. <code>.bz2</code> 文件的压缩</h3>
-<p><strong>1. 压缩</strong> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bzip2 -z test</span><br></pre></td></tr></table></figure></p>
-<p><strong>2. 解压</strong> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bzip2 -d test.bz2</span><br></pre></td></tr></table></figure></p>
+<h4 id="压缩-2">3.1 压缩</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bzip2 -z test</span><br></pre></td></tr></table></figure>
+<h4 id="解压-2">3.2 解压</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bzip2 -d test.bz2</span><br></pre></td></tr></table></figure>
+<hr />
 <h3 id="zip-文件的压缩与解压">4. <code>.zip</code> 文件的压缩与解压</h3>
-<p><strong>1. 压缩</strong></p>
+<h4 id="压缩-3">4.1 压缩</h4>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">格式：zip 打包压缩的文件名(xxx.zip) 需要打包的文件夹(xxx)</span></span><br><span class="line">zip test.zip test</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">递归处理，即将子文件夹也一并压缩</span></span><br><span class="line">zip -r test.zip test</span><br></pre></td></tr></table></figure>
-<p><strong>2. 解压</strong> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">格式： unzip xxxx.zip</span></span><br><span class="line">unzip test.zip</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用 -d 命令解压到指定目录</span></span><br><span class="line">unzip test.zip -d /target_folder </span><br></pre></td></tr></table></figure></p>
+<h4 id="解压-3">4.2 解压</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">格式： unzip xxxx.zip</span></span><br><span class="line">unzip test.zip</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用 -d 命令解压到指定目录</span></span><br><span class="line">unzip test.zip -d /target_folder </span><br></pre></td></tr></table></figure>
 
     </div>
 
