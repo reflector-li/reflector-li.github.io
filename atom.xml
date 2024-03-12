@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-03-12T02:45:51.262Z</updated>
+  <updated>2024-03-12T05:10:36.729Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://example.com/2024/03/c6992dae00e1.html"/>
     <id>http://example.com/2024/03/c6992dae00e1.html</id>
     <published>2024-03-12T02:44:00.000Z</published>
-    <updated>2024-03-12T02:45:51.262Z</updated>
+    <updated>2024-03-12T05:10:36.729Z</updated>
     
-    <content type="html"><![CDATA[<ul><li>本页面存放一系列环境配置内容文档的索引；</li></ul><span id="more"></span><h3 id="windows-环境">1. Windows 环境</h3><ul><li>[[Windows系统迁移笔记]]</li><li><a href="/2024/03/fc1fc6c9cd69.html" title="Windows下Eigen、osqp和osqp-eigen库的安装使用">Windows下Eigen、osqp和osqp-eigen库的安装使用</a></li><li><a href="/2024/03/9aad1447aa31.html" title="Windows下Ipopt优化库安装">Windows下Ipopt优化库安装</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<ul><li>本页面存放一系列环境配置内容文档的索引；</li></ul><span id="more"></span><h3 id="windows-环境">1. Windows 环境</h3><ul><li><a href="/2024/03/5a0267b9e9ef.html" title="Windows系统迁移笔记">Windows系统迁移笔记</a></li><li><a href="/2024/03/fc1fc6c9cd69.html" title="Windows下Eigen、osqp和osqp-eigen库的安装使用">Windows下Eigen、osqp和osqp-eigen库的安装使用</a></li><li><a href="/2024/03/9aad1447aa31.html" title="Windows下Ipopt优化库安装">Windows下Ipopt优化库安装</a></li></ul>]]></content>
     
     
     <summary type="html">&lt;ul&gt;
@@ -44,14 +44,16 @@
     <link href="http://example.com/2024/03/b5bc8dd591f5.html"/>
     <id>http://example.com/2024/03/b5bc8dd591f5.html</id>
     <published>2024-03-12T02:43:00.000Z</published>
-    <updated>2024-03-12T02:45:51.262Z</updated>
+    <updated>2024-03-12T05:43:09.189Z</updated>
     
-    <content type="html"><![CDATA[<p>凸优化问题的两个基本条件： - 目标函数 cost function是凸函数，即存在极小值； -求解空间是凸空间，是完整的空间，而不是破碎的。</p><span id="more"></span>]]></content>
+    <content type="html"><![CDATA[<p>凸优化问题的两个基本条件：</p><ul><li>目标函数 cost function 是凸函数，即存在极小值；</li><li>求解空间是凸空间，是完整的空间，而不是破碎的。</li></ul><span id="more"></span>]]></content>
     
     
-    <summary type="html">&lt;p&gt;凸优化问题的两个基本条件： - 目标函数 cost function
-是凸函数，即存在极小值； -
-求解空间是凸空间，是完整的空间，而不是破碎的。&lt;/p&gt;</summary>
+    <summary type="html">&lt;p&gt;凸优化问题的两个基本条件：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;目标函数 cost function 是凸函数，即存在极小值；&lt;/li&gt;
+&lt;li&gt;求解空间是凸空间，是完整的空间，而不是破碎的。&lt;/li&gt;
+&lt;/ul&gt;</summary>
     
     
     
@@ -204,11 +206,11 @@ windows 下编译安装这些基本库的方法；&lt;/li&gt;
   </entry>
   
   <entry>
-    <title>系统迁移笔记</title>
-    <link href="http://example.com/2024/03/5eb90ffb0562.html"/>
-    <id>http://example.com/2024/03/5eb90ffb0562.html</id>
+    <title>Windows系统迁移笔记</title>
+    <link href="http://example.com/2024/03/5a0267b9e9ef.html"/>
+    <id>http://example.com/2024/03/5a0267b9e9ef.html</id>
     <published>2024-03-11T01:11:00.000Z</published>
-    <updated>2024-03-11T01:31:05.405Z</updated>
+    <updated>2024-03-12T05:10:36.729Z</updated>
     
     <content type="html"><![CDATA[<ul><li>由于笔记本只有一个硬盘位，所以想扩大硬盘容量只能换硬盘。但又不想重装系统及各种软件，所以需要进行系统迁移。希望达到的效果就是原硬盘上的系统和数据全都拷贝到新硬盘上，并且还能够适时的调整各个分区大小。</li></ul><span id="more"></span><h3 id="方法">1. 方法</h3><p>使用<ahref="https://www.abackup.com/download.html">傲梅轻松备份</a>软件。</p><ul><li><p>选择 <code>克隆</code> 下的 <code>磁盘克隆</code>；</p><figure><imgsrc="https://images-1310554886.cos.ap-shanghai.myqcloud.com/markdown/20220614225157.png"alt="|600" /><figcaption aria-hidden="true">|600</figcaption></figure></li><li><p>选定 <code>源磁盘</code> 和<code>目标磁盘</code>，选定目标磁盘后会提示清除目标磁盘上数据，因此得提前做好备份。</p></li><li><p>选择左下角<code>编辑分区</code>，可以手动调整克隆到目标磁盘后的各个分区大小。</p></li><li><p>调整分区结束后勾选 <code>SSD对齐</code> ，然后进行克隆。</p></li><li><p>将新的硬盘安装到笔记本上就行，因为无论是引导方式还是硬盘格式都相同，所以并不需要做其他更改，也不需要使用WinPE 系统进行修复。</p></li></ul><hr /><h3 id="参考">2. 参考</h3><ul><li><ahref="https://www.bilibili.com/video/BV1dT4y1S7aY?spm_id_from=333.337.search-card.all.click&amp;vd_source=97148d62a78c37f00cbb88ddd5b68f54">教程</a></li></ul>]]></content>
     
