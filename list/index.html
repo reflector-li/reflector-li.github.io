@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="list" />
+    <meta name="hexo-theme-A4" content="v1.8.9" />
+    <link rel="alternate icon" type="image/webp" href="/uploads/avatar.gif">
+    <title>LinkX的技术站</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/css/lightgallery.min.css">
+
+
+<meta name="generator" content="Hexo 7.1.1"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="LinkX的技术站" type="application/atom+xml">
+</head>
+    
+    
+    <body>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-top paper-main">
+                     
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/uploads/avatar.gif" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">LinkX的技术站</a> 
+            <span class="description">程序、自动驾驶技术和人生感悟的记录</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><i>
+                    
+                        <a style="color: #4e7dde;" href="/list/">文章</a>
+                    
+                </i></li>
+            
+        
+            
+                <li><a href="/about/">关于</a></li>
+            
+        
+            
+                <li><a href="/tags/">标签</a></li>
+            
+        
+            
+                <li><a href="/categories/">分类</a></li>
+            
+        
+    </ul>
+</div> 
+                     <div class="archive-list">
+  <ul class="archive">
+      
+
+      <!--文章先按照时间排好序-->
+      
+      
+      
+
+      
+
+      
+      
+      
+
+      <!--循环遍历文章数组-->
+      
+
+      <!--排序 置顶 文章-->
+      
+
+      <!--先放 置顶 文章-->
+      
+
+      <!--后放 其他 文章-->
+      
+        
+        <li>
+          <span class="year-font-color">2024[38]
+             🍃 
+          </span>
+        </li>
+        
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/12 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/环境配置日志/">
+                  环境配置日志 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/c6992dae00e1.html">环境配置索引</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/12 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/最优化方法/">
+                  最优化方法 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/b5bc8dd591f5.html">凸优化基础</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/12 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/最优化方法/">
+                  最优化方法 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/017bb123671c.html">最优化方法索引</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/12 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/Python/">
+                  Python 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/944e778b7f6e.html">Python笔记索引</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/12 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/Python/">
+                  Python 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/ff932a6a77c6.html">D-star算法实现</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/12 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/Python/">
+                  Python 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/cfb368e8b4c6.html">多线程与多进程</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/11 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/环境配置日志/">
+                  环境配置日志 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/fc1fc6c9cd69.html">Windows下Eigen、osqp和osqp-eigen库的安装使用</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/11 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/环境配置日志/">
+                  环境配置日志 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/9aad1447aa31.html">Windows下Ipopt优化库安装</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/11 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/环境配置日志/">
+                  环境配置日志 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/5a0267b9e9ef.html">Windows系统迁移笔记</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/11 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/Ubuntu/">
+                  Ubuntu 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/d681f865a872.html">VsCode配置使用</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/10 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/Ubuntu/">
+                  Ubuntu 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/1267f843f03d.html">linux笔记索引</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/10 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/Ubuntu/">
+                  Ubuntu 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/1f72a9d2ee08.html">Vim</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/10 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/Ubuntu/">
+                  Ubuntu 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/1b7d9387f42b.html">update-alternatives管理不同版本软件</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/10 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/Ubuntu/">
+                  Ubuntu 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/ac15c72d52cb.html">Git</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/10 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/Ubuntu/">
+                  Ubuntu 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/565a36c551fa.html">g++编译规则</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/10 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/Ubuntu/">
+                  Ubuntu 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/aa6722f125a9.html">Cmake</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/10 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/Ubuntu/">
+                  Ubuntu 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/773fc7eb7c9a.html">AppImage文件创建快捷方式</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/10 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/Ubuntu/">
+                  Ubuntu 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/44a6a49c3ff4.html">终端常用快捷键操作</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/10 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/Ubuntu/">
+                  Ubuntu 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/6cba42028c3d.html">压缩与解压缩文件夹</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/10 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/Ubuntu/">
+                  Ubuntu 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/596479257e81.html">添加与删除环境变量</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/10 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/Ubuntu/">
+                  Ubuntu 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/d3c98baa0d11.html">Ubuntu安装卸载软件的各类方法</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/10 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/Ubuntu/">
+                  Ubuntu 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/19dbbdee38e4.html">Legacy电脑安装ubuntu注意事项</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/10 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/Ubuntu/">
+                  Ubuntu 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/961d865ad079.html">删除root权限的文件夹</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/10 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/Ubuntu/">
+                  Ubuntu 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/e7d261d37b2f.html">内核查看与更改</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/10 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/Ubuntu/">
+                  Ubuntu 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/1b808778e65d.html">创建Python虚拟环境</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/10 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/Ubuntu/">
+                  Ubuntu 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/1875b8f30cd2.html">查看文件及文件夹大小</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/10 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/最优化方法/">
+                  最优化方法 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/db850e69690f.html">KKT条件</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/10 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/最优化方法/">
+                  最优化方法 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/57eb35381a43.html">梯度下降法</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/10 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/最优化方法/">
+                  最优化方法 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/c814794462ec.html">牛顿法</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/10 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/最优化方法/">
+                  最优化方法 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/91eeeeac8bd1.html">高斯牛顿法</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/09 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/ROS/">
+                  ROS 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/d3ca81927196.html">Gazebo中bug集合</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/09 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/ROS/">
+                  ROS 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/fc172c3ee8ff.html">Launch文件编写</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/09 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/ROS/">
+                  ROS 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/8fcfbb5a0ae4.html">ROS控制程序时间间隔</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/09 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/ROS/">
+                  ROS 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/21ac3347f9de.html">rqt_plot使用</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/09 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/ROS/">
+                  ROS 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/f028da3460ac.html">话题与消息</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/09 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/ROS/">
+                  ROS 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/cfa9782ab392.html">工作空间建立与编译</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/09 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/ROS/">
+                  ROS 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/81afc0fb8e6d.html">ROS笔记索引</a>
+            </div>
+          </li>
+        
+          
+          <li>
+            <span class="archive-date">&nbsp;&nbsp;&nbsp;03/05 
+            </span>
+            <div class="archive-main">
+              
+                <a class="archive-title"  href="/categories/最优化方法/">
+                  最优化方法 
+                </a> | 
+              
+                <a class="archive-title" href="/2024/03/528ef78b9929.html">共轭梯度法</a>
+            </div>
+          </li>
+        
+      
+  </ul>
+</div>
+<!--  --> 
+                     <div class="footer">
+    
+        <span> 
+             
+
+            
+                
+
+            
+        </span>
+    
+</div>
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span></span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
+
+
+
+
+<script src="/js/lightgallery.min.js"></script>
+
+
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+
+
+    <!--暗黑模式-->
+    <script src="/js/darkmode-js.min.js"></script>
+    <script>
+        function addDarkmodeWidget() {
+        const options = {
+            bottom: '53px', // default: '32px'
+            right: 'unset', // default: '32px'
+            left: '42px', // default: 'unset'
+            time: '0.3s', // default: '0.3s'
+            mixColor: '#fff', // default: '#fff'
+            backgroundColor: ' #e4e4e4 ',  // default: '#fff'
+            buttonColorDark: '#100f2c',  // default: '#100f2c'
+            buttonColorLight: '#fff', // default: '#fff'
+            saveInCookies: true, // default: true,
+            label: '🌓', // default: ''
+            autoMatchOsTheme: true // default: true
+        }
+    
+        const darkmode = new Darkmode(options);
+        darkmode.showWidget();
+        
+        }
+        window.addEventListener('load', addDarkmodeWidget);
+    </script>
+  
+</html>
